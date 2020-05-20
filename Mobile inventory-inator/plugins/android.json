@@ -13,11 +13,11 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.ANTHONYM.APPNAME"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ANTHONYM.APPNAME"
-    },
     "cordova-plugin-screensize": {
       "PACKAGE_NAME": "com.ANTHONYM.APPNAME"
+    },
+    "cordova-plugin-theme-detection": {
+      "PACKAGE_NAME": "com.ANTHONYM.In_pantry"
     }
   },
   "dependent_plugins": {}

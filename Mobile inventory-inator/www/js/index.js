@@ -51,8 +51,9 @@ function maininitalizer() {//Runs after 'Device ready'
 
     config.initialize();//Initalize configuration management
     utility.size_check();
+    utility.check_device_theme();
     setTimeout(() => {
-        navigator.splashscreen.hide();//hide splashscreen
+        //navigator.splashscreen.hide();//hide splashscreen
         window.addEventListener('resize', function () { utility.size_check() })
     }, 300);
 }
@@ -114,6 +115,7 @@ let utility = {//Some usefull things
         exit: false,
     },
     back: async function () {
+        
         utility.exit_strategy();
     },
     exit_strategy: function () {//Heres how to string things togther to make something usefull
@@ -157,10 +159,29 @@ let utility = {//Some usefull things
                     document.getElementById('stylesheet').href = "css/phone.css"
                     console.warn('Set phone screen scale with size: ', result.diameter);
                 }
+                //utility.toast('Screensize: '+result.diameter,5000);
             }, function (err) { console.log('Screen data error: ', err) });
         } else {
             console.error('Screensize plugin failed completely, device may not be ready');
         }
+    },
+    check_device_theme: function () {
+        //console.log(cordova.plugins.ThemeDetection.isAvailable());
+        cordova.plugins.ThemeDetection.isDarkModeEnabled(
+            function (success) {
+                console.log(success)
+                if(success.value == true){
+                    //System darkmode enabled
+                }else{
+                    //system darkmode dissabled
+                }
+            },
+            function (error) { 
+                console.log(error)
+                //unable to can, use default
+            }
+        );
+
     },
     /*  Produce toast messages    */
     toast: function (text, durration_in_ms, position_top_right_left_bottom, offset_in_px) {

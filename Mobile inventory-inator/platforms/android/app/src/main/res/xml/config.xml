@@ -1,19 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ANTHONYM.APPNAME" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ANTHONYM.In_pantry" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="ScreenSize">
         <param name="android-package" value="com.pbakondy.ScreenSize" />
     </feature>
-    <name>Appname</name>
+    <feature name="ThemeDetection">
+        <param name="android-package" value="de.mariusbackes.cordova.plugin.ThemeDetection" />
+    </feature>
+    <name>In-pantry</name>
     <description>
         description Is Discription
     </description>

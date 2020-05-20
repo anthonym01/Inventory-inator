@@ -30,40 +30,32 @@
 @media screen {
     :root {
         --text-color: rgb(0, 0, 0);
-        /* Variable for text color */
         --background-color: rgb(255, 255, 255);
-        /* Variable for background color */
         --accent-color: hsl(200, 100%, 50%);
-        /* Accent color */
+        --grey:rgb(212, 212, 212);
     }
 
     @media (prefers-color-scheme: dark) {
         :root {
             --text-color: rgb(255, 255, 255);
-            /* Variable for text color */
             --background-color: rgb(0, 0, 0);
-            /* Variable for background color */
             --accent-color: hsl(110, 100%, 50%);
-            /* Accent color */
+            --grey:rgb(54, 54, 54);
         }
     }
 
     .dark {
         --text-color: rgb(255, 255, 255);
-        /* Variable for text color */
         --background-color: rgb(0, 0, 0);
-        /* Variable for background color */
         --accent-color: hsl(110, 100%, 50%);
-        /* Accent color */
+        --grey:rgb(54, 54, 54);
     }
 
     .light {
         --text-color: rgb(0, 0, 0);
-        /* Variable for text color */
         --background-color: rgb(255, 255, 255);
-        /* Variable for background color */
         --accent-color: hsl(200, 100%, 50%);
-        /* Accent color */
+        --grey:rgb(212, 212, 212);
     }
 }
 
@@ -85,6 +77,70 @@ body {
     width: 100vw;
     color: var(--text-color);
     background-color: var(--background-color);
+}
+
+/* mainview && navbar*/
+.mainview{
+    position: absolute;
+    top:0;
+    right:0;
+    height: calc(100vh - 13vw);
+    width: 100vw;
+    overflow-y: scroll;
+}
+
+.navbar{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 13vw;
+    background-color: var(--grey);
+}
+
+/* Pantry list items (fake list) */
+.pantry_item{
+    position: relative;
+    width: 90vw;
+    height: 35vw;
+    margin: 5vw;
+    margin-top: 14vw;
+    box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
+}
+
+.preview_square{
+    position: absolute;
+    left:3vw;
+    top:-10vw;
+    height: 30vw;
+    width: 30vw;
+    background-color: rgb(0, 0, 0);
+    background: linear-gradient(120deg,#fff,rgb(36, 36, 36));
+    overflow: hidden;
+}
+
+.preview_img{
+    position: absolute;
+    top:4%;
+    left: 4%;
+    height: 92%;
+    width: 92%;
+    background-color: black;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../img/icon.png');
+    overflow: hidden;
+}
+.preview_img::after{
+    content: "";
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 200%;
+    transform: rotate(-45deg) translate(-20%,-75%);
+    background: linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.6),rgba(255,255,255,0.4),rgba(255,255,255,0.2),rgba(255,255,255,0));
 }
 
 /*    <--  Landscape layout (with min-width) -->     */
