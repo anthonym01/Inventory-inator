@@ -50,8 +50,8 @@ function maininitalizer() {//Runs after 'Device ready'
     }
 
     config.initialize();//Initalize configuration management
-    utility.size_check();
-    utility.check_device_theme();
+    utility.initialize();
+    Ui.initialize()
     setTimeout(() => {
         //navigator.splashscreen.hide();//hide splashscreen
         window.addEventListener('resize', function () { utility.size_check() })
@@ -62,6 +62,8 @@ let config = {
     data: {
         key: "APPname_cfg",
         usecount: 0,
+        last_view: null,
+        animation: true,
     },
     initialize: function () {
         console.warn('Config handler is initalized')
@@ -85,16 +87,23 @@ let config = {
     validate: function () {//validate configuration file
         console.warn('Config is being validated')
         var configisvalid = true
+
         if (typeof (config.data.usecount) == 'undefined') {
-            if (config.data.usecount == undefined || config.data.usecount < 0) {
-                config.data.usecount = 1
-                configisvalid = false
-                console.log('"usecount" was found to be invalid and was set to default')
-            }
-        } else {
             config.data.usecount = 1
             configisvalid = false
             console.log('"usecount" did not exist and was set to default')
+        }
+
+        if (typeof (config.data.last_view) == 'undefined') {
+            config.data.last_view = null;
+            configisvalid = false
+            console.log('"last_view" did not exist and was set to default')
+        }
+
+        if (typeof (config.data.animation) == 'undefined') {
+            config.data.animation = true;
+            configisvalid = false
+            console.log('"animation" did not exist and was set to default')
         }
 
         if (!configisvalid) {
@@ -110,13 +119,105 @@ let config = {
     }
 }
 
+Ui = {
+    initialize: function () {
+        console.warn('Ui initalize')
+
+        document.getElementById('accounts_btn').addEventListener('click', Ui.navigate.accounts)
+        document.getElementById('inventory_btn').addEventListener('click', Ui.navigate.inventory)
+        document.getElementById('setting_btn').addEventListener('click', Ui.navigate.setting)
+        this.navigate.lastmain_view()
+        this.setting.animation.setpostition()
+        document.getElementById('Animations_btn').addEventListener('click', Ui.setting.animation.flip)
+    },
+    navigate: {
+        lastmain_view: function () {
+            switch (config.data.last_view) {//Set view to last view the user used, excluding settings
+                case "accounts":
+                    Ui.navigate.accounts()
+                    break;
+                case "inventory":
+                    Ui.navigate.inventory()
+                    break;
+                default:
+                    console.warn('Last view error, defaulting');
+                    Ui.navigate.inventory()
+            }
+        },
+        setting: function () {
+            console.log('Naviagate settings')
+            document.getElementById('accounts_btn').classList = "navbtn"
+            document.getElementById('inventory_btn').classList = "navbtn"
+            document.getElementById('setting_btn').classList = "navbtn_ative"
+            document.getElementById('inventory_view').style.display = "none"
+            document.getElementById('accounting_view').style.display = "none"
+            document.getElementById('setting_view').style.display = "block"
+        },
+        inventory: function () {
+            console.log('Naviagate inventory')
+            document.getElementById('accounts_btn').classList = "navbtn"
+            document.getElementById('inventory_btn').classList = "navbtn_ative"
+            document.getElementById('setting_btn').classList = "navbtn"
+            document.getElementById('inventory_view').style.display = "block"
+            document.getElementById('accounting_view').style.display = "none"
+            document.getElementById('setting_view').style.display = "none"
+            config.data.last_view = "inventory"
+        },
+        accounts: function () {
+            console.log('Naviagate accounts')
+            document.getElementById('accounts_btn').classList = "navbtn_ative"
+            document.getElementById('inventory_btn').classList = "navbtn"
+            document.getElementById('setting_btn').classList = "navbtn"
+            document.getElementById('inventory_view').style.display = "none"
+            document.getElementById('accounting_view').style.display = "block"
+            document.getElementById('setting_view').style.display = "none"
+            config.data.last_view = "accounts"
+        }
+    },
+    setting: {
+        animation: {
+            flip: function () {
+                console.log('animation switch triggered');
+                if (config.data.animation == true) {//turn off the switch
+                    config.data.animation = false;
+                    utility.toast('animations dissabled');
+                    console.warn('animations dissabled');
+                } else {//turn on the witch
+                    config.data.animation = true;
+                    utility.toast('animations enabled');
+                    console.warn('animations enabled');
+                }
+                config.save();
+                Ui.setting.animation.setpostition();
+            },
+            setpostition: function () {
+                if (config.data.animation == true) {
+                    document.getElementById('Animations_switch_container').className = 'switch_container_active';
+                    document.getElementById('anim').href = "";
+                } else {
+                    document.getElementById('Animations_switch_container').className = 'switch_container_dissabled';
+                    document.getElementById('anim').href = "css/noanime.css";//nomation sheet removes animations
+                }
+            },
+        },
+    }
+}
+
 let utility = {//Some usefull things
     properties: {
         exit: false,
     },
+    initialize: function () {
+        console.warn('Utility initalize')
+        utility.size_check()
+        utility.check_device_theme()
+    },
     back: async function () {
-        
-        utility.exit_strategy();
+        if (document.getElementById('setting_view').style.display == "block") {
+            Ui.navigate.lastmain_view();
+        }else{
+            utility.exit_strategy();
+        }
     },
     exit_strategy: function () {//Heres how to string things togther to make something usefull
         console.warn('Exit strategy triggered')
@@ -170,13 +271,13 @@ let utility = {//Some usefull things
         cordova.plugins.ThemeDetection.isDarkModeEnabled(
             function (success) {
                 console.log(success)
-                if(success.value == true){
+                if (success.value == true) {
                     //System darkmode enabled
-                }else{
+                } else {
                     //system darkmode dissabled
                 }
             },
-            function (error) { 
+            function (error) {
                 console.log(error)
                 //unable to can, use default
             }

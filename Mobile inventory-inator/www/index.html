@@ -16,61 +16,151 @@
     <!--Style sheets-->
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" id="stylesheet" type="text/css" href="css/phone.css">
+    <link rel="stylesheet" href="" id="anim" type="text/css">
     <script defer type="text/javascript" src="cordova.js"></script>
     <script defer type="text/javascript" src="js/index.js"></script>
     <title>In-Pantry</title>
 </head>
 
 <body id="body" class="dark">
-    <div class="navbar"></div>
-    <div class="mainview">
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
+
+    <div class="navbar">
+        <div class="navbtn" id="accounts_btn">
+            <div id="accounts_icon" class="navcon"></div>
         </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
+        <div class="navbtn_ative" id="inventory_btn">
+            <div id="inventory_icon" class="navcon"></div>
         </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
-        </div>
-        <div class="pantry_item">
-            <div class="preview_square">
-                <div class="preview_img"></div>
-            </div>
+        <div class="navbtn" id="setting_btn">
+            <div id="setting_icon" class="navcon"></div>
         </div>
     </div>
 
+    <div class="mainview" id="inventory_view">
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+        <div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>
+    </div>
+
+    <div class="mainview" id="setting_view">
+        <div class="settingtitle">Settings</div>
+        <table class="setting_tabler">
+            <tr id="Animations_btn" class="pointer" title="toggle animations on or off">
+                <td class="text-hand-side"> Animations</td>
+                <td class="button-hand-side">
+                    <div class="switch_container_active" id="Animations_switch_container">
+                        <div class="switchbdy" id="Animations_switchbdy">
+                            <div class="switch_knob"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="mainview" id="accounting_view">
+
+    </div>
 </body>
 
 </html>

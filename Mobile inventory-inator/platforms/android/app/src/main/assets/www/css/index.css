@@ -32,7 +32,7 @@
         --text-color: rgb(0, 0, 0);
         --background-color: rgb(255, 255, 255);
         --accent-color: hsl(200, 100%, 50%);
-        --grey:rgb(212, 212, 212);
+        --grey: rgb(212, 212, 212);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -40,7 +40,7 @@
             --text-color: rgb(255, 255, 255);
             --background-color: rgb(0, 0, 0);
             --accent-color: hsl(110, 100%, 50%);
-            --grey:rgb(54, 54, 54);
+            --grey: rgb(54, 54, 54);
         }
     }
 
@@ -48,14 +48,14 @@
         --text-color: rgb(255, 255, 255);
         --background-color: rgb(0, 0, 0);
         --accent-color: hsl(110, 100%, 50%);
-        --grey:rgb(54, 54, 54);
+        --grey: rgb(54, 54, 54);
     }
 
     .light {
         --text-color: rgb(0, 0, 0);
         --background-color: rgb(255, 255, 255);
         --accent-color: hsl(200, 100%, 50%);
-        --grey:rgb(212, 212, 212);
+        --grey: rgb(212, 212, 212);
     }
 }
 
@@ -68,7 +68,7 @@ body {
     /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;
     /* prevent copy paste, to allow, change 'none' to 'text' */
-    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: Lexend_Deca, system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     margin: 0px;
     padding: 0px;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */
@@ -80,48 +80,100 @@ body {
 }
 
 /* mainview && navbar*/
-.mainview{
+.mainview {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     height: calc(100vh - 13vw);
     width: 100vw;
     overflow-y: scroll;
+    display: none;
 }
 
-.navbar{
+.navbar {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100vw;
     height: 13vw;
     background-color: var(--grey);
+    float: left;
 }
 
-/* Pantry list items (fake list) */
-.pantry_item{
+/* Navigation buttons */
+.navbtn,
+.navbtn_ative {
+    /*  Buttons containing icons  */
     position: relative;
-    width: 90vw;
-    height: 35vw;
-    margin: 5vw;
-    margin-top: 14vw;
-    box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
-}
-
-.preview_square{
-    position: absolute;
-    left:3vw;
-    top:-10vw;
-    height: 30vw;
-    width: 30vw;
-    background-color: rgb(0, 0, 0);
-    background: linear-gradient(120deg,#fff,rgb(36, 36, 36));
+    height: 13vw;
+    width: 33.33vw;
+    border-radius: 4vw;
+    float: left;
+    transition: background-color 300ms;
+    cursor: pointer;
     overflow: hidden;
 }
 
-.preview_img{
+.navbtn_ative {
+    background-color: rgb(146, 146, 146);
+}
+
+.navbtn .navcon,
+.navbtn_ative .navcon {
+    /*  Relitiveistic icon positioning(shifting based on device type)  */
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 13vw;
+    width: 13vw;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    transition: transform 300ms;
+    overflow: visible;
+}
+
+#setting_icon {
+    background-image: url('../img/setting.webp');
+    transition: transform 300ms;
+}
+
+.navbtn_ative #setting_icon {
+    background-image: url('../img/setting.webp');
+    transform: rotate(90deg);
+}
+
+#inventory_icon {
+    background-image: url('../img/box-cardboard-pngrepo-com.png');
+}
+
+#accounts_icon {
+    background-image: url('../img/icon.png');
+}
+
+/* Pantry list items (fake list) */
+.pantry_item {
+    position: relative;
+    width: 90vw;
+    height: 25vw;
+    margin: 5vw;
+    margin-top: 7vw;
+    box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
+}
+
+.preview_square {
     position: absolute;
-    top:4%;
+    left: 2vw;
+    top: -3vw;
+    height: 20vw;
+    width: 20vw;
+    background-color: rgb(0, 0, 0);
+    background: linear-gradient(120deg, #fff, rgb(36, 36, 36));
+    overflow: hidden;
+}
+
+.preview_img {
+    position: absolute;
+    top: 4%;
     left: 4%;
     height: 92%;
     width: 92%;
@@ -132,16 +184,119 @@ body {
     background-image: url('../img/icon.png');
     overflow: hidden;
 }
-.preview_img::after{
+
+.preview_img::after {
     content: "";
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     height: 100%;
     width: 200%;
-    transform: rotate(-45deg) translate(-20%,-75%);
-    background: linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.6),rgba(255,255,255,0.4),rgba(255,255,255,0.2),rgba(255,255,255,0));
+    transform: rotate(-45deg) translate(-20%, -75%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
 }
+
+.namebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 22vw);
+    font-size: 5vw;
+    text-align: center;
+}
+
+
+/* Setting view */
+.settingtitle {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    font-size: 10vw;
+    text-align: center;
+}
+
+.setting_tabler {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    margin-top: 3vw;
+}
+
+.setting_tabler tr {
+    width: 100vw;
+}
+
+.setting_tabler td {
+    height: fit-content;
+    align-items: center;
+    align-content: center;
+    font-size: 6vw;
+    text-align: center;
+}
+
+.setting_tabler .text-hand-side {
+    width: 70vw;
+}
+
+.setting_tabler .button-hand-side {
+    width: 30vw;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.switch_container_active,
+.switch_container_dissabled {
+    /* Setting switch */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vw;
+    height: 8vw;
+    border: 0.7vw solid var(--text-color);
+    border-radius: 5vw;
+    cursor: pointer;
+    transition: border;
+    transition-duration: 300ms;
+    background-color: var(--background-color);
+}
+
+.switch_container_dissabled {
+    border: 0.7vw solid var(--grey);
+}
+
+.switch_container_active .switchbdy,
+.switch_container_dissabled .switchbdy {
+    /*Body of the switch*/
+    position: absolute;
+    width: 20vw;
+    height: 8vw;
+    border-radius: 5vw;
+}
+
+.switch_container_active .switch_knob,
+.switch_container_dissabled .switch_knob {
+    /* Switch knob */
+    top: 0.2vw;
+    right: 0.2vw;
+    position: absolute;
+    height: 7.6vw;
+    width: 7.6vw;
+    border-radius: 50%;
+    z-index: 1;
+    transform: translate(0, 0);
+    transition: transform, background-color;
+    transition-duration: 300ms;
+    background-color: var(--accent-color)
+}
+
+.switch_container_dissabled .switch_knob {
+    background-color: var(--grey);
+    transform: translate(-12vw, 0);
+}
+
+
 
 /*    <--  Landscape layout (with min-width) -->     */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
