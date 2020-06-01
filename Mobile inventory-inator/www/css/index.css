@@ -37,7 +37,7 @@
         --elivation_color: 70%;
         --button_depth: translate(3%, 10%);
         --card_icon: url('../img/icon.png');
-        --edit_img: url('../img/edit-white');
+        --edit_img: url('../img/61456.svg');
     }
 
     .dark {
@@ -48,7 +48,7 @@
         --half_grey: rgb(100, 100, 100);
         --setting-icon: url('../img/setting-white.webp');
         --elivation_color: 20%;
-        --edit_img: url('../img/edit-black');
+        --edit_img: url('../img/edit-black.webp');
     }
 
     .light {
@@ -59,7 +59,7 @@
         --half_grey: rgb(177, 177, 177);
         --setting-icon: url('../img/setting-black.webp');
         --elivation_color: 70%;
-        --edit_img: url('../img/edit-white');
+        --edit_img: url('../img/edit-white.webp');
     }
 
     ._0 {
@@ -205,6 +205,7 @@
         /*  Relitiveistic icon positioning(shifting based on device type)  */
         background-size: contain;
         background-repeat: no-repeat;
+        background-position: center;
         height: 11.5vw;
         width: 11.5vw;
         position: relative;
@@ -227,6 +228,7 @@
 
     #inventory_icon {
         background-image: url('../img/box-cardboard-pngrepo-com.png');
+        background-size: 90%;
     }
 
     #accounts_icon {
@@ -598,7 +600,8 @@
     }
 
     .list_panneler,
-    .list_panneler_active {/* Data from list goes here */
+    .list_panneler_active {
+        /* Data from list goes here */
         position: absolute;
         top: 0;
         right: 0;
@@ -614,7 +617,31 @@
         display: block;
     }
 
-    .pantry_item {/* container for a single list item */
+    .main_edit_button {
+        position: fixed;
+        bottom: 13.5vw;
+        right: 2vw;
+        height: 16vw;
+        width: 16vw;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+        background-size: 55%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: var(--edit_img);
+        cursor: pointer;
+        transition: transform 300ms;
+        transform: translate(0, 0);
+        z-index: 2;
+    }
+
+    .main_edit_button:active {
+        transform: var(--button_depth);
+        transition: transform 0ms;
+    }
+
+    .pantry_item {
+        /* container for a single list item */
         position: relative;
         width: 90vw;
         height: 25vw;
@@ -622,7 +649,10 @@
         margin-top: 7vw;
         box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
         border-top: 0.6vw solid var(--accent-color);
-    }.pantry_item:hover{
+        transition: box-shadow 300ms;
+    }
+
+    .pantry_item:hover {
         box-shadow: 0vw 0vw 3vw 1vw var(--accent-color);
     }
 
@@ -636,7 +666,8 @@
         overflow: hidden;
         transition: background 300ms;
     }
-    .pantry_item:hover .preview_square{
+
+    .pantry_item:hover .preview_square {
         background: linear-gradient(120deg, var(--accent-color), var(--grey))
     }
 
@@ -665,9 +696,11 @@
         transform: rotate(-45deg) translate(-20%, -75%);
         background: linear-gradient(180deg, hsla(0, 0%, 100%, 0.4), hsla(0, 0%, 100%, 0.3), hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
     }
+
     .pantry_item:hover .preview_img::after {
         background: linear-gradient(180deg, hsla(var(--primary_hue), 100%, 50%, 0.4), hsla(var(--primary_hue), 100%, 50%, 0.3), hsla(var(--primary_hue), 100%, 50%, 0.2), hsla(var(--primary_hue), 100%, 50%, 0.1), hsla(var(--primary_hue), 100%, 50%, 0));
     }
+
     .namebar {
         position: absolute;
         top: 0;
