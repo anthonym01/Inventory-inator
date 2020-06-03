@@ -48,7 +48,8 @@
         --half_grey: rgb(100, 100, 100);
         --setting-icon: url('../img/setting-white.webp');
         --elivation_color: 20%;
-        --edit_img: url('../img/edit-black.webp');
+        --edit_img: url('../img/edit-white.webp');
+        --plussimg: url('../img/plus-light.webp')
     }
 
     .light {
@@ -59,7 +60,8 @@
         --half_grey: rgb(177, 177, 177);
         --setting-icon: url('../img/setting-black.webp');
         --elivation_color: 70%;
-        --edit_img: url('../img/edit-white.webp');
+        --edit_img: url('../img/edit-black.webp');
+        --plussimg: url('../img/plus-light.webp')
     }
 
     ._0 {
@@ -465,6 +467,46 @@
         background-image: linear-gradient(120deg, hsl(330, 100%, 50%), hsl(330, 100%, var(--elivation_color)));
     }
 
+    .main_button_1,
+    .main_button_2 {
+        position: fixed;
+        bottom: 13.5vw;
+        right: 2vw;
+        height: 16vw;
+        width: 16vw;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+
+        background-repeat: no-repeat;
+        cursor: pointer;
+        transition: transform 300ms;
+        transform: translate(0, 0);
+        z-index: 2;
+    }
+
+    .main_button_2 {
+        bottom: 32.5vw;
+
+    }
+
+    .main_button_1:active,
+    .main_button_2:active {
+        transform: var(--button_depth);
+        transition: transform 0ms;
+    }
+
+    #add_new_list_button,
+    #add_new_list_item_button {
+        background-size: 60%;
+        background-position: center;
+        background-image: var(--plussimg)
+    }
+
+    #edit_list_button {
+        background-size: 55%;
+        background-position: 50% 50%;
+        background-image: var(--edit_img);
+    }
 
     /* Inventory view */
     .main_list_container {
@@ -611,33 +653,11 @@
         overflow-x: hidden;
         overflow-y: scroll;
         background-color: var(--background-color);
+        z-index: 5;
     }
 
     .list_panneler_active {
         display: block;
-    }
-
-    .main_edit_button {
-        position: fixed;
-        bottom: 13.5vw;
-        right: 2vw;
-        height: 16vw;
-        width: 16vw;
-        border-radius: 50%;
-        background-color: var(--accent-color);
-        background-size: 55%;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-image: var(--edit_img);
-        cursor: pointer;
-        transition: transform 300ms;
-        transform: translate(0, 0);
-        z-index: 2;
-    }
-
-    .main_edit_button:active {
-        transform: var(--button_depth);
-        transition: transform 0ms;
     }
 
     .pantry_item {
