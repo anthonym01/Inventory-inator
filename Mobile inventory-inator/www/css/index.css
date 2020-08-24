@@ -682,7 +682,7 @@
         top: -3vw;
         height: 20vw;
         width: 20vw;
-        background: linear-gradient(120deg, #fff, rgb(36, 36, 36));
+        background: linear-gradient(120deg, #fff, #242424);
         overflow: hidden;
         transition: background 300ms;
     }
