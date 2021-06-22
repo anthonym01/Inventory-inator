@@ -1,7 +1,7 @@
 {
   "appId": "com.anthonym.inpantry",
   "appName": "Inpantry",
-  "bundledWebRuntime": true,
+  "bundledWebRuntime": false,
   "webDir": "www",
   "plugins": {
     "SplashScreen": {

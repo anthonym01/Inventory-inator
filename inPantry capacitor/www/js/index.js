@@ -1,7 +1,19 @@
+/*const { Capacitor } = require("@capacitor/core");
 
-window.addEventListener('load',function(){maininitalizer()})
+const { Browser } = require("@capacitor/browser");
+*/
+const { Browser } = Capacitor.Plugins;//plugins
 
-function maininitalizer() {//Runs after 'Device ready'
+const openCapacitorSite = async () => {
+    await Browser.open({ url: 'http://capacitorjs.com/' });
+};
+
+window.addEventListener('load', function () {
+    openCapacitorSite();
+    maininitalizer();
+})
+
+async function maininitalizer() {//Runs after 'Device ready'
 
     config.initialize();//Initalize configuration management
     Ui.initialize()
@@ -130,11 +142,11 @@ let inventory = {
         add_new_button.addEventListener('click', inventory.manager.add_new_main_list)
 
         //build data
-        for (i = 0; i < config.data.inventory.length; i++) {
+        for (let i = 0; i < config.data.inventory.length; i++) {
             list_anchor(i);
         }
 
-        function list_anchor(index) {//render out a single list anchor
+        function list_anchor(i) {//render out a single list anchor
             console.log('Render list: ', config.data.inventory[i].name, ' index: ', i);
             var list_anchor = document.createElement("div")
             list_anchor.classList = "list_anchor"
@@ -157,7 +169,7 @@ let inventory = {
             })
 
             //build list preview
-            for (i2 = 0; i2 < config.data.inventory[index].listitems.length; i2++) {
+            for (let i2 = 0; i2 < config.data.inventory[index].listitems.length; i2++) {
                 build_preview(i2);
             }
             function build_preview(index_preview) {//needs rework
@@ -178,20 +190,20 @@ let inventory = {
 
 
         //Build list items
-        for (i = 0; i < config.data.inventory[index].listitems.length; i++) {
+        for (let i = 0; i < config.data.inventory[index].listitems.length; i++) {
             build_list_item(i)
         }
         async function build_list_item(i) {
-            console.log('Building list item: ', i,config.data.inventory[index].listitems[i])
+            console.log('Building list item: ', i, config.data.inventory[index].listitems[i])
             var pantry_item = document.createElement('div')
-            pantry_item.classList="pantry_item"
+            pantry_item.classList = "pantry_item"
             var preview_square = document.createElement('div')
-            preview_square.classList="preview_square"
+            preview_square.classList = "preview_square"
             var preview_img = document.createElement('div')
-            preview_img.classList="preview_img"
+            preview_img.classList = "preview_img"
             var namebar = document.createElement('div')
-            namebar.classList="namebar"
-            namebar.innerHTML=config.data.inventory[index].listitems[i].name
+            namebar.classList = "namebar"
+            namebar.innerHTML = config.data.inventory[index].listitems[i].name
 
             preview_square.appendChild(preview_img)
             pantry_item.appendChild(preview_square)
