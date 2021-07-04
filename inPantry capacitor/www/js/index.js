@@ -1,35 +1,23 @@
-/*const { Capacitor } = require("@capacitor/core");
-
-const { Browser } = require("@capacitor/browser");
-*/
-const { Browser } = Capacitor.Plugins;//plugins
-
-const openCapacitorSite = async () => {
-    await Browser.open({ url: 'http://capacitorjs.com/' });
-};
+const { Browser } = Capacitor.Plugins;
 
 window.addEventListener('load', function () {
-    openCapacitorSite();
+    //crack_open_a_bottle_of_database()
     maininitalizer();
 })
 
+
 async function maininitalizer() {//Runs after 'Device ready'
 
-    config.initialize();//Initalize configuration management
+    if (localStorage.getItem("Inpantry_cfg")) {
+        config.load()
+    }
     Ui.initialize()
     inventory.initalize()
-    setTimeout(() => {
-        //navigator.splashscreen.hide();//hide splashscreen
-        window.addEventListener('resize', function () { utility.size_check() })
-        utility.properties.first_start = false;
-    }, 300);
 }
 
 let config = {
     data: {//Loacal app data
         key: "Inpantry_cfg",
-        usecount: 0,
-        last_view: null,
         animation: true,
         theme: "dark",
         accent_color: -1,
@@ -56,14 +44,6 @@ let config = {
                 ], deleted: false,
             },
         ],
-    },
-    initialize: function () {//starts up the config manager
-        console.warn('Config handler is initalized')
-        if (localStorage.getItem("Inpantry_cfg")) {
-            this.load()
-        } else {
-            this.validate()
-        }
     },
     save: async function () {//Save the config file
         console.warn('Configuration is being saved')
@@ -169,9 +149,10 @@ let inventory = {
             })
 
             //build list preview
-            for (let i2 = 0; i2 < config.data.inventory[index].listitems.length; i2++) {
+            for (let i2 in config.data.inventory[index]) {
                 build_preview(i2);
             }
+
             function build_preview(index_preview) {//needs rework
                 var list_preview = document.createElement('div')
                 list_preview.classList = "list_preview"
@@ -190,9 +171,11 @@ let inventory = {
 
 
         //Build list items
-        for (let i = 0; i < config.data.inventory[index].listitems.length; i++) {
+        for (let i in config.data.inventory[index].listitems ) {
+
             build_list_item(i)
         }
+
         async function build_list_item(i) {
             console.log('Building list item: ', i, config.data.inventory[index].listitems[i])
             var pantry_item = document.createElement('div')

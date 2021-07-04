@@ -27,710 +27,712 @@
 }
 
 /* Portrait theme */
-@media screen {
-    :root {
-        --text-color: rgb(0, 0, 0);
-        --background-color: rgb(255, 255, 255);
-        --accent-color: hsl(0, 0%, 0%);
-        --grey: rgb(212, 212, 212);
-        --setting-icon: url('../img/setting-black.webp');
-        --elivation_color: 70%;
-        --button_depth: translate(3%, 10%);
-        --card_icon: url('../img/icon.png');
-        --edit_img: url('../img/61456.svg');
-    }
-
-    .dark {
-        --text-color: rgb(255, 255, 255);
-        --background-color: rgb(0, 0, 0);
-        --accent-color: rgb(255, 255, 255);
-        --grey: rgb(54, 54, 54);
-        --half_grey: rgb(100, 100, 100);
-        --setting-icon: url('../img/setting-white.webp');
-        --elivation_color: 20%;
-        --edit_img: url('../img/edit-white.webp');
-        --plussimg: url('../img/plus-light.webp')
-    }
-
-    .light {
-        --text-color: rgb(0, 0, 0);
-        --background-color: rgb(255, 255, 255);
-        --accent-color: hsl(0, 0%, 0%);
-        --grey: rgb(212, 212, 212);
-        --half_grey: rgb(177, 177, 177);
-        --setting-icon: url('../img/setting-black.webp');
-        --elivation_color: 70%;
-        --edit_img: url('../img/edit-black.webp');
-        --plussimg: url('../img/plus-light.webp')
-    }
-
-    ._0 {
-        --accent-color: hsl(0, 100%, 50%);
-        --primary_hue: 0;
-        --card_icon: url('../img/icon_0.png');
-    }
-
-    ._30 {
-        --accent-color: hsl(30, 100%, 50%);
-        --primary_hue: 30;
-        --card_icon: url('../img/icon_30.png');
-    }
-
-    ._60 {
-        --accent-color: hsl(60, 100%, 50%);
-        --primary_hue: 60;
-        --card_icon: url('../img/icon_60.png');
-    }
-
-    ._90 {
-        --accent-color: hsl(90, 100%, 50%);
-        --primary_hue: 90;
-        --card_icon: url('../img/icon_90.png');
-    }
-
-    ._120 {
-        --accent-color: hsl(120, 100%, 50%);
-        --primary_hue: 120;
-        --card_icon: url('../img/icon_120.png');
-    }
-
-    ._150 {
-        --accent-color: hsl(150, 100%, 50%);
-        --primary_hue: 150;
-        --card_icon: url('../img/icon_150.png');
-    }
-
-    ._180 {
-        --accent-color: hsl(180, 100%, 50%);
-        --primary_hue: 180;
-        --card_icon: url('../img/icon_180.png');
-    }
-
-    ._210 {
-        --accent-color: hsl(210, 100%, 50%);
-        --primary_hue: 210;
-        --card_icon: url('../img/icon_210.png');
-    }
-
-    ._240 {
-        --accent-color: hsl(240, 100%, 50%);
-        --primary_hue: 240;
-        --card_icon: url('../img/icon_240.png');
-    }
-
-    ._270 {
-        --accent-color: hsl(270, 100%, 50%);
-        --primary_hue: 270;
-        --card_icon: url('../img/icon_270.png');
-    }
-
-    ._300 {
-        --accent-color: hsl(300, 100%, 50%);
-        --primary_hue: 300;
-        --card_icon: url('../img/icon_300.png');
-    }
-
-    ._330 {
-        --accent-color: hsl(330, 100%, 50%);
-        --primary_hue: 330;
-        --card_icon: url('../img/icon_330.png');
-    }
-
-
-    /* Base layout */
-
-    body {
-        -webkit-touch-callout: none;
-        /* prevent callout to copy image, etc when tap to hold */
-        -webkit-text-size-adjust: none;
-        /* prevent webkit from resizing text to fit */
-        -webkit-user-select: none;
-        /* prevent copy paste, to allow, change 'none' to 'text' */
-        font-family: Lexend_Deca, system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
-        margin: 0px;
-        padding: 0px;
-        padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-right, 0px);
-        height: 100vh;
-        width: 100vw;
-        color: var(--text-color);
-        background-color: var(--background-color);
-    }
-
-    /* mainview && navbar*/
-    .mainview {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: calc(100vh - 11.5vw);
-        width: 100vw;
-        overflow-y: scroll;
-        display: none;
-        color: var(--text-color);
-        background-color: var(--background-color);
-    }
-
-    .navbar {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 100vw;
-        height: 11.5vw;
-        background-color: var(--grey);
-        float: left;
-        transition: background-color 500ms, color 500ms;
-    }
-
-    .navbtn,
-    .navbtn_ative {
-        /*  Buttons containing icons  */
-        position: relative;
-        height: 11.5vw;
-        width: 33.33vw;
-        border-radius: 4vw;
-        float: left;
-        transition: background-color 300ms;
-        background-color: var(--grey);
-        cursor: pointer;
-        overflow: hidden;
-    }
-
-    .navbtn:hover {
-        background-color: var(--half_grey);
-    }
-
-    .navbtn_ative {
-        background-color: var(--accent-color);
-    }
-
-    .navbtn .navcon,
-    .navbtn_ative .navcon {
-        /*  Relitiveistic icon positioning(shifting based on device type)  */
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        height: 11.5vw;
-        width: 11.5vw;
-        position: relative;
-        margin-right: auto;
-        margin-left: auto;
-        transition: transform 300ms;
-        overflow: visible;
-    }
-
-    #setting_icon {
-        background-image: var(--setting-icon);
-        transition: transform 300ms;
-        transform: rotate(0deg);
-    }
-
-    .navbtn_ative #setting_icon {
-        filter: invert(1);
-        transform: rotate(90deg);
-    }
-
-    #inventory_icon {
-        background-image: url('../img/box-cardboard-pngrepo-com.png');
-        background-size: 90%;
-    }
-
-    #accounts_icon {
-        background-image: var(--card_icon);
-    }
-
-    /* Setting view */
-    #setting_view {
-        transition: background-color 500ms, color 500ms;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .settingtitle {
-        position: relative;
-        width: 100%;
-        height: fit-content;
-        font-size: 10vw;
-        text-align: center;
-    }
-
-    .setting_tabler {
-        position: relative;
-        width: 100%;
-        height: fit-content;
-    }
-
-    .setting_tabler td {
-        height: fit-content;
-        align-items: center;
-        align-content: center;
-        font-size: 6vw;
-        text-align: center;
-    }
-
-    .theme_bar,
-    .theme_bar_2 {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        height: fit-content;
-        width: 100%;
-    }
-
-    .theme_bar .themebtn_container {
-        position: relative;
-        height: fit-content;
-        width: 33.3%;
-    }
-
-    .theme_bar_2 .themebtn_container {
-        position: relative;
-        height: fit-content;
-        width: 50%;
-    }
-
-    .thembtn,
-    .themebtn_active {
-        font-size: 5vw;
-        padding: 2vw;
-        height: fit-content;
-        width: 20vw;
-        border-radius: 4vw;
-        text-align: center;
-        box-shadow: 0vw 0vw 0vw 0vw rgba(0, 0, 0, 0);
-        margin: auto;
-        transition: box-shadow 300ms, transform 300ms;
-        cursor: pointer;
-        transform: translate(0, 0);
-    }
-
-    .thembtn:active {
-        transition: box-shadow 300ms, transform 0ms;
-        transform: var(--button_depth)
-    }
-
-    .themebtn_active {
-        box-shadow: 0vw 0vw 3vw 1vw var(--accent-color);
-    }
-
-    #dark_theme_btn {
-        background-color: rgb(0, 0, 0);
-        color: rgb(255, 255, 255);
-    }
-
-    #light_theme_btn {
-        background-color: rgb(255, 255, 255);
-        color: rgb(0, 0, 0);
-    }
-
-    .semi_title {
-        height: fit-content;
-        align-items: center;
-        align-content: center;
-        font-size: 6vw;
-        text-align: center;
-        padding-top: 3vw;
-    }
-
-    .switch_container_active,
-    .switch_container_dissabled {
-        /* Setting switch */
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        width: 20vw;
-        height: 8vw;
-        border: 0.7vw solid var(--text-color);
-        border-radius: 5vw;
-        cursor: pointer;
-        transition: border 300ms, box-shadow 300ms;
-        background-color: var(--background-color);
-        box-shadow: 0vw 0vw 0vw 0vw;
-    }
-
-    .switch_container_active:hover {
-        box-shadow: 0vw 0vw 5vw 0vw var(--accent-color);
-    }
-
-    .switch_container_dissabled:hover {
-        box-shadow: 0vw 0vw 5vw 0vw var(--half_grey);
-    }
-
-    .switch_container_dissabled {
-        border: 0.7vw solid var(--grey);
-    }
-
-    .switch_container_active .switchbdy,
-    .switch_container_dissabled .switchbdy {
-        /*Body of the switch*/
-        position: absolute;
-        width: 20vw;
-        height: 8vw;
-        border-radius: 5vw;
-    }
-
-    .switch_container_active .switch_knob,
-    .switch_container_dissabled .switch_knob {
-        /* Switch knob */
-        top: 0.2vw;
-        right: 0.2vw;
-        position: absolute;
-        height: 7.6vw;
-        width: 7.6vw;
-        border-radius: 50%;
-        z-index: 1;
-        transform: translate(0, 0);
-        transition: background-color 300ms;
-        background-color: var(--accent-color)
-    }
-
-    .switch_container_dissabled .switch_knob {
-        background-color: var(--grey);
-        transform: translate(-12vw, 0);
-    }
-
-    .accent-color-selector {
-        position: relative;
-        height: fit-content;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        width: 100%;
-    }
-
-    .accent_blob,
-    .accent_blob_active {
-        position: relative;
-        height: 13vw;
-        width: 13vw;
-        background-color: var(--text-color);
-        color: var(--background-color);
-        margin: 2vw;
-        border-radius: 3.5vw;
-        cursor: pointer;
-        transition: background-color 300ms, color 300ms, box-shadow 300ms, transform 300ms;
-        transform: translate(0, 0);
-    }
-
-    .accent_blob:active {
-        transition: background-color 300ms, color 300ms, box-shadow 300ms, transform 0ms;
-        transform: var(--button_depth)
-    }
-
-    .accent_blob_active {
-        box-shadow: 0vh 0vh 7vw 0vh var(--accent-color);
-    }
-
-    #hue0-selec {
-        background-image: linear-gradient(120deg, hsl(0, 100%, 50%), hsl(0, 100%, var(--elivation_color)));
-    }
-
-    #hue30-selec {
-        background-image: linear-gradient(120deg, hsl(30, 100%, 50%), hsl(30, 100%, var(--elivation_color)));
-    }
-
-    #hue60-selec {
-        background-image: linear-gradient(120deg, hsl(60, 100%, 50%), hsl(60, 100%, var(--elivation_color)));
-    }
-
-    #hue90-selec {
-        background-image: linear-gradient(120deg, hsl(90, 100%, 50%), hsl(90, 100%, var(--elivation_color)));
-    }
-
-    #hue120-selec {
-        background-image: linear-gradient(120deg, hsl(120, 100%, 50%), hsl(120, 100%, var(--elivation_color)));
-    }
-
-    #hue150-selec {
-        background-image: linear-gradient(120deg, hsl(150, 100%, 50%), hsl(150, 100%, var(--elivation_color)));
-    }
-
-    #hue180-selec {
-        background-image: linear-gradient(120deg, hsl(180, 100%, 50%), hsl(180, 100%, var(--elivation_color)));
-    }
-
-    #hue210-selec {
-        background-image: linear-gradient(120deg, hsl(210, 100%, 50%), hsl(210, 100%, var(--elivation_color)));
-    }
-
-    #hue240-selec {
-        background-image: linear-gradient(120deg, hsl(240, 100%, 50%), hsl(240, 100%, var(--elivation_color)));
-    }
-
-    #hue270-selec {
-        background-image: linear-gradient(120deg, hsl(270, 100%, 50%), hsl(270, 100%, var(--elivation_color)));
-    }
-
-    #hue300-selec {
-        background-image: linear-gradient(120deg, hsl(300, 100%, 50%), hsl(300, 100%, var(--elivation_color)));
-    }
-
-    #hue330-selec {
-        background-image: linear-gradient(120deg, hsl(330, 100%, 50%), hsl(330, 100%, var(--elivation_color)));
-    }
-
-    .main_button_1,
-    .main_button_2 {
-        position: fixed;
-        bottom: 13.5vw;
-        right: 2vw;
-        height: 16vw;
-        width: 16vw;
-        border-radius: 50%;
-        background-color: var(--accent-color);
-
-        background-repeat: no-repeat;
-        cursor: pointer;
-        transition: transform 300ms;
-        transform: translate(0, 0);
-        z-index: 2;
-    }
-
-    .main_button_2 {
-        bottom: 32.5vw;
-
-    }
-
-    .main_button_1:active,
-    .main_button_2:active {
-        transform: var(--button_depth);
-        transition: transform 0ms;
-    }
-
-    #add_new_list_button,
-    #add_new_list_item_button {
-        background-size: 60%;
-        background-position: center;
-        background-image: var(--plussimg)
-    }
-
-    #edit_list_button {
-        background-size: 55%;
-        background-position: 50% 50%;
-        background-image: var(--edit_img);
-    }
-
-    /* Inventory view */
-    .main_list_container {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        /*justify-content: space-between;*/
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .list_anchor {
-        /*clickable list tiles*/
-        position: relative;
-        width: 45vw;
-        height: 45vw;
-        margin: 2vw;
-        box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
-        transform: translate(0, 0);
-        transition: transform 300ms, box-shadow 300ms;
-        cursor: pointer;
-        /*border-radius: 2vw;*/
-        overflow: hidden;
-        background-color: var(--background-color);
-        /*background: linear-gradient(120deg, #fff, rgb(36, 36, 36));*/
-    }
-
-    .list_anchor_foreground {
-        position: absolute;
-        top: 1vw;
-        right: 1vw;
-        height: calc(100% - 2vw);
-        width: calc(100% - 2vw);
-        background-color: var(--background-color);
-    }
-
-    .list_anchor:hover {
-        box-shadow: 0vw 0vw 3vw 0.5vw var(--accent-color);
-    }
-
-    .list_anchor:active {
-        transform: translate(0, 5%);
-        transition: transform 0ms;
-    }
-
-    .add_new_icon {
-        /* the accented plus */
-        position: absolute;
-        top: 16vw;
-        right: 12.5vw;
-        height: 20vw;
-        width: 20vw;
-        transition: transform 300ms;
-        transform: rotate(0deg);
-    }
-
-    .list_anchor:hover .add_new_icon {
-        transform: rotate(90deg);
-    }
-
-    .add_new_icon::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 9vw;
-        width: 2vw;
-        height: 100%;
-        background-color: var(--accent-color);
-        border-radius: 2vw;
-    }
-
-    .add_new_icon::before {
-        content: "";
-        position: absolute;
-        top: 9vw;
-        right: 0vw;
-        width: 100%;
-        height: 2vw;
-        background-color: var(--accent-color);
-        border-radius: 2vw;
-    }
-
-    .list_anchor .list_title {
-        position: absolute;
-        top: 1vw;
-        right: 0;
-        height: fit-content;
-        align-content: center;
-        font-size: 5.5vw;
-        width: 100%;
-        text-align: center;
-    }
-
-    .list_anchor .list_preview_container {
-        position: absolute;
-        top: 10vw;
-        right: 0;
-        height: 33vw;
-        width: calc(100% - 2vw);
-        padding: 1vw;
-    }
-
-    .list_preview_container .list_preview {
-        /* needs styling */
-        position: relative;
-        width: calc(100% - 2vw);
-        font-size: 4vw;
-        height: fit-content;
-        padding: 1vw;
-        text-align: center;
-        box-shadow: 0vw 0vw 0.5vw 0vw var(--text-color);
-    }
-
-    .list_anchor .list_details {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        transform: rotate3d(1, 0, 0, 90deg);
-        transition: transform 300ms;
-        background-color: var(--background-color);
-    }
-
-    .list_anchor:hover .list_details {
-        transform: rotate3d(1, 0, 0, 0deg);
-        transition: transform 300ms 700ms;
-    }
-
-    .list_panneler,
-    .list_panneler_active {
-        /* Data from list goes here */
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        display: none;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        background-color: var(--background-color);
-        z-index: 5;
-    }
-
-    .list_panneler_active {
-        display: block;
-    }
-
-    .pantry_item {
-        /* container for a single list item */
-        position: relative;
-        width: 90vw;
-        height: 25vw;
-        margin: 5vw;
-        margin-top: 7vw;
-        box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
-        border-top: 0.6vw solid var(--accent-color);
-        transition: box-shadow 300ms;
-    }
-
-    .pantry_item:hover {
-        box-shadow: 0vw 0vw 3vw 1vw var(--accent-color);
-    }
-
-    .preview_square {
-        position: absolute;
-        left: 2vw;
-        top: -3vw;
-        height: 20vw;
-        width: 20vw;
-        background: linear-gradient(120deg, #fff, #242424);
-        overflow: hidden;
-        transition: background 300ms;
-    }
-
-    .pantry_item:hover .preview_square {
-        background: linear-gradient(120deg, var(--accent-color), var(--grey))
-    }
-
-    .preview_img {
-        position: absolute;
-        top: 4%;
-        left: 4%;
-        height: 92%;
-        width: 92%;
-        background-color: var(--background-color);
-        background-size: 90%;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-image: var(--card_icon);
-        overflow: hidden;
-    }
-
-    .preview_img::after {
-        /* Apperant gleen over img */
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 200%;
-        transform: rotate(-45deg) translate(-20%, -75%);
-        background: linear-gradient(180deg, hsla(0, 0%, 100%, 0.4), hsla(0, 0%, 100%, 0.3), hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
-    }
-
-    .pantry_item:hover .preview_img::after {
-        background: linear-gradient(180deg, hsla(var(--primary_hue), 100%, 50%, 0.4), hsla(var(--primary_hue), 100%, 50%, 0.3), hsla(var(--primary_hue), 100%, 50%, 0.2), hsla(var(--primary_hue), 100%, 50%, 0.1), hsla(var(--primary_hue), 100%, 50%, 0));
-    }
-
-    .namebar {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: calc(100% - 22vw);
-        font-size: 5vw;
-        text-align: center;
-    }
+
+:root {
+    --text-color: rgb(0, 0, 0);
+    --background-color: rgb(255, 255, 255);
+    --accent-color: hsl(0, 0%, 0%);
+    --grey: rgb(212, 212, 212);
+    --setting-icon: url('../img/setting-black.webp');
+    --elivation_color: 70%;
+    --button_depth: translate(3%, 10%);
+    --card_icon: url('../img/icon.png');
+    --edit_img: url('../img/61456.svg');
+}
+
+.dark {
+    --text-color: rgb(255, 255, 255);
+    --background-color: rgb(0, 0, 0);
+    --accent-color: rgb(255, 255, 255);
+    --grey: rgb(54, 54, 54);
+    --half_grey: rgb(100, 100, 100);
+    --setting-icon: url('../img/setting-white.webp');
+    --elivation_color: 20%;
+    --edit_img: url('../img/edit-white.webp');
+    --plussimg: url('../img/plus-light.webp')
+}
+
+.light {
+    --text-color: rgb(0, 0, 0);
+    --background-color: rgb(255, 255, 255);
+    --accent-color: hsl(0, 0%, 0%);
+    --grey: rgb(212, 212, 212);
+    --half_grey: rgb(177, 177, 177);
+    --setting-icon: url('../img/setting-black.webp');
+    --elivation_color: 70%;
+    --edit_img: url('../img/edit-black.webp');
+    --plussimg: url('../img/plus-light.webp')
+}
+
+._0 {
+    --accent-color: hsl(0, 100%, 50%);
+    --primary_hue: 0;
+    --card_icon: url('../img/icon_0.png');
+}
+
+._30 {
+    --accent-color: hsl(30, 100%, 50%);
+    --primary_hue: 30;
+    --card_icon: url('../img/icon_30.png');
+}
+
+._60 {
+    --accent-color: hsl(60, 100%, 50%);
+    --primary_hue: 60;
+    --card_icon: url('../img/icon_60.png');
+}
+
+._90 {
+    --accent-color: hsl(90, 100%, 50%);
+    --primary_hue: 90;
+    --card_icon: url('../img/icon_90.png');
+}
+
+._120 {
+    --accent-color: hsl(120, 100%, 50%);
+    --primary_hue: 120;
+    --card_icon: url('../img/icon_120.png');
+}
+
+._150 {
+    --accent-color: hsl(150, 100%, 50%);
+    --primary_hue: 150;
+    --card_icon: url('../img/icon_150.png');
+}
+
+._180 {
+    --accent-color: hsl(180, 100%, 50%);
+    --primary_hue: 180;
+    --card_icon: url('../img/icon_180.png');
+}
+
+._210 {
+    --accent-color: hsl(210, 100%, 50%);
+    --primary_hue: 210;
+    --card_icon: url('../img/icon_210.png');
+}
+
+._240 {
+    --accent-color: hsl(240, 100%, 50%);
+    --primary_hue: 240;
+    --card_icon: url('../img/icon_240.png');
+}
+
+._270 {
+    --accent-color: hsl(270, 100%, 50%);
+    --primary_hue: 270;
+    --card_icon: url('../img/icon_270.png');
+}
+
+._300 {
+    --accent-color: hsl(300, 100%, 50%);
+    --primary_hue: 300;
+    --card_icon: url('../img/icon_300.png');
+}
+
+._330 {
+    --accent-color: hsl(330, 100%, 50%);
+    --primary_hue: 330;
+    --card_icon: url('../img/icon_330.png');
+}
+
+
+/* Base layout */
+
+body {
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family: Lexend_Deca, system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-right, 0px);
+    height: 100%;
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* mainview && navbar*/
+.mainview {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: calc(100% - 3rem);
+    width: 100%;
+    overflow-y: scroll;
+    display: none;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.navbar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 3rem;
+    background-color: var(--grey);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    transition: background-color 500ms, color 500ms;
+}
+
+.navbtn,
+.navbtn_ative {
+    /*  Buttons containing icons  */
+    position: relative;
+    height: 3rem;
+    width: 33.33vw;
+    border-radius: 1rem;
+
+    transition: background-color 300ms;
+    background-color: var(--grey);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.navbtn:hover {
+    background-color: var(--half_grey);
+}
+
+.navbtn_ative {
+    background-color: var(--accent-color);
+}
+
+.navbtn .navcon,
+.navbtn_ative .navcon {
+    /*  Relitiveistic icon positioning(shifting based on device type)  */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 3rem;
+    width: 3rem;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    transition: transform 300ms;
+    overflow: visible;
+}
+
+#setting_icon {
+    background-image: var(--setting-icon);
+    transition: transform 300ms;
+    transform: rotate(0deg);
+}
+
+.navbtn_ative #setting_icon {
+    filter: invert(1);
+    transform: rotate(90deg);
+}
+
+#inventory_icon {
+    background-image: url('../img/box-cardboard-pngrepo-com.png');
+    background-size: 90%;
+}
+
+#accounts_icon {
+    background-image: var(--card_icon);
+}
+
+/* Setting view */
+#setting_view {
+    transition: background-color 500ms, color 500ms;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.settingtitle {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    font-size: 10vw;
+    text-align: center;
+}
+
+.setting_tabler {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}
+
+.setting_tabler td {
+    height: fit-content;
+    align-items: center;
+    align-content: center;
+    font-size: 6vw;
+    text-align: center;
+}
+
+.theme_bar,
+.theme_bar_2 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    height: fit-content;
+    width: 100%;
+}
+
+.theme_bar .themebtn_container {
+    position: relative;
+    height: fit-content;
+    width: 33.3%;
+}
+
+.theme_bar_2 .themebtn_container {
+    position: relative;
+    height: fit-content;
+    width: 50%;
+}
+
+.thembtn,
+.themebtn_active {
+    font-size: 5vw;
+    padding: 2vw;
+    height: fit-content;
+    width: 20vw;
+    border-radius: 4vw;
+    text-align: center;
+    box-shadow: 0vw 0vw 0vw 0vw rgba(0, 0, 0, 0);
+    margin: auto;
+    transition: box-shadow 300ms, transform 300ms;
+    cursor: pointer;
+    transform: translate(0, 0);
+}
+
+.thembtn:active {
+    transition: box-shadow 300ms, transform 0ms;
+    transform: var(--button_depth)
+}
+
+.themebtn_active {
+    box-shadow: 0vw 0vw 3vw 1vw var(--accent-color);
+}
+
+#dark_theme_btn {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+#light_theme_btn {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.semi_title {
+    height: fit-content;
+    align-items: center;
+    align-content: center;
+    font-size: 6vw;
+    text-align: center;
+    padding-top: 3vw;
+}
+
+.switch_container_active,
+.switch_container_dissabled {
+    /* Setting switch */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vw;
+    height: 8vw;
+    border: 0.7vw solid var(--text-color);
+    border-radius: 5vw;
+    cursor: pointer;
+    transition: border 300ms, box-shadow 300ms;
+    background-color: var(--background-color);
+    box-shadow: 0vw 0vw 0vw 0vw;
+}
+
+.switch_container_active:hover {
+    box-shadow: 0vw 0vw 5vw 0vw var(--accent-color);
+}
+
+.switch_container_dissabled:hover {
+    box-shadow: 0vw 0vw 5vw 0vw var(--half_grey);
+}
+
+.switch_container_dissabled {
+    border: 0.7vw solid var(--grey);
+}
+
+.switch_container_active .switchbdy,
+.switch_container_dissabled .switchbdy {
+    /*Body of the switch*/
+    position: absolute;
+    width: 20vw;
+    height: 8vw;
+    border-radius: 5vw;
+}
+
+.switch_container_active .switch_knob,
+.switch_container_dissabled .switch_knob {
+    /* Switch knob */
+    top: 0.2vw;
+    right: 0.2vw;
+    position: absolute;
+    height: 7.6vw;
+    width: 7.6vw;
+    border-radius: 50%;
+    z-index: 1;
+    transform: translate(0, 0);
+    transition: background-color 300ms;
+    background-color: var(--accent-color)
+}
+
+.switch_container_dissabled .switch_knob {
+    background-color: var(--grey);
+    transform: translate(-12vw, 0);
+}
+
+.accent-color-selector {
+    position: relative;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.accent_blob,
+.accent_blob_active {
+    position: relative;
+    height: 13vw;
+    width: 13vw;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    margin: 2vw;
+    border-radius: 3.5vw;
+    cursor: pointer;
+    transition: background-color 300ms, color 300ms, box-shadow 300ms, transform 300ms;
+    transform: translate(0, 0);
+}
+
+.accent_blob:active {
+    transition: background-color 300ms, color 300ms, box-shadow 300ms, transform 0ms;
+    transform: var(--button_depth)
+}
+
+.accent_blob_active {
+    box-shadow: 0vh 0vh 7vw 0vh var(--accent-color);
+}
+
+#hue0-selec {
+    background-image: linear-gradient(120deg, hsl(0, 100%, 50%), hsl(0, 100%, var(--elivation_color)));
+}
+
+#hue30-selec {
+    background-image: linear-gradient(120deg, hsl(30, 100%, 50%), hsl(30, 100%, var(--elivation_color)));
+}
+
+#hue60-selec {
+    background-image: linear-gradient(120deg, hsl(60, 100%, 50%), hsl(60, 100%, var(--elivation_color)));
+}
+
+#hue90-selec {
+    background-image: linear-gradient(120deg, hsl(90, 100%, 50%), hsl(90, 100%, var(--elivation_color)));
+}
+
+#hue120-selec {
+    background-image: linear-gradient(120deg, hsl(120, 100%, 50%), hsl(120, 100%, var(--elivation_color)));
+}
+
+#hue150-selec {
+    background-image: linear-gradient(120deg, hsl(150, 100%, 50%), hsl(150, 100%, var(--elivation_color)));
+}
+
+#hue180-selec {
+    background-image: linear-gradient(120deg, hsl(180, 100%, 50%), hsl(180, 100%, var(--elivation_color)));
+}
+
+#hue210-selec {
+    background-image: linear-gradient(120deg, hsl(210, 100%, 50%), hsl(210, 100%, var(--elivation_color)));
+}
+
+#hue240-selec {
+    background-image: linear-gradient(120deg, hsl(240, 100%, 50%), hsl(240, 100%, var(--elivation_color)));
+}
+
+#hue270-selec {
+    background-image: linear-gradient(120deg, hsl(270, 100%, 50%), hsl(270, 100%, var(--elivation_color)));
+}
+
+#hue300-selec {
+    background-image: linear-gradient(120deg, hsl(300, 100%, 50%), hsl(300, 100%, var(--elivation_color)));
+}
+
+#hue330-selec {
+    background-image: linear-gradient(120deg, hsl(330, 100%, 50%), hsl(330, 100%, var(--elivation_color)));
+}
+
+.main_button_1,
+.main_button_2 {
+    position: fixed;
+    bottom: 13.5vw;
+    right: 2vw;
+    height: 16vw;
+    width: 16vw;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 300ms;
+    transform: translate(0, 0);
+    z-index: 2;
+}
+
+.main_button_2 {
+    bottom: 32.5vw;
 
 }
+
+.main_button_1:active,
+.main_button_2:active {
+    transform: var(--button_depth);
+    transition: transform 0ms;
+}
+
+#add_new_list_button,
+#add_new_list_item_button {
+    background-size: 60%;
+    background-position: center;
+    background-image: var(--plussimg)
+}
+
+#edit_list_button {
+    background-size: 55%;
+    background-position: 50% 50%;
+    background-image: var(--edit_img);
+}
+
+/* Inventory view */
+.main_list_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.list_anchor {
+    /*clickable list tiles*/
+    position: relative;
+    width: 45vw;
+    height: 45vw;
+    margin: 2vw;
+    box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
+    transform: translate(0, 0);
+    transition: transform 300ms, box-shadow 300ms;
+    cursor: pointer;
+    /*border-radius: 2vw;*/
+    overflow: hidden;
+    background-color: var(--background-color);
+    /*background: linear-gradient(120deg, #fff, rgb(36, 36, 36));*/
+}
+
+.list_anchor_foreground {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    height: calc(100% - 2vw);
+    width: calc(100% - 2vw);
+    background-color: var(--background-color);
+}
+
+.list_anchor:hover {
+    box-shadow: 0vw 0vw 3vw 0.5vw var(--accent-color);
+}
+
+.list_anchor:active {
+    transform: translate(0, 5%);
+    transition: transform 0ms;
+}
+
+.add_new_icon {
+    /* the accented plus */
+    position: absolute;
+    top: 16vw;
+    right: 12.5vw;
+    height: 20vw;
+    width: 20vw;
+    transition: transform 300ms;
+    transform: rotate(0deg);
+}
+
+.list_anchor:hover .add_new_icon {
+    transform: rotate(90deg);
+}
+
+.add_new_icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 9vw;
+    width: 2vw;
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 2vw;
+}
+
+.add_new_icon::before {
+    content: "";
+    position: absolute;
+    top: 9vw;
+    right: 0vw;
+    width: 100%;
+    height: 2vw;
+    background-color: var(--accent-color);
+    border-radius: 2vw;
+}
+
+.list_anchor .list_title {
+    position: absolute;
+    top: 1vw;
+    right: 0;
+    height: fit-content;
+    align-content: center;
+    font-size: 5.5vw;
+    width: 100%;
+    text-align: center;
+}
+
+.list_anchor .list_preview_container {
+    position: absolute;
+    top: 10vw;
+    right: 0;
+    height: 33vw;
+    width: calc(100% - 2vw);
+    padding: 1vw;
+}
+
+.list_preview_container .list_preview {
+    /* needs styling */
+    position: relative;
+    width: calc(100% - 2vw);
+    font-size: 4vw;
+    height: fit-content;
+    padding: 1vw;
+    text-align: center;
+    box-shadow: 0vw 0vw 0.5vw 0vw var(--text-color);
+}
+
+.list_anchor .list_details {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate3d(1, 0, 0, 90deg);
+    transition: transform 300ms;
+    background-color: var(--background-color);
+}
+
+.list_anchor:hover .list_details {
+    transform: rotate3d(1, 0, 0, 0deg);
+    transition: transform 300ms 700ms;
+}
+
+.list_panneler,
+.list_panneler_active {
+    /* Data from list goes here */
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: var(--background-color);
+    z-index: 5;
+}
+
+.list_panneler_active {
+    display: block;
+}
+
+.pantry_item {
+    /* container for a single list item */
+    position: relative;
+    width: 90vw;
+    height: 25vw;
+    margin: 5vw;
+    margin-top: 7vw;
+    box-shadow: 0.5vw 0.5vw 2vw 0vw var(--text-color);
+    border-top: 0.6vw solid var(--accent-color);
+    transition: box-shadow 300ms;
+}
+
+.pantry_item:hover {
+    box-shadow: 0vw 0vw 3vw 1vw var(--accent-color);
+}
+
+.preview_square {
+    position: absolute;
+    left: 2vw;
+    top: -3vw;
+    height: 20vw;
+    width: 20vw;
+    background: linear-gradient(120deg, #fff, #242424);
+    overflow: hidden;
+    transition: background 300ms;
+}
+
+.pantry_item:hover .preview_square {
+    background: linear-gradient(120deg, var(--accent-color), var(--grey))
+}
+
+.preview_img {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    height: 92%;
+    width: 92%;
+    background-color: var(--background-color);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: var(--card_icon);
+    overflow: hidden;
+}
+
+.preview_img::after {
+    /* Apperant gleen over img */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200%;
+    transform: rotate(-45deg) translate(-20%, -75%);
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0.4), hsla(0, 0%, 100%, 0.3), hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
+}
+
+.pantry_item:hover .preview_img::after {
+    background: linear-gradient(180deg, hsla(var(--primary_hue), 100%, 50%, 0.4), hsla(var(--primary_hue), 100%, 50%, 0.3), hsla(var(--primary_hue), 100%, 50%, 0.2), hsla(var(--primary_hue), 100%, 50%, 0.1), hsla(var(--primary_hue), 100%, 50%, 0));
+}
+
+.namebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 22vw);
+    font-size: 5vw;
+    text-align: center;
+}
+
+
 
 /*    <--  Landscape layout (with min-width) -->     */
 
