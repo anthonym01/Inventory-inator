@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "servewww": "serve ./www",
-    "run android":"npx cap run android",
+    "run android": "npx cap run android",
     "bundle": "browserify www/js/index.js -o www/js/bundle.js"
   },
   "dependencies": {
@@ -19,7 +19,11 @@
     "@capacitor/camera": "latest",
     "@capacitor/cli": "^3.0.1",
     "@capacitor/core": "^3.0.1",
+    "@capacitor/dialog": "^1.0.2",
     "@capacitor/splash-screen": "latest",
+    "@capacitor/status-bar": "^1.0.2",
+    "@capacitor/storage": "^1.0.2",
+    "@capacitor/toast": "^1.0.2",
     "browserify": "^17.0.0"
   },
   "author": "",

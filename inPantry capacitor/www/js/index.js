@@ -1,23 +1,34 @@
-const { Browser } = Capacitor.Plugins;
+const { Browser, App, Camera, Toast, Storage, Dialog } = Capacitor.Plugins;
 
-window.addEventListener('load', function () {
-    //crack_open_a_bottle_of_database()
-    maininitalizer();
+App.addListener('appStateChange', ({ isActive }) => {
+    console.log('App state changed. Is active: ', isActive);
+});
+
+App.addListener('backButton', () => {
+    console.log('back button pressed')
+    utility.exit_strategy()
 })
 
 
-async function maininitalizer() {//Runs after 'Device ready'
+window.addEventListener('load', async function () {
+    try {
+        await config.load()
+    } catch (err) {
+        console.warn('Something bad happened: ', err)
+    } finally {
 
-    if (localStorage.getItem("Inpantry_cfg")) {
-        config.load()
+        Ui.initialize()
+        inventory.initalize()
+        maininitalizer();
     }
-    Ui.initialize()
-    inventory.initalize()
+})
+
+async function maininitalizer() {
+
 }
 
 let config = {
     data: {//Loacal app data
-        key: "Inpantry_cfg",
         animation: true,
         theme: "dark",
         accent_color: -1,
@@ -27,104 +38,62 @@ let config = {
                     { name: "tako", type: 1, restocat: 20, amount: 57 },
                     { name: "tako meat", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
                     { name: "tako grill", type: 3, amount: 1 },
-                ], deleted: false,
+                ],
             },
             {
                 name: "pc part list", details: "details for pc part", listitems: [
                     { name: "Ram chip", type: 1, restocat: 20, amount: 57 },
                     { name: "sauder", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
                     { name: "saudering iron", type: 3, amount: 1 },
-                ], deleted: false,
+                ],
             },
             {
                 name: "Brothgar list", details: "A list of mighty brothgars", listitems: [
                     { name: "Samuel", type: 3, amount: 1 },
                     { name: "Seth", type: 3, amount: 1 },
                     { name: "Simon", type: 3, amount: 1 },
-                ], deleted: false,
+                ],
             },
         ],
     },
     save: async function () {//Save the config file
         console.warn('Configuration is being saved')
-        localStorage.setItem("Inpantry_cfg", JSON.stringify(config.data))
+        Storage.set({ key: 'Inpantry_cfg', value: JSON.stringify(config.data) });
         console.table(config.data)
     },
-    load: function () {//Load the config file
+    load: async function () {//Load the config file
         console.warn('Configuration is being loaded')
-        config.data = JSON.parse(localStorage.getItem("Inpantry_cfg"))
-        console.table(config.data)
-        this.validate()
-    },
-    validate: function () {//validate configuration file
-        console.warn('Config is being validated')
-        var configisvalid = true
-
-        if (typeof (config.data.usecount) == 'undefined') {
-            config.data.usecount = 1
-            configisvalid = false
-            console.log('"usecount" did not exist and was set to default')
+        let fromkey = await Storage.get({ key: 'Inpantry_cfg' })
+        console.log('Loaded: ', fromkey)
+        if (fromkey.value != null) {
+            config.data = JSON.parse(fromkey.value);
+            console.table(config.data)
+        } else {
+            console.warn('configuration loaded is empty')
         }
 
-        if (typeof (config.data.last_view) == 'undefined') {
-            config.data.last_view = null;
-            configisvalid = false
-            console.log('"last_view" did not exist and was set to default')
-        }
-
-        if (typeof (config.data.theme) == 'undefined') {
-            config.data.theme = "dark";
-            configisvalid = false
-            console.log('"theme" did not exist and was set to default')
-        }
-
-        if (typeof (config.data.accent_color) == 'undefined') {
-            config.data.accent_color = 210;
-            configisvalid = false
-            console.log('"accent_color" did not exist and was set to default')
-        }
-
-        if (typeof (config.data.animation) == 'undefined') {
-            config.data.animation = true;
-            configisvalid = false
-            console.log('"animation" did not exist and was set to default')
-        }
-
-        if (!configisvalid) {
-            console.log('config was found to be invalid and will be overwritten')
-            this.save()//Save new confog because old config is no longer valid
-        } else { console.log('config was found to be valid') }
     },
     delete: function () {//Does not delete the file itself. Just sets it to empty
-        localStorage.clear("Inpantry_cfg")
-        console.log('config deleted: ')
+        Storage.remove({ key: 'Inpantry_cfg' });
+        console.log('config deleted')
         console.table(config.data)
-        this.validate()
     }
 }
 
 let inventory = {
     initalize: function () {
-        this.render_main_list()
-    },
-    render_main_list: function () {
-        //build add new button
-        var add_new_button = document.createElement("div")
-        add_new_button.classList = "list_anchor"
-        var list_title = document.createElement("div")
-        list_title.innerHTML = "Add new list"
-        list_title.classList = "list_title"
-        var add_new_icon = document.createElement("div")
-        add_new_icon.classList = "add_new_icon"
-        add_new_button.appendChild(list_title)
-        add_new_button.appendChild(add_new_icon)
-        document.getElementById('main_list_container').appendChild(add_new_button)
-        add_new_button.addEventListener('click', inventory.manager.add_new_main_list)
 
-        //build data
-        for (let i = 0; i < config.data.inventory.length; i++) {
-            list_anchor(i);
-        }
+        document.getElementById('add_new_list_button').addEventListener('click', async function () {//add a new list
+            console.log('new list button')
+            inventory.manager.add_new_main_list()
+        });
+
+        this.render_main_list()
+
+    },
+    render_main_list: function () {// display the main inventory list
+
+        for (let i in config.data.inventory) { list_anchor(i) }
 
         function list_anchor(i) {//render out a single list anchor
             console.log('Render list: ', config.data.inventory[i].name, ' index: ', i);
@@ -171,7 +140,7 @@ let inventory = {
 
 
         //Build list items
-        for (let i in config.data.inventory[index].listitems ) {
+        for (let i in config.data.inventory[index].listitems) {
 
             build_list_item(i)
         }
@@ -197,6 +166,19 @@ let inventory = {
     manager: {
         add_new_main_list: async function () {
             console.log('Adding new list');
+
+            const { value, cancelled } = await Dialog.prompt({
+                title: 'New list',
+                message: `Type a name for the new list`,
+            });
+
+            if (!cancelled) {
+                config.data.inventory.push({ name: value, details: "", listitems: [] })
+                config.save()
+                inventory.render_main_list()
+            }
+            console.log('Name:', value);
+            console.log('Cancelled:', cancelled);
         }
     }
 }
@@ -204,12 +186,12 @@ let inventory = {
 let Ui = {
     initialize: function () {//start ui logic
         console.warn('Ui initalize')
-        this.navigate.lastmain_view()
+        //this.navigate.lastmain_view()
+        this.navigate.inventory_view()
         this.setting.animation.setpostition()
         this.setting.set_theme()
 
         document.getElementById('inventory_btn').addEventListener('click', Ui.navigate.inventory_view)
-        document.getElementById('accounts_btn').addEventListener('click', Ui.navigate.accounting_view)
         document.getElementById('setting_btn').addEventListener('click', Ui.navigate.setting)
         document.getElementById('Animations_btn').addEventListener('click', Ui.setting.animation.flip)
 
@@ -217,19 +199,19 @@ let Ui = {
             config.data.theme = "devicebased"
             config.save();
             Ui.setting.set_theme()
-            utility.toast('following device theme')
+            Toast.show({ text: 'following device theme' });
         })
         document.getElementById('set_dark').addEventListener('click', function () {
             config.data.theme = "dark"
             config.save();
             Ui.setting.set_theme()
-            utility.toast('Dark theme')
+            Toast.show({ text: 'Dark theme' });
         })
         document.getElementById('set_light').addEventListener('click', function () {
             config.data.theme = "light"
             config.save();
             Ui.setting.set_theme()
-            utility.toast('Light theme')
+            Toast.show({ text: 'Light theme' });
         })
         document.getElementById('hue-1-selec').addEventListener('click', function () {
             hue_selec(-1)
@@ -319,22 +301,9 @@ let Ui = {
     navigate: {//navigation
         back: async function () {
             if (document.getElementById('setting_view').style.display == "block") {
-                Ui.navigate.lastmain_view();
+                Ui.navigate.inventory_view();
             } else {
                 utility.exit_strategy();
-            }
-        },
-        lastmain_view: function () {
-            switch (config.data.last_view) {//Set view to last view the user used, excluding settings
-                case "accounting_view":
-                    Ui.navigate.accounting_view()
-                    break;
-                case "inventory_view":
-                    Ui.navigate.inventory_view()
-                    break;
-                default:
-                    console.warn('Last view error, defaulting');
-                    Ui.navigate.inventory_view()
             }
         },
         setting: function () {
@@ -342,26 +311,14 @@ let Ui = {
             document.getElementById('inventory_btn').classList = "navbtn"
             document.getElementById('accounts_btn').classList = "navbtn"
             document.getElementById('setting_btn').classList = "navbtn_ative"
-            document.getElementById('accounting_view').style.display = "none"
             document.getElementById('inventory_view').style.display = "none"
             document.getElementById('setting_view').style.display = "block"
         },
-        accounting_view: function () {
-            console.log('Naviagate inventory')
-            document.getElementById('inventory_btn').classList = "navbtn"
-            document.getElementById('accounts_btn').classList = "navbtn_ative"
-            document.getElementById('setting_btn').classList = "navbtn"
-            document.getElementById('accounting_view').style.display = "block"
-            document.getElementById('inventory_view').style.display = "none"
-            document.getElementById('setting_view').style.display = "none"
-            config.data.last_view = "accounting_view"
-        },
         inventory_view: function () {
-            console.log('Naviagate accounts')
+            console.log('Naviagate inventory')
             document.getElementById('inventory_btn').classList = "navbtn_ative"
             document.getElementById('accounts_btn').classList = "navbtn"
             document.getElementById('setting_btn').classList = "navbtn"
-            document.getElementById('accounting_view').style.display = "none"
             document.getElementById('inventory_view').style.display = "block"
             document.getElementById('setting_view').style.display = "none"
             config.data.last_view = "inventory_view"
@@ -518,11 +475,11 @@ let Ui = {
                 console.log('animation switch triggered');
                 if (config.data.animation == true) {//turn off the switch
                     config.data.animation = false;
-                    utility.toast('animations dissabled');
+                    Toast.show({ text: 'animations dissabled' });
                     console.log('animations dissabled');
                 } else {//turn on the witch
                     config.data.animation = true;
-                    utility.toast('animations enabled');
+                    Toast.show({ text: 'animations enabled' });
                     console.log('animations enabled');
                 }
                 config.save();
@@ -550,56 +507,12 @@ let utility = {//Some usefull things
     exit_strategy: function () {//Heres how to string things togther to make something usefull
         console.warn('Exit strategy triggered')
         if (utility.properties.exit == true) {
-            utility.close()
+            App.exitApp()
         } else {
             utility.properties.exit = true;
-            utility.toast("Press back button again to exit", 2000)
+            Toast.show({ text: 'Press back button again to exit' });
             setTimeout(() => { utility.properties.exit = false }, 2000)
         }
-    },
-    /*  Close the app   */
-    close: function () {
-        console.trace('App closure triggered via')
-        //config_handler.save()
-        if (navigator.app) {
-            navigator.app.exitApp()
-        } else if (navigator.device) {
-            navigator.device.exitApp()
-        } else {
-            window.close()
-        }
-    },
-    /* Check screen size (physical/app size) */
-    size_check: async function () {
-        console.log('Sizecheck fired');
-        if (typeof (window.plugins) != 'undefined') {
-            window.plugins.screensize.get(function (result) {//Check device screen size
-                console.log(result);
-                if (result.diameter < 3) {
-                    //watch size screen
-                    document.getElementById('stylesheet').href = "css/watch.css"
-                    console.warn('Set watch screen scale with size: ', result.diameter);
-                } else if (result.diameter > 6) {
-                    //tablet size screen
-                    document.getElementById('stylesheet').href = "css/tablet.css"
-                    console.warn('Set tablet screen scale with size: ', result.diameter);
-                } else {
-                    //phone size screen
-                    document.getElementById('stylesheet').href = "css/phone.css"
-                    console.warn('Set phone screen scale with size: ', result.diameter);
-                }
-                //utility.toast('Screensize: '+result.diameter,5000);
-            }, function (err) { console.log('Screen data error: ', err) });
-        } else {
-            console.error('Screensize plugin failed completely, device may not be ready');
-        }
-    },
-    /*  Produce toast messages    */
-    toast: function (text, durration_in_ms, position_top_right_left_bottom, offset_in_px) {
-        if (position_top_right_left_bottom == undefined) { position_top_right_left_bottom = 'bottom' }//default the position
-        if (durration_in_ms == undefined) { durration_in_ms = 4000 }//default the duration
-        if (offset_in_px == undefined) { offset_in_px = -160 }//default the offset
-        window.plugins.toast.showWithOptions({ message: text, duration: durration_in_ms, position: position_top_right_left_bottom, addPixelsY: offset_in_px })
     },
     /*  Push text to the keyboard   */
     clipboard: function (textpush) {

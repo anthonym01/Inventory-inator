@@ -65,7 +65,7 @@
 }
 
 ._0 {
-    --accent-color: hsl(0, 100%, 50%);
+    --accent-color: #ff0000;
     --primary_hue: 0;
     --card_icon: url('../img/icon_0.png');
 }
@@ -732,7 +732,10 @@ body {
     text-align: center;
 }
 
-
+/*.hydrated{
+    color: var(--text-color);
+    background-color: var(--background-color);
+}*/
 
 /*    <--  Landscape layout (with min-width) -->     */
 
