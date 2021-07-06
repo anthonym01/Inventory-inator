@@ -1,4 +1,6 @@
-const { Browser, App, Camera, Toast, Storage, Dialog } = Capacitor.Plugins;
+const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
+
+const main_list_container = document.getElementById('main_list_container');
 
 App.addListener('appStateChange', ({ isActive }) => {
     console.log('App state changed. Is active: ', isActive);
@@ -6,7 +8,7 @@ App.addListener('appStateChange', ({ isActive }) => {
 
 App.addListener('backButton', () => {
     console.log('back button pressed')
-    utility.exit_strategy()
+    Ui.navigate.back()
 })
 
 
@@ -17,183 +19,18 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err)
     } finally {
 
-        Ui.initialize()
-        inventory.initalize()
-        maininitalizer();
-    }
-})
-
-async function maininitalizer() {
-
-}
-
-let config = {
-    data: {//Loacal app data
-        animation: true,
-        theme: "dark",
-        accent_color: -1,
-        inventory: [//test data
-            {
-                name: "test tako list", details: "details for test tako list", listitems: [
-                    { name: "tako", type: 1, restocat: 20, amount: 57 },
-                    { name: "tako meat", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
-                    { name: "tako grill", type: 3, amount: 1 },
-                ],
-            },
-            {
-                name: "pc part list", details: "details for pc part", listitems: [
-                    { name: "Ram chip", type: 1, restocat: 20, amount: 57 },
-                    { name: "sauder", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
-                    { name: "saudering iron", type: 3, amount: 1 },
-                ],
-            },
-            {
-                name: "Brothgar list", details: "A list of mighty brothgars", listitems: [
-                    { name: "Samuel", type: 3, amount: 1 },
-                    { name: "Seth", type: 3, amount: 1 },
-                    { name: "Simon", type: 3, amount: 1 },
-                ],
-            },
-        ],
-    },
-    save: async function () {//Save the config file
-        console.warn('Configuration is being saved')
-        Storage.set({ key: 'Inpantry_cfg', value: JSON.stringify(config.data) });
-        console.table(config.data)
-    },
-    load: async function () {//Load the config file
-        console.warn('Configuration is being loaded')
-        let fromkey = await Storage.get({ key: 'Inpantry_cfg' })
-        console.log('Loaded: ', fromkey)
-        if (fromkey.value != null) {
-            config.data = JSON.parse(fromkey.value);
-            console.table(config.data)
-        } else {
-            console.warn('configuration loaded is empty')
-        }
-
-    },
-    delete: function () {//Does not delete the file itself. Just sets it to empty
-        Storage.remove({ key: 'Inpantry_cfg' });
-        console.log('config deleted')
-        console.table(config.data)
-    }
-}
-
-let inventory = {
-    initalize: function () {
-
-        document.getElementById('add_new_list_button').addEventListener('click', async function () {//add a new list
-            console.log('new list button')
-            inventory.manager.add_new_main_list()
-        });
-
-        this.render_main_list()
-
-    },
-    render_main_list: function () {// display the main inventory list
-
-        for (let i in config.data.inventory) { list_anchor(i) }
-
-        function list_anchor(i) {//render out a single list anchor
-            console.log('Render list: ', config.data.inventory[i].name, ' index: ', i);
-            var list_anchor = document.createElement("div")
-            list_anchor.classList = "list_anchor"
-            var list_title = document.createElement("div")
-            list_title.innerHTML = config.data.inventory[i].name;
-            list_title.classList = "list_title"
-            var list_preview_container = document.createElement("div")
-            list_preview_container.classList = "list_preview_container"
-            var list_details = document.createElement("div")
-            list_details.classList = "list_details"
-            list_details.innerHTML = config.data.inventory[i].details
-            list_anchor.appendChild(list_title)
-            list_anchor.appendChild(list_preview_container)
-            list_anchor.appendChild(list_details)
-            document.getElementById('main_list_container').appendChild(list_anchor)
-
-            list_anchor.addEventListener('click', function () {//view list trigger
-                console.log('clicked list anchor: ', list_anchor)
-                inventory.show_list(index)
-            })
-
-            //build list preview
-            for (let i2 in config.data.inventory[index]) {
-                build_preview(i2);
-            }
-
-            function build_preview(index_preview) {//needs rework
-                var list_preview = document.createElement('div')
-                list_preview.classList = "list_preview"
-                list_preview.innerHTML = config.data.inventory[index].listitems[index_preview].name
-                list_preview_container.appendChild(list_preview)
-            }
-        }
-
-    },
-    show_list: async function (index) {//Displays a list from data
-        utility.properties.current_list = index
-        console.log('Showing list: ', index, config.data.inventory[index])
-        document.getElementById('list_panneler').classList = "list_panneler_active"//show the pannel
-
-        //set correct pannel data
-
-
-        //Build list items
-        for (let i in config.data.inventory[index].listitems) {
-
-            build_list_item(i)
-        }
-
-        async function build_list_item(i) {
-            console.log('Building list item: ', i, config.data.inventory[index].listitems[i])
-            var pantry_item = document.createElement('div')
-            pantry_item.classList = "pantry_item"
-            var preview_square = document.createElement('div')
-            preview_square.classList = "preview_square"
-            var preview_img = document.createElement('div')
-            preview_img.classList = "preview_img"
-            var namebar = document.createElement('div')
-            namebar.classList = "namebar"
-            namebar.innerHTML = config.data.inventory[index].listitems[i].name
-
-            preview_square.appendChild(preview_img)
-            pantry_item.appendChild(preview_square)
-            pantry_item.appendChild(namebar)
-            document.getElementById('list_panneler').appendChild(pantry_item)
-        }
-    },
-    manager: {
-        add_new_main_list: async function () {
-            console.log('Adding new list');
-
-            const { value, cancelled } = await Dialog.prompt({
-                title: 'New list',
-                message: `Type a name for the new list`,
-            });
-
-            if (!cancelled) {
-                config.data.inventory.push({ name: value, details: "", listitems: [] })
-                config.save()
-                inventory.render_main_list()
-            }
-            console.log('Name:', value);
-            console.log('Cancelled:', cancelled);
-        }
-    }
-}
-
-let Ui = {
-    initialize: function () {//start ui logic
-        console.warn('Ui initalize')
         //this.navigate.lastmain_view()
-        this.navigate.inventory_view()
-        this.setting.animation.setpostition()
-        this.setting.set_theme()
+        Ui.navigate.main_list()
+        Ui.setting.animation.setpostition()
+        Ui.setting.set_theme()
 
-        document.getElementById('inventory_btn').addEventListener('click', Ui.navigate.inventory_view)
-        document.getElementById('setting_btn').addEventListener('click', Ui.navigate.setting)
-        document.getElementById('Animations_btn').addEventListener('click', Ui.setting.animation.flip)
+        document.getElementById('main_list_btn').addEventListener('click', function () {
+            console.log('Main list button')
+            Ui.navigate.main_list()
+        })
+        document.getElementById('inventory_btn').addEventListener('click', function () { Ui.navigate.inventory_view() })
+        document.getElementById('setting_btn').addEventListener('click', function () { Ui.navigate.setting() })
+        document.getElementById('Animations_btn').addEventListener('click', function () { Ui.setting.animation.flip() })
 
         document.getElementById('set_device').addEventListener('click', function () {
             config.data.theme = "devicebased"
@@ -297,31 +134,231 @@ let Ui = {
             Ui.setting.set_theme();
             config.save();
         }
+
+        //inventory 
+        document.getElementById('add_new_list_button').addEventListener('click', async function () {//add a new list
+            console.log('new list button')
+            inventory.manager.add_new_main_list()
+        });
+
+        inventory.render_main_list()
+
+
+        maininitalizer();
+    }
+})
+
+async function maininitalizer() {
+
+}
+
+let config = {
+    data: {//Loacal app data
+        animation: true,
+        theme: "dark",
+        accent_color: -1,
+        inventory: [//test data
+            {
+                name: "example", details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
+                ],
+            },
+        ],
     },
+    save: async function () {//Save the config file
+        console.warn('Configuration is being saved')
+        Storage.set({ key: 'Inpantry_cfg', value: JSON.stringify(config.data) });
+        console.table(config.data)
+    },
+    load: async function () {//Load the config file
+        console.warn('Configuration is being loaded')
+        let fromkey = await Storage.get({ key: 'Inpantry_cfg' })
+        console.log('Loaded: ', fromkey)
+        if (fromkey.value != null) {
+            config.data = JSON.parse(fromkey.value);
+            console.table(config.data)
+        } else {
+            console.warn('configuration loaded is empty')
+        }
+
+    },
+    delete: function () {//Does not delete the file itself. Just sets it to empty
+        Storage.remove({ key: 'Inpantry_cfg' });
+        console.log('config deleted')
+        console.table(config.data)
+    }
+}
+
+let inventory = {
+
+    render_main_list: function () {// display the main inventory list
+        main_list_container.innerHTML = ""
+        for (let inventory_dex in config.data.inventory) { list_anchor(inventory_dex) }
+
+        function list_anchor(inventory_dex) {//render out a single list anchor
+            console.log('Render list: ', config.data.inventory[inventory_dex].name, ' index: ', inventory_dex);
+
+            // Build out the list target
+            var list_anchor = document.createElement("div")
+            list_anchor.classList = "list_anchor"
+            var list_title = document.createElement("div")
+            list_title.innerHTML = config.data.inventory[inventory_dex].name;
+            list_title.classList = "list_title"
+            var list_preview_container = document.createElement("div")
+            list_preview_container.classList = "list_preview_container"
+            var list_details = document.createElement("div")
+            list_details.classList = "list_details"
+            list_details.innerHTML = config.data.inventory[inventory_dex].details
+            list_anchor.appendChild(list_title)
+            list_anchor.appendChild(list_preview_container)
+            list_anchor.appendChild(list_details)
+            main_list_container.appendChild(list_anchor)
+
+            list_anchor.addEventListener('click', function () {//view list trigger
+                console.log('clicked list anchor: ', list_anchor)
+                inventory.show_list(inventory_dex)
+            })
+
+            //build list preview
+            for (let index_preview in config.data.inventory[inventory_dex].listitems || 5) {
+                build_preview(index_preview);
+            }
+
+            function build_preview(index_preview) {//needs rework
+                var list_preview = document.createElement('div')
+                list_preview.classList = "list_preview"
+                list_preview.innerHTML = config.data.inventory[inventory_dex].listitems[index_preview].name
+                list_preview_container.appendChild(list_preview)
+            }
+        }
+
+    },
+    show_list: async function (index) {//Displays a list from data
+        utility.properties.current_list = index
+
+        console.log('Showing list: ', index, config.data.inventory[index])
+
+        document.getElementById('list_panneler').innerHTML = ""//show the panne
+
+        let pantry_title = document.createElement('div');
+        pantry_title.className = "pantry_title"
+        pantry_title.innerHTML=config.data.inventory[index].name
+        document.getElementById('list_panneler').appendChild(pantry_title)
+
+        //Build list items
+        for (let i in config.data.inventory[index].listitems) { build_list_item(i) }
+        document.getElementById('list_panneler').classList = "list_panneler_active"//show the pannel
+        Ui.navigate.inventory_view()
+
+        async function build_list_item(i) {
+            console.log('Building list item: ', i, config.data.inventory[index].listitems[i])
+            var pantry_item = document.createElement('div')
+            pantry_item.classList = "pantry_item"
+            var preview_square = document.createElement('div')
+            preview_square.classList = "preview_square"
+            var preview_img = document.createElement('img')
+            preview_img.classList = "preview_img"
+            preview_img.src='img/box-cardboard-pngrepo-com.png';
+            var namebar = document.createElement('div')
+            namebar.classList = "namebar"
+            namebar.innerHTML = config.data.inventory[index].listitems[i].name
+
+            preview_square.appendChild(preview_img)
+            pantry_item.appendChild(preview_square)
+            pantry_item.appendChild(namebar)
+            document.getElementById('list_panneler').appendChild(pantry_item)
+        }
+    },
+    manager: {
+        add_new_main_list: async function () {
+            console.log('Adding new list');
+
+            try {
+                const { value, cancelled } = await Dialog.prompt({
+                    title: 'New list',
+                    message: `Type a name for the new list`,
+                });
+
+                if (!cancelled) {
+                    config.data.inventory.push({ name: value, details: "", listitems: [] })
+                    config.save()
+                    Toast.show({ text: `saved: ${value}` });
+                    inventory.render_main_list()
+                }
+                console.log('New list :', value, cancelled);
+            } catch (error) {
+                console.warn('Modal dialogue failed: ', error)
+                document.getElementById('addnew_list_Dialogue').style.display = "block"
+                document.getElementById('new_list_Cancel_btn').addEventListener('click', function () {
+                    console.log('new_list_Cancel_btn')
+                    document.getElementById('addnew_list_Dialogue').style.display = "none"
+
+                })
+                document.getElementById('New_list_confirm_btn').addEventListener('click', async function () {
+                    console.log('New_list_confirm_btn')
+                    document.getElementById('addnew_list_Dialogue').style.display = "none"
+
+                    config.data.inventory.push({
+                        name: document.getElementById('listname_put').value,
+                        details: document.getElementById('listdetail_put').value,
+                        listitems: []
+                    })
+                    config.save()
+                    Toast.show({ text: `saved: ${document.getElementById('listname_put').value}` });
+                    inventory.render_main_list()
+                })
+            } finally {
+
+            }
+
+        }
+    }
+}
+
+let Ui = {
     navigate: {//navigation
         back: async function () {
-            if (document.getElementById('setting_view').style.display == "block") {
+
+            if (document.getElementById('setting_view').style.display == "block" || document.getElementById('list_panneler').style.display == "block") {
+                console.log('Back to inventory')
                 Ui.navigate.inventory_view();
+            } else if (document.getElementById('list_panneler').classList.contains('list_panneler_active')) {
+                console.log('Back to main list')
+                document.getElementById('list_panneler').classList = "list_panneler"
             } else {
-                utility.exit_strategy();
+                utility.exit_strategy()
             }
+
         },
         setting: function () {
             console.log('Naviagate settings')
             document.getElementById('inventory_btn').classList = "navbtn"
-            document.getElementById('accounts_btn').classList = "navbtn"
+            document.getElementById('main_list_btn').classList = "navbtn"
             document.getElementById('setting_btn').classList = "navbtn_ative"
             document.getElementById('inventory_view').style.display = "none"
             document.getElementById('setting_view').style.display = "block"
+            document.getElementById('main_list_view').style.display = "none"
+
         },
         inventory_view: function () {
             console.log('Naviagate inventory')
             document.getElementById('inventory_btn').classList = "navbtn_ative"
-            document.getElementById('accounts_btn').classList = "navbtn"
+            document.getElementById('main_list_btn').classList = "navbtn"
             document.getElementById('setting_btn').classList = "navbtn"
             document.getElementById('inventory_view').style.display = "block"
             document.getElementById('setting_view').style.display = "none"
-            config.data.last_view = "inventory_view"
+            document.getElementById('main_list_view').style.display = "none"
+
+            //config.data.last_view = "inventory_view"
+        },
+        main_list: function () {
+            document.getElementById('inventory_btn').classList = "navbtn"
+            document.getElementById('main_list_btn').classList = "navbtn_ative"
+            document.getElementById('setting_btn').classList = "navbtn"
+            document.getElementById('main_list_view').style.display = "block"
+            document.getElementById('setting_view').style.display = "none"
+            document.getElementById('inventory_view').style.display = "none"
         }
     },
     setting: {
