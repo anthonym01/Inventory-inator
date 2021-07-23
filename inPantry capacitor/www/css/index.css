@@ -510,6 +510,7 @@ body {
     height: 2.6rem;
     background-color: var(--text-color);
     border-radius: 0.4rem;
+    transition: transform 300ms;
 }
 
 .main_button_1::before {
@@ -517,6 +518,11 @@ body {
     right: 0.7rem;
     width: 2.6rem;
     height: 0.4rem;
+}
+
+.main_button_1:active::after,
+.main_button_1:active::before {
+    transform: rotate(180deg);
 }
 
 #edit_list_button {
@@ -759,6 +765,72 @@ body {
     width: 100%;
     z-index: 3;
     background-color: var(--t_background-color);
+}
+
+.Modal_title {
+    position: relative;
+    margin-top: 0.2rem;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+}
+
+
+.modal_input {
+    position: relative;
+    box-sizing: border-box;
+    width: 95%;
+    padding: 0.2rem;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    border-bottom: 0.2rem solid var(--accent-color);
+    text-align: center;
+    border-radius: 0.4rem;
+    outline: none;
+
+}
+
+.modal_input:focus {
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--accent-color);
+}
+
+#listdetail_put {
+    height: calc(100% - 11rem);
+}
+
+.list_action_button {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
+    width: calc(50% - 1rem);
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    border: none;
+    border: 0.2rem solid var(--accent-color);
+    border-radius: 0.8rem;
+    color: var(--text-color);
+    transition: color 300, transform 300ms, border 300ms;
+}
+
+#New_list_confirm_btn {
+    right: 0.5rem;
+    left: unset;
+}
+
+.list_action_button:active {
+    color: var(--background-color);
+    background-color: var(--accent-color);
+    border: 0.2rem solid var(--text-color);
+    transform: translateY(5%);
+    transition: transform 50ms;
 }
 
 /*    <--  Landscape layout (with min-width) -->     */

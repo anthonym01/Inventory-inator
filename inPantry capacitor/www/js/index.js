@@ -2,12 +2,12 @@ const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugi
 
 const main_list_container = document.getElementById('main_list_container');
 
-App.addListener('appStateChange', ({ isActive }) => {
-    console.log('App state changed. Is active: ', isActive);
+App.addListener('appStateChange', ({ isActive }) => {// app state is changed, usually sent to the background or suspended
+    console.warn('App state changed. Is active: ', isActive);
 });
 
-App.addListener('backButton', () => {
-    console.log('back button pressed')
+App.addListener('backButton', () => {//back button on android
+    console.warn('back button pressed')
     Ui.navigate.back()
 })
 
@@ -19,11 +19,12 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err)
     } finally {
 
-        //this.navigate.lastmain_view()
-        Ui.navigate.main_list()
-        Ui.setting.animation.setpostition()
+        
+        Ui.navigate.main_list()//go to last main view
+        Ui.setting.animation.setpostition()//ste animation 'button'
         Ui.setting.set_theme()
 
+        /* Button handlers */
         document.getElementById('main_list_btn').addEventListener('click', function () {
             console.log('Main list button')
             Ui.navigate.main_list()
@@ -32,91 +33,93 @@ window.addEventListener('load', async function () {
         document.getElementById('setting_btn').addEventListener('click', function () { Ui.navigate.setting() })
         document.getElementById('Animations_btn').addEventListener('click', function () { Ui.setting.animation.flip() })
 
-        document.getElementById('set_device').addEventListener('click', function () {
+        //Theme buttons
+        document.getElementById('set_device').addEventListener('click', function () {//follow device theme button
             config.data.theme = "devicebased"
             config.save();
             Ui.setting.set_theme()
             Toast.show({ text: 'following device theme' });
         })
-        document.getElementById('set_dark').addEventListener('click', function () {
+        document.getElementById('set_dark').addEventListener('click', function () {//dark theme button
             config.data.theme = "dark"
             config.save();
             Ui.setting.set_theme()
             Toast.show({ text: 'Dark theme' });
         })
-        document.getElementById('set_light').addEventListener('click', function () {
+        document.getElementById('set_light').addEventListener('click', function () {//light theme button
             config.data.theme = "light"
             config.save();
             Ui.setting.set_theme()
             Toast.show({ text: 'Light theme' });
         })
-        document.getElementById('hue-1-selec').addEventListener('click', function () {
+
+        document.getElementById('hue-1-selec').addEventListener('click', function () {//inverse color pallet button
             hue_selec(-1)
             document.getElementById('hue-1-selec').classList = "accent_blob_active"
             console.log('hue change -1')
         })
-        document.getElementById('hue0-selec').addEventListener('click', function () {
+        document.getElementById('hue0-selec').addEventListener('click', function () {//Red collor pallet
             hue_selec(0)
             document.getElementById('hue0-selec').classList = "accent_blob_active"
             console.log('%chue change 0', "color: hsl(0,100%,50%)")
         })
-        document.getElementById('hue30-selec').addEventListener('click', function () {
+        document.getElementById('hue30-selec').addEventListener('click', function () {//orange color pallet
             hue_selec(30)
             document.getElementById('hue30-selec').classList = "accent_blob_active"
             console.log('%chue change 30', "color: hsl(30,100%,50%)")
         })
-        document.getElementById('hue60-selec').addEventListener('click', function () {
+        document.getElementById('hue60-selec').addEventListener('click', function () {//yellow color pallet
             hue_selec(60)
             document.getElementById('hue60-selec').classList = "accent_blob_active"
             console.log('%chue change 60', "color: hsl(60,100%,50%)")
         })
-        document.getElementById('hue90-selec').addEventListener('click', function () {
+        document.getElementById('hue90-selec').addEventListener('click', function () {//lime color pallet
             hue_selec(90)
             document.getElementById('hue90-selec').classList = "accent_blob_active"
             console.log('%chue change 90', "color: hsl(90,100%,50%)")
         })
-        document.getElementById('hue120-selec').addEventListener('click', function () {
+        document.getElementById('hue120-selec').addEventListener('click', function () {//green color pallet
             hue_selec(120)
             document.getElementById('hue120-selec').classList = "accent_blob_active"
             console.log('%chue change 120', "color: hsl(120,100%,50%)")
         })
-        document.getElementById('hue150-selec').addEventListener('click', function () {
+        document.getElementById('hue150-selec').addEventListener('click', function () {//aqua color pallet
             hue_selec(150)
             document.getElementById('hue150-selec').classList = "accent_blob_active"
             console.log('%chue change 150', "color: hsl(150,100%,50%)")
         })
-        document.getElementById('hue180-selec').addEventListener('click', function () {
+        document.getElementById('hue180-selec').addEventListener('click', function () {//sky blue color pallet
             hue_selec(180)
             document.getElementById('hue180-selec').classList = "accent_blob_active"
             console.log('%chue change 180', "color: hsl(180,100%,50%)")
         })
-        document.getElementById('hue210-selec').addEventListener('click', function () {
+        document.getElementById('hue210-selec').addEventListener('click', function () {//blue color pallet
             hue_selec(210)
             document.getElementById('hue210-selec').classList = "accent_blob_active"
             console.log('%chue change 210', "color: hsl(210,100%,50%)")
         })
-        document.getElementById('hue240-selec').addEventListener('click', function () {
+        document.getElementById('hue240-selec').addEventListener('click', function () {// navy blue pallet
             hue_selec(240)
             document.getElementById('hue240-selec').classList = "accent_blob_active"
             console.log('%chue change 240', "color: hsl(240,100%,50%)")
         })
-        document.getElementById('hue270-selec').addEventListener('click', function () {
+        document.getElementById('hue270-selec').addEventListener('click', function () {//violet color pallet
             hue_selec(270)
             document.getElementById('hue270-selec').classList = "accent_blob_active"
             console.log('%chue change 270', "color: hsl(270,100%,50%)")
         })
-        document.getElementById('hue300-selec').addEventListener('click', function () {
+        document.getElementById('hue300-selec').addEventListener('click', function () {//Purple color pallet
             hue_selec(300)
             document.getElementById('hue300-selec').classList = "accent_blob_active"
             console.log('%chue change 300', "color: hsl(300,100%,50%)")
         })
-        document.getElementById('hue330-selec').addEventListener('click', function () {
+        document.getElementById('hue330-selec').addEventListener('click', function () {// i need magenta to print your document
             hue_selec(330)
             document.getElementById('hue330-selec').classList = "accent_blob_active"
             console.log('%chue change 330', "color: hsl(330,100%,50%)")
         })
 
-        function hue_selec(hue) {
+        function hue_selec(hue) {//reset blob classes and group triggering Ui.setting.set_theme
             document.getElementById('hue-1-selec').classList = "accent_blob"
             document.getElementById('hue0-selec').classList = "accent_blob"
             document.getElementById('hue30-selec').classList = "accent_blob"
@@ -138,9 +141,66 @@ window.addEventListener('load', async function () {
         //inventory 
         document.getElementById('add_new_list_button').addEventListener('click', async function () {//add a new list
             console.log('new list button')
-            inventory.manager.add_new_main_list()
-        });
 
+            try {
+                document.getElementById('addnew_list_Dialogue').style.display = "block"
+
+            } catch (error) {
+                console.warn('Error ', error)
+            }
+
+
+            /*
+            
+            
+                        try {
+                            const { value, cancelled } = await Dialog.prompt({
+                                title: 'New list',
+                                message: `Type a name for the new list`,
+                            });
+            
+                            if (!cancelled) {
+                                config.data.inventory.push({ name: value, details: "", listitems: [] })
+                                config.save()
+                                Toast.show({ text: `saved: ${value}` });
+                                inventory.render_main_list()
+                            }
+                            console.log('New list :', value, cancelled);
+                        } catch (error) {
+                            console.warn('Modal dialogue failed: ', error)
+                            document.getElementById('addnew_list_Dialogue').style.display = "block"
+                            document.getElementById('new_list_Cancel_btn').addEventListener('click', function () {
+                                console.log('new_list_Cancel_btn')
+                                document.getElementById('addnew_list_Dialogue').style.display = "none"
+            
+                            })
+                            document.getElementById('New_list_confirm_btn').addEventListener('click', async function () {
+                                console.log('New_list_confirm_btn')
+                                document.getElementById('addnew_list_Dialogue').style.display = "none"
+            
+                                config.data.inventory.push({
+                                    name: document.getElementById('listname_put').value,
+                                    details: document.getElementById('listdetail_put').value,
+                                    listitems: []
+                                })
+                                config.save()
+                                Toast.show({ text: `saved: ${document.getElementById('listname_put').value}` });
+                                inventory.render_main_list()
+                            })
+                        } finally {
+            
+                        }
+            */
+        });
+        document.getElementById('new_list_Cancel_btn').addEventListener('click', function () {
+            console.log('new_list_Cancel_btn')
+            document.getElementById('addnew_list_Dialogue').style.display = "none"
+
+        })
+        document.getElementById('New_list_confirm_btn').addEventListener('click', async function () {
+            console.log('New_list_confirm_btn')
+            inventory.manager.save_new_main_list()
+        })
         inventory.render_main_list()
 
 
@@ -243,7 +303,7 @@ let inventory = {
 
         let pantry_title = document.createElement('div');
         pantry_title.className = "pantry_title"
-        pantry_title.innerHTML=config.data.inventory[index].name
+        pantry_title.innerHTML = config.data.inventory[index].name
         document.getElementById('list_panneler').appendChild(pantry_title)
 
         //Build list items
@@ -259,7 +319,7 @@ let inventory = {
             preview_square.classList = "preview_square"
             var preview_img = document.createElement('img')
             preview_img.classList = "preview_img"
-            preview_img.src='img/box-cardboard-pngrepo-com.png';
+            preview_img.src = 'img/box-cardboard-pngrepo-com.png';
             var namebar = document.createElement('div')
             namebar.classList = "namebar"
             namebar.innerHTML = config.data.inventory[index].listitems[i].name
@@ -269,50 +329,36 @@ let inventory = {
             pantry_item.appendChild(namebar)
             document.getElementById('list_panneler').appendChild(pantry_item)
         }
+
+        //add events
+        document.getElementById('edit_list_button').removeEventListener("click",this)
+        document.getElementById('add_new_list_item_button').removeEventListener("click",this)
+
+        document.getElementById('edit_list_button').addEventListener('click',function(){
+            document.getElementById('addnew_list_Dialogue').style.display = "block"
+            inventory.manager.edit_main_list()
+        })
+        document.getElementById('add_new_list_item_button').removeEventListener("click",function(){
+            
+        })
     },
     manager: {
-        add_new_main_list: async function () {
-            console.log('Adding new list');
+        save_new_main_list: async function () {
+            document.getElementById('addnew_list_Dialogue').style.display = "none"
 
-            try {
-                const { value, cancelled } = await Dialog.prompt({
-                    title: 'New list',
-                    message: `Type a name for the new list`,
-                });
+            config.data.inventory.push({
+                name: document.getElementById('listname_put').value,
+                details: document.getElementById('listdetail_put').value,
+                listitems: []
+            })
+            config.save()
+            Toast.show({ text: `saved: ${document.getElementById('listname_put').value}` });
+            inventory.render_main_list()
+        },
+        edit_main_list:async function(){
+            
+        },
 
-                if (!cancelled) {
-                    config.data.inventory.push({ name: value, details: "", listitems: [] })
-                    config.save()
-                    Toast.show({ text: `saved: ${value}` });
-                    inventory.render_main_list()
-                }
-                console.log('New list :', value, cancelled);
-            } catch (error) {
-                console.warn('Modal dialogue failed: ', error)
-                document.getElementById('addnew_list_Dialogue').style.display = "block"
-                document.getElementById('new_list_Cancel_btn').addEventListener('click', function () {
-                    console.log('new_list_Cancel_btn')
-                    document.getElementById('addnew_list_Dialogue').style.display = "none"
-
-                })
-                document.getElementById('New_list_confirm_btn').addEventListener('click', async function () {
-                    console.log('New_list_confirm_btn')
-                    document.getElementById('addnew_list_Dialogue').style.display = "none"
-
-                    config.data.inventory.push({
-                        name: document.getElementById('listname_put').value,
-                        details: document.getElementById('listdetail_put').value,
-                        listitems: []
-                    })
-                    config.save()
-                    Toast.show({ text: `saved: ${document.getElementById('listname_put').value}` });
-                    inventory.render_main_list()
-                })
-            } finally {
-
-            }
-
-        }
     }
 }
 

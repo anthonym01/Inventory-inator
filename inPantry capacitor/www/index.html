@@ -88,8 +88,6 @@
         <div class="main_button_1" id="add_new_list_item_button"></div>
     </div>
 
-
-
     <div class="mainview" id="setting_view">
         <div class="settingtitle">Settings</div>
 
@@ -151,10 +149,10 @@
     <!-- New-edit list dialogue -->
     <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
         <div class="Modal_title">New list</div>
-        <input type="text" name="new_listname" id="listname_put" placeholder="Name" title="Input a name for the new list">
-        <textarea id="listdetail_put" placeholder="Details for list"></textarea>
-        <button id="new_list_Cancel_btn">Cancel</button>
-        <button id="New_list_confirm_btn">Save</button>
+        <input type="text" name="new_listname" class="modal_input" id="listname_put" placeholder="Name" title="Input a name for the new list">
+        <textarea id="listdetail_put" class="modal_input" placeholder="Details"></textarea>
+        <button id="new_list_Cancel_btn" class="list_action_button">Cancel</button>
+        <button id="New_list_confirm_btn" class="list_action_button">Save</button>
     </div>
 
     <script src="capacitor.js"></script>
