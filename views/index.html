@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Webview Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8" />
+
+    <title>In-Pantry</title>
+
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <link rel="stylesheet" href="../assets/css/index.css">
+
+    <script type="text/javascript" src="../node_modules/androidjs/lib/androidjs.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="../assets/js/capacitor.js"></script>
+    <script type="text/javascript" src="../assets/js/script.js"></script>
+
+</head>
+
+<body id="body" class="dark">
+
+    <div class="navbar">
+        <div class="navbtn" id="main_list_btn">
+            <div id="accounts_icon" class="navcon"></div>
+        </div>
+        <div class="navbtn_ative" id="inventory_btn">
+            <div id="inventory_icon" class="navcon"></div>
+        </div>
+        <div class="navbtn" id="setting_btn">
+            <div id="setting_icon" class="navcon"></div>
+        </div>
+    </div>
+
+    <div class="mainview" id="main_list_view">
+        <div class="main_list_container" id="main_list_container">
+
+            <!--<div class="list_anchor">
+            <div class="list_anchor_foreground">
+                <div class="list_title">test list 1</div>
+                <div class="list_preview_container"></div>
+                <div class="list_details"> details for test list 1</div>
+            </div>
+        </div>-->
+
+
+        </div>
+
+        <div class="main_button_1" id="add_new_list_button"></div>
+
+    </div>
+
+    <div class="mainview" id="inventory_view">
+
+
+        <div class="list_panneler" id="list_panneler">
+            <!--<div class="pantry_item">
+            <div class="preview_square">
+                <div class="preview_img"></div>
+            </div>
+            <div class="namebar">Prototype</div>
+        </div>-->
+
+
+        </div>
+        <div class="main_button_2" id="edit_list_button"></div>
+        <div class="main_button_1" id="add_new_list_item_button"></div>
+    </div>
+
+    <div class="mainview" id="setting_view">
+        <div class="settingtitle">Settings</div>
+
+        <table class="setting_tabler">
+            <tr>
+                <td colspan="2" class="semi_title">Theme:</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="theme_bar" id="theme_bar">
+                        <div id="set_light" class="themebtn_container">
+                            <div class="thembtn" id="light_theme_btn">Light</div>
+                        </div>
+                        <div id="set_dark" class="themebtn_container">
+                            <div class="thembtn" id="dark_theme_btn">Dark</div>
+                        </div>
+                        <div id="set_device" class="themebtn_container">
+                            <div class="thembtn" id="device_theme_btn">Device</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="semi_title">accent color:</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="accent-color-selector">
+                        <div class="accent_blob" id="hue-1-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue0-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue30-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue60-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue90-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue120-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue150-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue180-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue210-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue240-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue270-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue300-selec" title="select this color"></div>
+                        <div class="accent_blob" id="hue330-selec" title="select this color"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr id="Animations_btn" class="pointer" title="toggle animations on or off">
+                <td colspan="1" class="semi_title"> Animations</td>
+                <td class="semi_title">
+                    <div class="switch_container_active" id="Animations_switch_container">
+                        <div class="switchbdy" id="Animations_switchbdy">
+                            <div class="switch_knob"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- New-edit list dialogue -->
+    <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
+        <div class="Modal_title">New list</div>
+        <input type="text" name="new_listname" class="modal_input" id="listname_put" placeholder="Name"
+            title="Input a name for the new list">
+        <textarea id="listdetail_put" class="modal_input" placeholder="Details"></textarea>
+        <button id="new_list_Cancel_btn" class="list_action_button">Cancel</button>
+        <button id="New_list_confirm_btn" class="list_action_button">Save</button>
+    </div>
+
+
+</body>
+
+
+</html>
