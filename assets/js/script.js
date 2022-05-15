@@ -6,10 +6,11 @@ front.on("hello from back", function(msg){
 });
 
 
-const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
+//const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
 
 const main_list_container = document.getElementById('main_list_container');
 
+/*
 App.addListener('appStateChange', ({ isActive }) => {// app state is changed, usually sent to the background or suspended
     console.warn('App state changed. Is active: ', isActive);
 });
@@ -18,25 +19,26 @@ App.addListener('backButton', () => {//back button on android
     console.warn('back button pressed');
     Ui.navigate.back();
 });
-
+*/
 
 window.addEventListener('load', async function () {
     try {
-        await config.load()
+        await config.load();
     } catch (err) {
-        console.warn('Something bad happened: ', err)
+        console.warn('Something bad happened: ', err);
     } finally {
 
         
-        Ui.navigate.main_list()//go to last main view
-        Ui.setting.animation.setpostition()//ste animation 'button'
-        Ui.setting.set_theme()
+        Ui.navigate.main_list();
+        Ui.setting.animation.setpostition();
+        Ui.setting.set_theme();
 
         /* Button handlers */
         document.getElementById('main_list_btn').addEventListener('click', function () {
             console.log('Main list button')
             Ui.navigate.main_list()
-        })
+        });
+        
         document.getElementById('inventory_btn').addEventListener('click', function () { Ui.navigate.inventory_view() })
         document.getElementById('setting_btn').addEventListener('click', function () { Ui.navigate.setting() })
         document.getElementById('Animations_btn').addEventListener('click', function () { Ui.setting.animation.flip() })
