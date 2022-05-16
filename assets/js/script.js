@@ -6,19 +6,14 @@ front.on("hello from back", function (msg) {
 });
 
 document.addEventListener('keydown', function (e) {
-    console.log('Pressed: ', e.key)
-})
-
-document.addEventListener("backbutton", function(e) {
-    e.preventDefault()
-    //display popup
-    console.log('Back button event ', e)
+    console.log('Pressed: ', e.key);
 });
 
-
-
-
-
+document.addEventListener("backbutton", function (e) {
+    e.preventDefault();
+    //display popup
+    console.log('Back button event ', e);
+});
 
 //const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
 
@@ -634,9 +629,9 @@ let utility = {//Some usefull things
     },
     /*  Produce Random numbers  */
     rand: {
-        HEX: function () { return '#' + Math.floor(Math.random() * 16777215).toString(16) /* hex color code */ },
-        RGB: function () { return { RED: this.number(255, 0), GREEN: this.number(255, 0), BLUE: this.number(255, 0) } /* object with RGB color code */ },
-        HSL: function () { return { HUE: this.number(360, 0), SATURATION: this.number(100, 0) + '%', LIGHTENESS: this.number(100, 1) + '%' }/* HSL color code */ },
-        number(max, min) { return Math.floor(Math.random() * (max - min + 1)) + min /* Random number*/ }
+        HEX() { return '#' + Math.floor(Math.random() * 16777215).toString(16) },
+        RGB() { return { RED: this.number(255, 0), GREEN: this.number(255, 0), BLUE: this.number(255, 0) } },
+        HSL() { return { HUE: this.number(360, 0), SATURATION: this.number(100, 0) + '%', LIGHTENESS: this.number(100, 1) + '%' } },
+        number(max, min) { return Math.floor(Math.random() * (max - min + 1)) + min }
     },
 }
