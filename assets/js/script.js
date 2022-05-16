@@ -1,9 +1,23 @@
 
 front.send("hello from front");
 
-front.on("hello from back", function(msg){
-	console.log(msg);
+front.on("hello from back", function (msg) {
+    console.log(msg);
 });
+
+document.addEventListener('keydown', function (e) {
+    console.log('Pressed: ', e.key)
+})
+
+document.addEventListener("backbutton", function(e) {
+    e.preventDefault()
+    //display popup
+    console.log('Back button event ', e)
+});
+
+
+
+
 
 
 //const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
@@ -28,7 +42,7 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err);
     } finally {
 
-        
+
         Ui.navigate.main_list();
         Ui.setting.animation.setpostition();
         Ui.setting.set_theme();
@@ -38,7 +52,7 @@ window.addEventListener('load', async function () {
             console.log('Main list button')
             Ui.navigate.main_list()
         });
-        
+
         document.getElementById('inventory_btn').addEventListener('click', function () { Ui.navigate.inventory_view() })
         document.getElementById('setting_btn').addEventListener('click', function () { Ui.navigate.setting() })
         document.getElementById('Animations_btn').addEventListener('click', function () { Ui.setting.animation.flip() })
@@ -341,15 +355,15 @@ let inventory = {
         }
 
         //add events
-        document.getElementById('edit_list_button').removeEventListener("click",this)
-        document.getElementById('add_new_list_item_button').removeEventListener("click",this)
+        document.getElementById('edit_list_button').removeEventListener("click", this)
+        document.getElementById('add_new_list_item_button').removeEventListener("click", this)
 
-        document.getElementById('edit_list_button').addEventListener('click',function(){
+        document.getElementById('edit_list_button').addEventListener('click', function () {
             document.getElementById('addnew_list_Dialogue').style.display = "block"
             inventory.manager.edit_main_list()
         })
-        document.getElementById('add_new_list_item_button').removeEventListener("click",function(){
-            
+        document.getElementById('add_new_list_item_button').removeEventListener("click", function () {
+
         })
     },
     manager: {
@@ -365,8 +379,8 @@ let inventory = {
             Toast.show({ text: `saved: ${document.getElementById('listname_put').value}` });
             inventory.render_main_list()
         },
-        edit_main_list:async function(){
-            
+        edit_main_list: async function () {
+
         },
 
     }
