@@ -1,27 +1,32 @@
 {
-    "version": "1.0.0",
-    "name": "in-pantry",
-    "app-name": "in-pantry",
-    "package-name": "webview",
-    "project-type": "webview",
-    "icon": "./assets/icon/icon.png",
-    "dist-path": "./dist",
-    "permission": [
-        "android.permission.INTERNET"
-    ],
-    "description": "",
-    "main": "main.js",
-    "scripts": {
-        "start:dev": "node .",
-        "build": "androidjs build"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "androidjs": "^2.0.2"
-    },
-    "project-name": "in-pantry",
-    "theme": {
-        "fullScreen": false
-    }
+  "name": "basicb",
+  "version": "1.0.0",
+  "description": "An Amazing Capacitor App",
+  "main": "index.js",
+  "scripts": {
+    "open android": "npx cap open android",
+    "run android":"npx cap run android",
+    "servewww": "serve ./www",
+    "bundle": "browserify www/js/index.js -o www/js/bundle.js"
+  },
+  "keywords": [
+    "capacitor",
+    "mobile"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^3.5.1",
+    "@capacitor/app": "^1.0.1",
+    "@capacitor/browser": "^1.0.1",
+    "@capacitor/camera": "1.0.1",
+    "@capacitor/core": "^3.5.1",
+    "@capacitor/splash-screen": "1.0.1",
+    "@capacitor/storage": "^1.0.2",
+    "@capacitor/toast": "^1.0.2",
+    "browserify": "^17.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^3.5.1"
+  }
 }

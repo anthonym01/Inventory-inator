@@ -1,6 +1,12 @@
-# In-Pantry
+## Created with Capacitor Create App
 
-A receipt and payment tracing apparatus
+This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app),
+and comes with a very minimal shell for building an app.
 
-https://anthonym01.github.io/In-Pantry/
- 
+### Running this example
+
+To run the provided example, you can use [serve](https://www.npmjs.com/package/serve):
+
+```bash
+npx serve
+```
