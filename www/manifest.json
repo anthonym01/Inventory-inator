@@ -1,11 +1,11 @@
 {
-  "name": "App",
-  "short_name": "App",
+  "name": "inpantry",
+  "short_name": "inpantry",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/icon/icon.png",
-    "sizes": "1024x1024",
+    "src": "resources/icon.png",
+    "sizes": "512x512",
     "type": "image/png"
   }],
   "background_color": "#31d53d",

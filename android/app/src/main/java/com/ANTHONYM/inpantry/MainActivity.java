@@ -1,4 +1,4 @@
-package com.ANTHONYM.APPNAME;
+package com.ANTHONYM.inpantry;
 
 import com.getcapacitor.BridgeActivity;
 

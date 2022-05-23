@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "open android": "npx cap open android",
-    "run android":"npx cap run android",
-    "update":"npx cap update",
+    "run android": "npx cap run android",
+    "update": "npx cap update",
+    "generate icons": "cordova-res android --skip-config --copy",
     "servewww": "serve ./www",
     "bundle": "browserify www/js/index.js -o www/js/bundle.js"
   },
