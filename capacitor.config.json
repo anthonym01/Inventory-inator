@@ -2,6 +2,7 @@
   "appId": "com.ANTHONYM.inpantry",
   "appName": "inpantry",
   "bundledWebRuntime": true,
+  "icon":"./resources/icon.png",
   "webDir": "www",
   "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
   "CAPACITOR_ANDROID_STUDIO_PATH":"/opt/android-studio/bin/studio.sh",
