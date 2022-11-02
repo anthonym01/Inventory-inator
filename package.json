@@ -9,7 +9,8 @@
     "update": "npx cap update",
     "generate icons": "cordova-res android --skip-config --copy",
     "servewww": "serve ./www",
-    "bundle": "browserify www/js/index.js -o www/js/bundle.js"
+    "bundle": "browserify www/js/index.js -o www/js/bundle.js",
+    "start":"node Server.js"
   },
   "keywords": [
     "capacitor",

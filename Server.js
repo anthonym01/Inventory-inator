@@ -2,6 +2,7 @@
 
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 const port = 1999;//port for the server
 
 async function notfoundpage(response, url) {//404 page goes here
@@ -90,6 +91,7 @@ server.listen(port, function (err) {//Listen to a port with server
         console.error(err);
     } else {
         console.log('Listening on port: ', port);
+        database.initalize();
     }
 
 })
