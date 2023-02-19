@@ -11,6 +11,38 @@ App.addListener('backButton', () => {//back button on android
     Ui.navigate.back()
 })
 
+async function request(what) {//make a request to server for data
+
+    try {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {//wait for and handle response
+            if (this.readyState == 4 && this.status == 200) {
+                console.log('Server replied with: ', this.responseText, ' In response: ', this.response)
+                return this.responseText
+            }
+        };
+
+        xhttp.open("GET", what, true);//get request
+        xhttp.send();
+    } catch (err) {
+        console.warn('xhttp request failed ', err);
+    }
+
+}
+
+async function post(what, where) {//post data to server (be carefull not to double stringify)
+    var xhttp = new XMLHttpRequest()
+
+    xhttp.onreadystatechange = function () {//wait for and handle response
+        if (this.readyState == 4 && this.status == 200) {
+            console.log('Server replied with: ', this.responseText, ' In response: ', this.response)
+        }
+    };
+    xhttp.open("POST", where, true);
+    xhttp.send(JSON.stringify(what));
+}
+
 
 window.addEventListener('load', async function () {
     try {
