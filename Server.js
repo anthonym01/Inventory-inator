@@ -6,6 +6,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const port = 1999;//port for the server
+
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
     response.write('404 page not , code: ', url);
@@ -13,7 +14,7 @@ async function notfoundpage(response, url) {//404 page goes here
 }
 
 app.get('/', (request, response) => { startingpoint(response) });//starting point request
-
+app.get('/', (request, response) => { startingpoint(response) });//starting point request
 async function startingpoint(response) {//serve index.html
     response.setHeader('Acess-Control-Allow-Origin', '*');//allow access control from client, this will automatically handle most media files
     try {
