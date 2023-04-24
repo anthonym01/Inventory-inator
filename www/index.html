@@ -53,26 +53,12 @@
         </div>
     </div>
 
-    <div class="mainview" id="main_list_view">
-        <div class="main_list_container" id="main_list_container">
-
-            <!--<div class="list_anchor">
-              <div class="list_anchor_foreground">
-                  <div class="list_title">test list 1</div>
-                  <div class="list_preview_container"></div>
-                  <div class="list_details"> details for test list 1</div>
-              </div>
-          </div>-->
-
-            
-        </div>
-        
-        <div class="main_button_1" id="add_new_list_button"></div>
+    <div class="mainview" id="recipies_view">
 
     </div>
 
     <div class="mainview" id="inventory_view">
-       
+
 
         <div class="list_panneler" id="list_panneler">
             <!--<div class="pantry_item">
@@ -82,12 +68,17 @@
               <div class="namebar">Prototype</div>
           </div>-->
 
-            
+
         </div>
         <div class="main_button_2" id="edit_list_button"></div>
         <div class="main_button_1" id="add_new_list_item_button"></div>
     </div>
 
+    <div class="mainview" id="history_view">
+
+    </div>
+
+    <!--Leave for last-->
     <div class="mainview" id="setting_view">
         <div class="settingtitle">Settings</div>
 
@@ -149,7 +140,8 @@
     <!-- New-edit list dialogue -->
     <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
         <div class="Modal_title">New list</div>
-        <input type="text" name="new_listname" class="modal_input" id="listname_put" placeholder="Name" title="Input a name for the new list">
+        <input type="text" name="new_listname" class="modal_input" id="listname_put" placeholder="Name"
+            title="Input a name for the new list">
         <textarea id="listdetail_put" class="modal_input" placeholder="Details"></textarea>
         <button id="new_list_Cancel_btn" class="list_action_button">Cancel</button>
         <button id="New_list_confirm_btn" class="list_action_button">Save</button>

@@ -64,7 +64,10 @@ body {
     background-color: var(--background-color);
 }
 
-.navbar {
+/* 
+Navigation_dock
+*/
+.Navigation_dock {
     position: absolute;
     bottom: 0;
     right: 0;
