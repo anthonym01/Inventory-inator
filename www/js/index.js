@@ -43,7 +43,6 @@ async function post(what, where) {//post data to server (be carefull not to doub
     xhttp.send(JSON.stringify(what));
 }
 
-
 window.addEventListener('load', async function () {
     try {
         await config.load()
