@@ -52,16 +52,22 @@ body {
 }
 
 /* mainview && navbar*/
+.mainview_hidden,
 .mainview {
     position: absolute;
     top: 0;
     right: 0;
-    height: calc(100% - 2.8rem);
+    height: calc(100% - 3rem);
     width: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
     display: none;
     color: var(--text-color);
     background-color: var(--background-color);
+}
+
+.mainview {
+    display: block;
 }
 
 /* 
@@ -72,7 +78,7 @@ Navigation_dock
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 2.8rem;
+    height: 3rem;
     background-color: var(--grey);
     display: flex;
     flex-direction: row;
@@ -731,6 +737,4 @@ Navigation_dock
 
 /*    <--  Landscape layout (with min-width) -->     */
 
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-
-}
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}

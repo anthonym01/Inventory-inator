@@ -1,7 +1,5 @@
 const { Browser, App, Camera, Toast, Storage, Dialog, Device } = Capacitor.Plugins;
 
-const main_list_container = document.getElementById('main_list_container');
-
 App.addListener('appStateChange', ({ isActive }) => {// app state is changed, usually sent to the background or suspended
     console.warn('App state changed. Is active: ', isActive);
 });
