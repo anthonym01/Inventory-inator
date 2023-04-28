@@ -33,11 +33,21 @@
     --background-color: rgb(255, 255, 255);
     --accent-color: hsl(0, 0%, 0%);
     --grey: rgb(212, 212, 212);
-    --setting-icon: url('../img/setting-black.webp');
     --elivation_color: 70%;
     --button_depth: translate(3%, 10%);
+    --t_background-color: rgba(255, 255, 255, 0.6);
+    --half_grey: rgb(177, 177, 177);
+    --elivation_color: 70%;
+    --setting-icon: url('../img/setting.webp');
     --card_icon: url('../img/icon.png');
     --edit_img: url('../img/61456.svg');
+    --setting-icon: url('../img/setting.webp');
+    --plussimg: url('../img/plus.webp');
+    --recipie_icon: url('../img/chef-hat-svgrepo-com.svg');
+    --more_icon:url('../img/more-horizontal-svgrepo-com.svg');
+    --inventory_ivon: url('../img/box-cardboard-pngrepo-com.png');
+    --history_icon:url('../img/history-svgrepo-com.svg');
+    --inversion_factor: invert(0);
 }
 
 body {
@@ -57,7 +67,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    height: calc(100% - 3rem);
+    height: calc(100% - 3.3rem);
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -71,18 +81,19 @@ body {
 }
 
 /* 
-Navigation_dock
+    Navigation_dock
 */
 .Navigation_dock {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 3rem;
+    height: 3.3rem;
     background-color: var(--grey);
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-evenly;
     transition: background-color 500ms, color 500ms;
 }
 
@@ -90,10 +101,9 @@ Navigation_dock
 .navbtn_ative {
     /*  Buttons containing icons  */
     position: relative;
-    height: 2.8rem;
-    width: 33.33vw;
+    height: 3.3rem;
+    width: 25vw;
     border-radius: 1rem;
-
     transition: background-color 300ms;
     background-color: var(--grey);
     cursor: pointer;
@@ -104,18 +114,33 @@ Navigation_dock
     background-color: var(--half_grey);
 }
 
-.navbtn_ative {
-    background-color: var(--accent-color);
+.navbtn_title {
+    position: absolute;
+    bottom: 0.1;
+    height: 1rem;
+    font-size: 1rem;
+    text-shadow: none;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    text-align: center;
 }
 
-.navbtn .navcon,
-.navbtn_ative .navcon {
+/*.navbtn_ative {
+    background-color: var(--accent-color);
+}*/
+
+.navbtn .navicon,
+.navbtn_ative .navicon {
     /*  Relitiveistic icon positioning(shifting based on device type)  */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 2.8rem;
-    width: 2.8rem;
+    background-clip: content-box;
+    height: 2rem;
+    width: 2rem;
+    box-sizing: border-box;
+    padding-top: 0.1rem;
     position: relative;
     margin-right: auto;
     margin-left: auto;
@@ -123,6 +148,7 @@ Navigation_dock
     overflow: visible;
 }
 
+/*
 #setting_icon {
     background-image: var(--setting-icon);
     transition: transform 300ms;
@@ -133,16 +159,28 @@ Navigation_dock
     filter: invert(1);
     transform: rotate(90deg);
 }
-
+*/
 #inventory_icon {
-    background-image: url('../img/box-cardboard-pngrepo-com.png');
-    background-size: 90%;
+    background-image: var(--inventory_ivon);
+    background-size: contain;
 }
 
-#accounts_icon {
-    background-image: var(--card_icon);
+#recipie_icon {
+    background-image: var(--recipie_icon);
+    filter: var(--inversion_factor);
+    background-size: contain;
 }
 
+#hsitory_icon {
+    background-image: var(--history_icon);
+    filter: var(--inversion_factor);
+    background-size: contain;
+}
+#more_icon{
+    background-image: var(--more_icon);
+    filter: var(--inversion_factor);
+    background-size: contain;
+}
 /* Setting view */
 #setting_view {
     transition: background-color 500ms, color 500ms;

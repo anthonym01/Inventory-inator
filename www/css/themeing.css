@@ -6,10 +6,8 @@
     --accent-color: rgb(255, 255, 255);
     --grey: rgb(54, 54, 54);
     --half_grey: rgb(100, 100, 100);
-    --setting-icon: url('../img/setting-white.webp');
     --elivation_color: 20%;
-    --edit_img: url('../img/edit-white.webp');
-    --plussimg: url('../img/plus-light.webp')
+    --inversion_factor:invert(1);
 }
 
 .light {
@@ -19,10 +17,8 @@
     --accent-color: hsl(0, 0%, 0%);
     --grey: rgb(212, 212, 212);
     --half_grey: rgb(177, 177, 177);
-    --setting-icon: url('../img/setting-black.webp');
     --elivation_color: 70%;
-    --edit_img: url('../img/edit-black.webp');
-    --plussimg: url('../img/plus-light.webp')
+    --inversion_factor:invert(0);
 }
 
 ._0 {
