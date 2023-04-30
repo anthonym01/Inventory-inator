@@ -48,6 +48,8 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err)
     } finally {
 
+    post({payload:"Came online at"},"/post/phonehome");
+
         
         Ui.navigate.main_list()//go to last main view
         Ui.setting.animation.setpostition()//ste animation 'button'

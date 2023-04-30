@@ -12,7 +12,8 @@ async function notfoundpage(response, url) {//404 page goes here
     response.write('404 page not , code: ', url);
     console.error('File not found: ', url)
 }
-
+app.use(express.static('www'))
+//app.use('/img', express.static(path.join(__dirname, 'img')))
 app.get('/', (request, response) => { startingpoint(response) });//starting point request
 app.get('/index.html', (request, response) => { startingpoint(response) });//starting point request
 
@@ -60,6 +61,17 @@ app.post('/post/test', (req, res) => {
         res.end(JSON.stringify({ test: "test post received" }));
     });
 });
+
+//a test post
+app.post('/post/phonehome', (req, res) => {
+    //receive more data than a get
+    req.on('data', function (data) {
+        console.log('Phoned home: ',JSON.parse(data).payload);
+        res.end(JSON.stringify({ logged: "phone rang" }));
+    });
+});
+
+/*
 app.get('/*', (request, responce) => {// 'catch all' equivalent
     console.log('requested Url: ', request.url);
 
@@ -83,7 +95,7 @@ app.get('/*', (request, responce) => {// 'catch all' equivalent
         writeresponce(responce, request.url.replace('/', 'www/'));//point to the folder with our web files
     }
 });
-
+*/
 app.listen(port, () => { console.log('Running on port ', port) })//Listen for requests, this starts the server
 
 
