@@ -107,7 +107,7 @@ async function writeresponce(res, filepath) {
 }
 
 // prototype json database, just wanted to see if i could do it
-const database = {
+let database = {
     initalize: function () {
         console.log('Initalize database');
         try {
@@ -118,12 +118,17 @@ const database = {
 
             if (!fs.existsSync(path.join(__dirname, './database/users.json'))) {
                 console.log('Creating users record');
-                fs.writeFileSync(path.join(__dirname, './database/users.json'), JSON.stringify({
-                    db_version: 0,
-                    users: [{ uname: "Anthonym", password: "0000" }]//favourite test user
-                }));
+                fs.writeFileSync(path.join(__dirname, './database/users.json'),
+                    JSON.stringify({
+                        db_version: 0,
+                        users: [//test users
+                            { uname: "Anthonym", password: "0000" },
+                            { uname: "test", password: "0000" }
+                        ]
+                    })
+                );
             }
-            
+
             if (!fs.existsSync(path.join(__dirname, './database/userdata/'))) {
                 console.log('Creating user data directory')
                 fs.mkdirSync(path.join(__dirname, './database/userdata/'));
@@ -195,20 +200,18 @@ const database = {
     },
     does_user_exist: async function (username) {
         console.log('Check database for user: ', username);
+
         let userdata = JSON.parse(fs.readFile(path.join(__dirname, '/database/users.json'), { encoding: 'utf-8' }));
         //check if this user already exists
 
-        //!! Improve matching later
-        let found = false;
         for (let iterate in userdata.users) {
             if (userdata.users[iterate].uname == username) {
-                found = true;
                 console.log('Found user at: ', iterate);
-                break;
+                return true;
             }
         }
-        return found;
+        return false;
     }
-}
+};
 
 database.initalize();
