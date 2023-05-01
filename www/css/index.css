@@ -145,6 +145,8 @@ body {
     bottom: 0rem;
     height: 1rem;
     font-size: 0.8rem;
+    text-shadow: 0rem 0rem 0.3rem var(--background-color);
+    color: var(--text-color);
     text-shadow: none;
     width: 100%;
     box-sizing: border-box;

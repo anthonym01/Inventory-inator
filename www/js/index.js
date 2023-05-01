@@ -49,7 +49,7 @@ window.addEventListener('load', async function () {
     } finally {
 
         post({ payload: "Came online at" }, "/post/phonehome");
-        Ui.theme.set()
+        //Ui.theme.set()
         /* Navigation_dock buttons */
         document.getElementById('inventory_main_btn').addEventListener('click', function () { Ui.navigate.inventory_view() });
         document.getElementById('recipie_main_btn').addEventListener('click', function () { Ui.navigate.recipies_view() });
@@ -163,7 +163,7 @@ const Ui = {
             //set previously saved color theme
             document.getElementById('theming').innerHTML=`
             :root {
-                --accent-color: hsl(30, 100%, 50%)!important;
+                --accent-color: hsl(0, 100%, 90%)!important;
             }
             `;
         }
