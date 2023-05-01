@@ -90,7 +90,7 @@ body {
     right: 0;
     height: calc(100% - 3.2rem);
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     display: none;
     color: var(--text-color);
@@ -180,13 +180,9 @@ body {
     background-size: 90%;
 }
 
-.navbtn_ative .navbtn_title {
-    opacity: 0;
-}
+.navbtn_ative .navbtn_title { opacity: 0;}
 
-#inventory_icon {
-    background-image: var(--inventory_ivon);
-}
+#inventory_icon { background-image: var(--inventory_ivon);}
 
 #recipie_icon {
     background-image: var(--recipie_icon);
@@ -204,13 +200,12 @@ body {
     /*background-size: 140%;*/
 }
 
-
 /*
 Inventory view
 */
 
 .Dynamic_lists_pannel {
-    /* Restrain titles and lists*/
+    /* Restrain titles and lists for inventory or recipies main lists*/
     position: absolute;
     height: fit-content;
     width: 100%;
@@ -228,6 +223,18 @@ Inventory view
     font-family: minecraft;
 }
 
+.Inentory_list{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 7rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: auto;
+}
+
+/* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {
     position: fixed;
