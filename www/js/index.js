@@ -49,16 +49,14 @@ window.addEventListener('load', async function () {
     } finally {
 
         post({ payload: "Came online at" }, "/post/phonehome");
-
+        Ui.theme.set()
         /* Navigation_dock buttons */
         document.getElementById('inventory_main_btn').addEventListener('click', function () { Ui.navigate.inventory_view() });
         document.getElementById('recipie_main_btn').addEventListener('click', function () { Ui.navigate.recipies_view() });
         document.getElementById('history_main_btn').addEventListener('click', function () { Ui.navigate.history_view() });
         document.getElementById('more_main_btn').addEventListener('click', function () { Ui.navigate.more_view() });
 
-        this.document.getElementById('theming').innerHTML=`
         
-        `;
         maininitalizer();
     }
 })
@@ -160,4 +158,14 @@ const Ui = {
             document.getElementById('recipies_view').classList ="mainview"
         }
     },
+    theme:{
+        set:  async function(){
+            //set previously saved color theme
+            document.getElementById('theming').innerHTML=`
+            :root {
+                --accent-color: hsl(30, 100%, 50%)!important;
+            }
+            `;
+        }
+    }
 }

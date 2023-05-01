@@ -53,7 +53,7 @@
     --text-color: rgb(255, 255, 255);
     --background-color: rgb(0, 0, 0);
     --transparent_background_color: rgba(0, 0, 0, 0.6);
-    --accent-color: hsl(204, 100%, 50%);
+    /*--accent-color: hsl(204, 100%, 50%);*/
     --grey: rgb(54, 54, 54);
     --half_grey: rgb(100, 100, 100);
     --elivation_color: 20%;
@@ -64,7 +64,7 @@
     --text-color: rgb(0, 0, 0);
     --background-color: rgb(255, 255, 255);
     --transparent_background_color: rgba(255, 255, 255, 0.6);
-    --accent-color: hsl(204, 100%, 50%);
+    /*--accent-color: hsl(204, 100%, 50%);*/
     --grey: rgb(212, 212, 212);
     --half_grey: rgb(177, 177, 177);
     --elivation_color: 70%;
