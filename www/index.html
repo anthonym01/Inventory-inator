@@ -24,9 +24,10 @@
 
     <!--Style sheets-->
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/themeing.css">
     <link rel="stylesheet" href="" id="anim" type="text/css">
-
+    <style id="theming">
+        
+    </style>
 
     <!-- un-comment this code to enable service worker
   <script>
@@ -42,10 +43,10 @@
 <body class="dark">
 
     <!--
-        Navigation buttons
+        Navigation dock/buttons
     -->
     <div class="Navigation_dock">
-        <div class="navbtn" id="inventory_main_btn">
+        <div class="navbtn_ative" id="inventory_main_btn">
             <div id="inventory_icon" class="navicon"></div>
             <div class="navbtn_title">Inventory</div>
         </div>
@@ -63,99 +64,43 @@
         </div>
     </div>
 
-
+    <!--
+        Inventory view
+    -->
     <div class="mainview" id="inventory_view">
 
-        <div class="list_panneler" id="list_panneler">
-            <!--<div class="pantry_item">
-              <div class="preview_square">
-                  <div class="preview_img"></div>
-              </div>
-              <div class="namebar">Prototype</div>
-          </div>-->
-
-
+        <!-- New-edit list dialogue -->
+        <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
+            <div class="">New Inventory list</div>
+            <input class="" type="text" name="new_listname" id="" placeholder="Name"
+                title="Input a name for the new list">
+            <textarea id="" class="" placeholder="Details"></textarea>
+            <button id="" class="">Cancel</button>
+            <button id="" class="">Save</button>
         </div>
-        <div class="main_button_2" id="edit_list_button"></div>
-        <div class="main_button_1" id="add_new_list_item_button"></div>
+
+        <!-- Inventory list space-->
+        <div>
+            <!-- <div class="universal_edit_button" id="edit_list_button"></div>-->
+            <div class="universal_add_button" id="add_new_list_item_button"></div>
+        </div>
+
     </div>
 
     <div class="mainview_hidden" id="recipies_view">
-
+        recipie placeholder
     </div>
 
     <div class="mainview_hidden" id="history_view">
-
+        History placeholder
     </div>
 
     <!--Leave for last-->
-    <div class="mainview_hidden" id="setting_view">
-        <div class="settingtitle">Settings</div>
-
-        <table class="setting_tabler">
-            <tr>
-                <td colspan="2" class="semi_title">Theme:</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div class="theme_bar" id="theme_bar">
-                        <div id="set_light" class="themebtn_container">
-                            <div class="thembtn" id="light_theme_btn">Light</div>
-                        </div>
-                        <div id="set_dark" class="themebtn_container">
-                            <div class="thembtn" id="dark_theme_btn">Dark</div>
-                        </div>
-                        <div id="set_device" class="themebtn_container">
-                            <div class="thembtn" id="device_theme_btn">Device</div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="semi_title">accent color:</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div class="accent-color-selector">
-                        <div class="accent_blob" id="hue-1-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue0-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue30-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue60-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue90-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue120-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue150-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue180-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue210-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue240-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue270-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue300-selec" title="select this color"></div>
-                        <div class="accent_blob" id="hue330-selec" title="select this color"></div>
-                    </div>
-                </td>
-            </tr>
-            <tr id="Animations_btn" class="pointer" title="toggle animations on or off">
-                <td colspan="1" class="semi_title"> Animations</td>
-                <td class="semi_title">
-                    <div class="switch_container_active" id="Animations_switch_container">
-                        <div class="switchbdy" id="Animations_switchbdy">
-                            <div class="switch_knob"></div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
+    <div class="mainview_hidden" id="more_view">
+        more placeholder
     </div>
 
-    <!-- New-edit list dialogue -->
-    <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
-        <div class="Modal_title">New list</div>
-        <input type="text" name="new_listname" class="modal_input" id="listname_put" placeholder="Name"
-            title="Input a name for the new list">
-        <textarea id="listdetail_put" class="modal_input" placeholder="Details"></textarea>
-        <button id="new_list_Cancel_btn" class="list_action_button">Cancel</button>
-        <button id="New_list_confirm_btn" class="list_action_button">Save</button>
-    </div>
+
 
     <script src="capacitor.js"></script>
     <script src="js/index.js"></script>
