@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="" id="anim" type="text/css">
     <style id="theming">
-        
+
     </style>
 
     <!-- un-comment this code to enable service worker
@@ -70,7 +70,7 @@
     <div class="mainview" id="inventory_view">
 
         <!-- New-edit list dialogue -->
-        <div class="addnew_list_Dialogue" id="addnew_list_Dialogue">
+        <div class="addnew_list_Dialogue" id="addnew_list_Dialogue" style="display: none;">
             <div class="">New Inventory list</div>
             <input class="" type="text" name="new_listname" id="" placeholder="Name"
                 title="Input a name for the new list">
@@ -79,8 +79,10 @@
             <button id="" class="">Save</button>
         </div>
 
-        <!-- Inventory list space-->
-        <div>
+        <!-- Inventory lists space-->
+        <div class="Dynamic_lists_pannel">
+            <div class="list_title">Inventories</div>
+
             <!-- <div class="universal_edit_button" id="edit_list_button"></div>-->
             <div class="universal_add_button" id="add_new_list_item_button"></div>
         </div>
@@ -88,11 +90,19 @@
     </div>
 
     <div class="mainview_hidden" id="recipies_view">
-        recipie placeholder
+        <!-- Recipe lists space-->
+        <div class="Dynamic_lists_pannel">
+            <div class="list_title">Recipes</div>
+
+        </div>
     </div>
 
     <div class="mainview_hidden" id="history_view">
-        History placeholder
+        <!-- History lists space-->
+        <div class="Dynamic_lists_pannel">
+            <div class="list_title">History</div>
+
+        </div>
     </div>
 
     <!--Leave for last-->
