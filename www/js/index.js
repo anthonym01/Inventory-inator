@@ -130,15 +130,17 @@ const inventory = {
 
     },
 }
+
 const recipie = {
     initalize: async function () {
 
     },
 }
+
 const Ui = {
     initalize: async function () {
 
-        Ui.theme.set();
+        Ui.theme_set();
 
         /* Navigation_dock buttons */
         document.getElementById('inventory_main_btn').addEventListener('click', function () { Ui.navigate.inventory_view() });
@@ -197,13 +199,27 @@ const Ui = {
             document.getElementById('recipies_view').classList = "mainview"
         }
     },
-    theme: {
-        set: async function () {
-            //set previously saved color theme
-            document.getElementById('theming').innerHTML = `
+    theme_set: async function () {
+        //set previously saved color theme
+
+        document.getElementById('theming').innerHTML = `
             :root {
                 --accent-color: hsl(${config.data.accent_color.hue},${config.data.accent_color.saturation}%, ${config.data.accent_color.lightness}%)!important;
-            }`;
-        }
+            }
+        `;
+
+        setTimeout(() => {
+            switch (config.data.theme) {
+                case "dark":
+                    document.body.classList = "dark";
+                    break;
+                case "light":
+                    document.body.classList = "light";
+                    break;
+                default:
+                    document.body.classList = "device_theme";
+                //follow device theme
+            }
+        }, 1000);
     }
 }

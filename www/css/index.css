@@ -29,9 +29,9 @@
 /* Portrait theme */
 
 :root {
+    --accent-color: hsl(204, 100%, 50%);
     --text-color: rgb(0, 0, 0);
     --background-color: rgb(255, 255, 255);
-    --accent-color: hsl(204, 100%, 50%);
     --grey: rgb(212, 212, 212);
     --elivation_color: 70%;
     --button_depth: translate(3%, 10%);
@@ -47,6 +47,19 @@
     --inventory_ivon: url('../img/box-cardboard-pngrepo-com.png');
     --history_icon: url('../img/history-svgrepo-com.svg');
     --inversion_factor: invert(0);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: rgb(255, 255, 255);
+        --background-color: rgb(0, 0, 0);
+        --transparent_background_color: rgba(0, 0, 0, 0.6);
+        /*--accent-color: hsl(204, 100%, 50%);*/
+        --grey: rgb(54, 54, 54);
+        --half_grey: rgb(100, 100, 100);
+        --elivation_color: 20%;
+        --inversion_factor: invert(1);
+    }
 }
 
 .dark {
@@ -180,9 +193,13 @@ body {
     background-size: 90%;
 }
 
-.navbtn_ative .navbtn_title { opacity: 0;}
+.navbtn_ative .navbtn_title {
+    opacity: 0;
+}
 
-#inventory_icon { background-image: var(--inventory_ivon);}
+#inventory_icon {
+    background-image: var(--inventory_ivon);
+}
 
 #recipie_icon {
     background-image: var(--recipie_icon);
@@ -223,7 +240,7 @@ Inventory view
     font-family: minecraft;
 }
 
-.Inentory_list{
+.Inentory_list {
     position: relative;
     width: 100%;
     height: fit-content;
