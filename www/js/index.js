@@ -49,14 +49,11 @@ window.addEventListener('load', async function () {
     } finally {
 
         post({ payload: "Came online at" }, "/post/phonehome");
-        //Ui.theme.set()
-        /* Navigation_dock buttons */
-        document.getElementById('inventory_main_btn').addEventListener('click', function () { Ui.navigate.inventory_view() });
-        document.getElementById('recipie_main_btn').addEventListener('click', function () { Ui.navigate.recipies_view() });
-        document.getElementById('history_main_btn').addEventListener('click', function () { Ui.navigate.history_view() });
-        document.getElementById('more_main_btn').addEventListener('click', function () { Ui.navigate.more_view() });
 
-        
+        Ui.initalize();
+        inventory.initalize();
+        recipie.initalize();
+
         maininitalizer();
     }
 })
@@ -69,13 +66,38 @@ let config = {
     data: {//Loacal app data
         animation: true,
         theme: "dark",
-        accent_color: -1,
+        accent_color: { hue: 200, saturation: 100, lightness: 50 },
         inventory: [//test data
-            {
+            {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 0.76, reserve: 4 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
+            },
+        ],
+        recipie: [
+            {//test recipie book
+                name: "Breakfast things", details: "Munchies for the mornings", listitems: [
+                    {
+                        title: "Fried Egg",
+                        description: "Fry up an egg in a frying pan with salt and sweet pepper",
+                        ingredients: [
+                            "Egg",
+                            "cooking oil(non-seed)",
+                            "salt"
+                        ],
+                        Steps: [
+                            "heat the frying pan somewhere between warm and instant 3rd degree burn ",
+                            "pour oil into pan",
+                            "Shatter Egg on your left ball",
+                            "pour egg into pan",
+                            "fry",
+                            "sprinkle salt into pan over egg",
+                            "consume the sustinance"
+                        ],
+                        tileImage: "base 64 string"
+                    }
+                ]
             },
         ],
     },
@@ -104,10 +126,27 @@ let config = {
 }
 
 const inventory = {
+    initalize: async function () {
 
+    },
 }
+const recipie = {
+    initalize: async function () {
 
+    },
+}
 const Ui = {
+    initalize: async function () {
+
+        Ui.theme.set();
+
+        /* Navigation_dock buttons */
+        document.getElementById('inventory_main_btn').addEventListener('click', function () { Ui.navigate.inventory_view() });
+        document.getElementById('recipie_main_btn').addEventListener('click', function () { Ui.navigate.recipies_view() });
+        document.getElementById('history_main_btn').addEventListener('click', function () { Ui.navigate.history_view() });
+        document.getElementById('more_main_btn').addEventListener('click', function () { Ui.navigate.more_view() });
+
+    },
     navigate: {//navigation
         back: async function () {
 
@@ -118,10 +157,10 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn"
             document.getElementById('more_main_btn').classList = "navbtn_ative"
             document.getElementById('history_main_btn').classList = "navbtn"
-            document.getElementById('inventory_view').classList ="mainview_hidden"
-            document.getElementById('history_view').classList ="mainview_hidden"
-            document.getElementById('more_view').classList ="mainview"
-            document.getElementById('recipies_view').classList ="mainview_hidden"
+            document.getElementById('inventory_view').classList = "mainview_hidden"
+            document.getElementById('history_view').classList = "mainview_hidden"
+            document.getElementById('more_view').classList = "mainview"
+            document.getElementById('recipies_view').classList = "mainview_hidden"
         },
         history_view: function () {
             console.log('Naviagate history view')
@@ -129,10 +168,10 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn"
             document.getElementById('more_main_btn').classList = "navbtn"
             document.getElementById('history_main_btn').classList = "navbtn_ative"
-            document.getElementById('inventory_view').classList ="mainview_hidden"
-            document.getElementById('history_view').classList ="mainview"
-            document.getElementById('more_view').classList ="mainview_hidden"
-            document.getElementById('recipies_view').classList ="mainview_hidden"
+            document.getElementById('inventory_view').classList = "mainview_hidden"
+            document.getElementById('history_view').classList = "mainview"
+            document.getElementById('more_view').classList = "mainview_hidden"
+            document.getElementById('recipies_view').classList = "mainview_hidden"
 
         },
         inventory_view: function () {
@@ -141,10 +180,10 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn"
             document.getElementById('more_main_btn').classList = "navbtn"
             document.getElementById('history_main_btn').classList = "navbtn"
-            document.getElementById('inventory_view').classList ="mainview"
-            document.getElementById('history_view').classList ="mainview_hidden"
-            document.getElementById('more_view').classList ="mainview_hidden"
-            document.getElementById('recipies_view').classList ="mainview_hidden"
+            document.getElementById('inventory_view').classList = "mainview"
+            document.getElementById('history_view').classList = "mainview_hidden"
+            document.getElementById('more_view').classList = "mainview_hidden"
+            document.getElementById('recipies_view').classList = "mainview_hidden"
         },
         recipies_view: function () {
             console.log('Naviagate more view')
@@ -152,20 +191,19 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn_ative"
             document.getElementById('more_main_btn').classList = "navbtn"
             document.getElementById('history_main_btn').classList = "navbtn"
-            document.getElementById('inventory_view').classList ="mainview_hidden"
-            document.getElementById('history_view').classList ="mainview_hidden"
-            document.getElementById('more_view').classList ="mainview_hidden"
-            document.getElementById('recipies_view').classList ="mainview"
+            document.getElementById('inventory_view').classList = "mainview_hidden"
+            document.getElementById('history_view').classList = "mainview_hidden"
+            document.getElementById('more_view').classList = "mainview_hidden"
+            document.getElementById('recipies_view').classList = "mainview"
         }
     },
-    theme:{
-        set:  async function(){
+    theme: {
+        set: async function () {
             //set previously saved color theme
-            document.getElementById('theming').innerHTML=`
+            document.getElementById('theming').innerHTML = `
             :root {
-                --accent-color: hsl(0, 100%, 90%)!important;
-            }
-            `;
+                --accent-color: hsl(${config.data.accent_color.hue},${config.data.accent_color.saturation}%, ${config.data.accent_color.lightness}%)!important;
+            }`;
         }
     }
 }
