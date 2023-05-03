@@ -42,10 +42,14 @@
     --card_icon: url('../img/icon.png');
     --edit_img: url('../img/edit.svg');
     --plussimg: url('../img/plus-svgrepo-com.svg');
-    --recipie_icon: url('../img/chef-hat-svgrepo-com.svg');
+    --recipie_icon: url('../img/bread-svgrepo-com.svg');
     --more_icon: url('../img/more-horizontal-svgrepo-com.svg');
     --inventory_ivon: url('../img/box-cardboard-pngrepo-com.png');
     --history_icon: url('../img/history-svgrepo-com.svg');
+    --grocery_bag_icon: url('../img/groceries-grocery-svgrepo-com.svg');
+    --bag_icon: url('../img/bag-svgrepo-com.svg');
+    --book_open_icon:url('../img/open-book-svgrepo-com.svg');
+    --book_closed_icon:url('../img/closed-book-1-svgrepo-com.svg');
     --inversion_factor: invert(0);
 }
 
@@ -173,14 +177,14 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-clip: content-box;
-    height: 2.2rem;
-    width: 2.2rem;
+    height: 2.1rem;
+    width: 2.1rem;
     box-sizing: border-box;
     padding-top: 0.1rem;
     position: relative;
     margin-right: auto;
     margin-left: auto;
-    transition: transform 300ms, height 300ms, width 300ms, background-size 300ms;
+    transition: transform 150ms, margin 150ms,height 150ms, width 150ms, background-size 150ms;
     overflow: visible;
 }
 
@@ -195,11 +199,15 @@ body {
 }
 
 #inventory_icon {
-    background-image: var(--inventory_ivon);
+    background-image: var(--grocery_bag_icon);
+    filter: var(--inversion_factor);
+    background-size: 85%;
+    /*background-image: var(--bag_icon);*/
 }
 
 #recipie_icon {
     background-image: var(--recipie_icon);
+    background-size: 150%;
     filter: var(--inversion_factor);
 }
 
