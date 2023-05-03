@@ -65,7 +65,7 @@ async function maininitalizer() {
 let config = {
     data: {//Loacal app data
         animation: true,
-        theme: "dark",
+        theme: "device",
         accent_color: { hue: 200, saturation: 100, lightness: 50 },
         inventory: [//test data
             {//test inventory
