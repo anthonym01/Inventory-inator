@@ -53,19 +53,14 @@ window.addEventListener('load', async function () {
         Ui.initalize();
         inventory.initalize();
         recipie.initalize();
-
-        maininitalizer();
     }
-})
-
-async function maininitalizer() {
-    //start/refresh active elemments
-}
+});
 
 let config = {
     data: {//Loacal app data
         animation: true,
         theme: "device",
+        last_view:"first",
         accent_color: { hue: 200, saturation: 100, lightness: 50 },
         inventory: [//test data
             {//test inventory
@@ -76,6 +71,19 @@ let config = {
             },
         ],
         recipie: [
+            {
+                name:"test",
+                details:"test entry\n Testing my patience",
+                listitems:[
+                    {
+                        title:"test food 1",
+                        description:"testing 1",
+                        ingredients:["test","testing","tested"],
+                        Steps:["hammer","that","keyboard"],
+                        tileImage:[],
+                    }
+                ]
+            },
             {//test recipie book
                 name: "Breakfast things", details: "Munchies for the mornings", listitems: [
                     {
@@ -140,6 +148,13 @@ const recipie = {
 const Ui = {
     initalize: async function () {
 
+        switch(config.data.last_view){
+            case "history": Ui.navigate.history_view();break;
+            case "recipie": Ui.navigate.recipies_view();break;
+            case "inventory": Ui.navigate.inventory_view();break;
+            default: //first settup
+        }
+
         Ui.theme_set();
 
         /* Navigation_dock buttons */
@@ -154,15 +169,15 @@ const Ui = {
 
         },
         more_view: function () {
-            console.log('Naviagate more view')
-            document.getElementById('inventory_main_btn').classList = "navbtn"
-            document.getElementById('recipie_main_btn').classList = "navbtn"
-            document.getElementById('more_main_btn').classList = "navbtn_ative"
-            document.getElementById('history_main_btn').classList = "navbtn"
-            document.getElementById('inventory_view').classList = "mainview_hidden"
-            document.getElementById('history_view').classList = "mainview_hidden"
-            document.getElementById('more_view').classList = "mainview"
-            document.getElementById('recipies_view').classList = "mainview_hidden"
+            console.log('Naviagate more view');
+            document.getElementById('inventory_main_btn').classList = "navbtn";
+            document.getElementById('recipie_main_btn').classList = "navbtn";
+            document.getElementById('more_main_btn').classList = "navbtn_ative";
+            document.getElementById('history_main_btn').classList = "navbtn";
+            document.getElementById('inventory_view').classList = "mainview_hidden";
+            document.getElementById('history_view').classList = "mainview_hidden";
+            document.getElementById('more_view').classList = "mainview";
+            document.getElementById('recipies_view').classList = "mainview_hidden";
         },
         history_view: function () {
             console.log('Naviagate history view')
@@ -174,7 +189,8 @@ const Ui = {
             document.getElementById('history_view').classList = "mainview"
             document.getElementById('more_view').classList = "mainview_hidden"
             document.getElementById('recipies_view').classList = "mainview_hidden"
-
+            config.data.last_view = "history";
+            config.save();
         },
         inventory_view: function () {
             console.log('Naviagate more view')
@@ -186,17 +202,21 @@ const Ui = {
             document.getElementById('history_view').classList = "mainview_hidden"
             document.getElementById('more_view').classList = "mainview_hidden"
             document.getElementById('recipies_view').classList = "mainview_hidden"
+            config.data.last_view = "inventory";
+            config.save();
         },
         recipies_view: function () {
-            console.log('Naviagate more view')
-            document.getElementById('inventory_main_btn').classList = "navbtn"
-            document.getElementById('recipie_main_btn').classList = "navbtn_ative"
-            document.getElementById('more_main_btn').classList = "navbtn"
-            document.getElementById('history_main_btn').classList = "navbtn"
-            document.getElementById('inventory_view').classList = "mainview_hidden"
-            document.getElementById('history_view').classList = "mainview_hidden"
-            document.getElementById('more_view').classList = "mainview_hidden"
-            document.getElementById('recipies_view').classList = "mainview"
+            console.log('Naviagate more view');
+            document.getElementById('inventory_main_btn').classList = "navbtn";
+            document.getElementById('recipie_main_btn').classList = "navbtn_ative";
+            document.getElementById('more_main_btn').classList = "navbtn";
+            document.getElementById('history_main_btn').classList = "navbtn";
+            document.getElementById('inventory_view').classList = "mainview_hidden";
+            document.getElementById('history_view').classList = "mainview_hidden";
+            document.getElementById('more_view').classList = "mainview_hidden";
+            document.getElementById('recipies_view').classList = "mainview";
+            config.data.last_view = "recipie";
+            config.save();
         }
     },
     theme_set: async function () {
