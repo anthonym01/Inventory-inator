@@ -228,6 +228,9 @@ const inventory = {
         this.render_main_lists();
     },
     render_main_lists: async function () {
+        /*
+            places inventories generated from config.data.inventory into #inventory_lists_container
+        */
         console.log('display inventories ', config.data.inventory);
 
         for (let i in config.data.inventory) {
