@@ -137,6 +137,13 @@ const inventory = {
     initalize: async function () {
 
     },
+    render_main_lists:async function(){
+        console.log('display inventories ',config.data.inventory);
+
+        for(i in config.data.inventory){
+            
+        }
+    }
 }
 
 const recipie = {
