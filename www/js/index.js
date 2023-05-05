@@ -64,6 +64,31 @@ let config = {
         accent_color: { hue: 200, saturation: 100, lightness: 50 },
         inventory: [//test data
             {//test inventory
+                name: "example", icon: 1, details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
+                ],
+            }, {//test inventory
+                name: "example", icon: 2, details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
+                ],
+            }, {//test inventory
+                name: "example", icon: 3, details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
+                ],
+            }, {//test inventory
+                name: "example", details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
+                ],
+            }, {//test inventory
+                name: "example", details: "an example of what can be done", listitems: [
+                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
+                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
+                ],
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
@@ -83,77 +108,52 @@ let config = {
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
                 ],
-            },{//test inventory
-                name: "example", details: "an example of what can be done", listitems: [
-                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
-                ],
-            },{//test inventory
-                name: "example", details: "an example of what can be done", listitems: [
-                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
-                ],
-            },{//test inventory
-                name: "example", details: "an example of what can be done", listitems: [
-                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
-                ],
-            },{//test inventory
-                name: "example", details: "an example of what can be done", listitems: [
-                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
-                ],
-            },{//test inventory
-                name: "example", details: "an example of what can be done", listitems: [
-                    { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
-                    { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
-                ],
-            },{//test inventory
+            }, {//test inventory
                 name: "example", details: "an example of what can be done", listitems: [
                     { name: "type 1 example", type: 1, restocat: 20, amount: 57 },
                     { name: "type 2 example", type: 2, restocat: 1, amount: 4.76, },
@@ -237,9 +237,23 @@ const inventory = {
         function buildblock(index) {
             let inventory_list_block = document.createElement('div');
             inventory_list_block.classList = "inventory_list_block"
-            inventory_list_block.innerHTML = config.data.inventory[index].name + ' ' + config.data.inventory[index].details
-            inventory_list_block.title = config.data.inventory[index].name + ' inventory'
-            document.getElementById('inventory_lists_container').appendChild(inventory_list_block)
+            //inventory_list_block.innerHTML = config.data.inventory[index].name
+            inventory_list_block.title = config.data.inventory[index].name + ' inventory';
+            let inventory_icon = document.createElement('div');
+            inventory_icon.classList = "icon";
+            switch (config.data.inventory[index].icon) {
+                case 1:
+                    inventory_icon.style.backgroundImage = "url('/www/img/box-cardboard-pngrepo-com.png')";
+                    break;
+                case 2:
+                    inventory_icon.style.backgroundImage = "url('/www/img/chef-hat-svgrepo-com.svg')";
+                    break;
+                default: //request previously uploaded image
+
+            }
+            inventory_list_block.appendChild(inventory_icon)
+
+            document.getElementById('inventory_lists_container').appendChild(inventory_list_block);
 
             inventory_list_block.addEventListener('click', function () {
                 console.log('click inventory ', config.data.inventory[index]);
