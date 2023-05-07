@@ -291,7 +291,7 @@ Inventory view
     top: 0.1rem;
     left: 0;
     height: 3.5rem;
-    width: 4rem;
+    width: 3.5rem;
     box-sizing: border-box;
     padding: 0.1rem;
     background-position: center;
@@ -301,7 +301,9 @@ Inventory view
 }
 .inventory_list_block .title{
     position: absolute;
+    
 }
+
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {

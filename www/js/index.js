@@ -168,7 +168,7 @@ const inventory = {
             inventory_list_block.title = config.data.inventory[index].name + ' inventory';
 
             let inventory_icon = document.createElement('div');
-            inventory_icon.classList = "icon";
+            inventory_icon.classList = "inventory_icon";
             switch (config.data.inventory[index].icon) {
                 case 1:
                     inventory_icon.style.backgroundImage = "url('/www/img/box-cardboard-pngrepo-com.png')";
