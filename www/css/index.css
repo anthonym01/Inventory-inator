@@ -299,7 +299,9 @@ Inventory view
     background-repeat: no-repeat;
     background-image: url('../img/bag-svgrepo-com.svg');
 }
-
+.inventory_list_block .title{
+    position: absolute;
+}
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {

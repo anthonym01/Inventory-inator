@@ -165,7 +165,6 @@ const inventory = {
         function buildblock(index) {
             let inventory_list_block = document.createElement('div');
             inventory_list_block.classList = "inventory_list_block"
-            //inventory_list_block.innerHTML = config.data.inventory[index].name
             inventory_list_block.title = config.data.inventory[index].name + ' inventory';
 
             let inventory_icon = document.createElement('div');
