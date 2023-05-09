@@ -180,7 +180,8 @@ const inventory = {
 
             }
             inventory_list_block.appendChild(inventory_icon)
-
+            let title = document.createElement('div'); title.innerHTML = config.data.inventory[index].name
+            title.classList = "title"; inventory_list_block.appendChild(title)
             document.getElementById('inventory_lists_container').appendChild(inventory_list_block);
 
             inventory_list_block.addEventListener('click', function () {
