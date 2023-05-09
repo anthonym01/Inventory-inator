@@ -48,8 +48,8 @@
     --history_icon: url('../img/history-svgrepo-com.svg');
     --grocery_bag_icon: url('../img/groceries-grocery-svgrepo-com.svg');
     --bag_icon: url('../img/bag-svgrepo-com.svg');
-    --book_open_icon:url('../img/open-book-svgrepo-com.svg');
-    --book_closed_icon:url('../img/closed-book-1-svgrepo-com.svg');
+    --book_open_icon: url('../img/open-book-svgrepo-com.svg');
+    --book_closed_icon: url('../img/closed-book-1-svgrepo-com.svg');
     --inversion_factor: invert(0);
 }
 
@@ -184,7 +184,7 @@ body {
     position: relative;
     margin-right: auto;
     margin-left: auto;
-    transition: transform 150ms, margin 150ms,height 150ms, width 150ms, background-size 150ms;
+    transition: transform 150ms, margin 150ms, height 150ms, width 150ms, background-size 150ms;
     overflow: visible;
 }
 
@@ -257,7 +257,7 @@ Inventory view
     justify-content: center;
 }
 
-.empty_list_modal{
+.empty_list_modal {
     height: 100%;
     width: 100%;
     position: relative;
@@ -269,24 +269,25 @@ Inventory view
     align-self: center;
 }
 
-.inventory_list_block{
+.inventory_list_block {
     position: relative;
     height: 5rem;
     width: 20rem;
-    margin-top:0.5rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     margin-right: 1rem;
     border-radius: 0.4rem;
     box-shadow: 0rem 0rem 0.1rem 0.1rem var(--text-color);
     background-color: var(--background-color);
-    color: var(--text-color);cursor: pointer;
+    color: var(--text-color);
+    cursor: pointer;
 }
 
-.inventory_list_block:hover{
+.inventory_list_block:hover {
     box-shadow: 0rem 0rem 0.4rem 0.2rem var(--text-color);
 }
 
-.inventory_list_block .inventory_icon{
+.inventory_list_block .inventory_icon {
     position: absolute;
     top: 0.1rem;
     left: 0;
@@ -299,9 +300,16 @@ Inventory view
     background-repeat: no-repeat;
     background-image: url('../img/bag-svgrepo-com.svg');
 }
-.inventory_list_block .title{
+
+.inventory_list_block .title {
     position: absolute;
-    
+    top: 0;
+    right: 0;
+    width: 16.3rem;
+    font-size: 1rem;
+    height: 2rem;
+    line-height: 100%;
+    white-space: nowrap;
 }
 
 /* Plus and edit buttons */
