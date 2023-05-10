@@ -156,38 +156,58 @@ const inventory = {
         /*
             places inventories generated from config.data.inventory into #inventory_lists_container
         */
+
         console.log('display inventories ', config.data.inventory);
+        document.getElementById('inventory_lists_container').innerHTML = "";
 
-        for (let i in config.data.inventory) {
-            buildblock(i)
-        }
-
-        function buildblock(index) {
-            let inventory_list_block = document.createElement('div');
-            inventory_list_block.classList = "inventory_list_block"
-            inventory_list_block.title = config.data.inventory[index].name + ' inventory';
-
-            let inventory_icon = document.createElement('div');
-            inventory_icon.classList = "inventory_icon";
-            switch (config.data.inventory[index].icon) {
-                case 1:
-                    inventory_icon.style.backgroundImage = "url('/www/img/box-cardboard-pngrepo-com.png')";
-                    break;
-                case 2:
-                    inventory_icon.style.backgroundImage = "url('/www/img/chef-hat-svgrepo-com.svg')";
-                    break;
-                default: //request previously uploaded image
-
+        if (config.data.inventory.length < 1) {
+            //no inventories
+            //<div class="empty_list_modal">No Inventories</div>
+            let empty_list_modal = document.createElement('div');
+            empty_list_modal.classList="empty_list_modal";
+            document.getElementById('inventory_lists_container').appendChild(empty_list_modal);
+        } else {
+            for (let i in config.data.inventory) {
+                buildblock(i)
             }
-            inventory_list_block.appendChild(inventory_icon)
-            let title = document.createElement('div'); title.innerHTML = config.data.inventory[index].name
-            title.classList = "title"; inventory_list_block.appendChild(title)
-            document.getElementById('inventory_lists_container').appendChild(inventory_list_block);
 
-            inventory_list_block.addEventListener('click', function () {
-                console.log('click inventory ', config.data.inventory[index]);
-            })
+            function buildblock(index) {
+                let inventory_list_block = document.createElement('div');
+                inventory_list_block.classList = "inventory_list_block"
+                inventory_list_block.title = config.data.inventory[index].name + ' inventory';
+
+                let inventory_icon = document.createElement('div');
+                inventory_icon.classList = "inventory_icon";
+                switch (config.data.inventory[index].icon) {
+                    case 1:
+                        inventory_icon.style.backgroundImage = "url('/www/img/box-cardboard-pngrepo-com.png')";
+                        break;
+                    case 2:
+                        inventory_icon.style.backgroundImage = "url('/www/img/chef-hat-svgrepo-com.svg')";
+                        break;
+                    default: //request previously uploaded image
+
+                }
+                inventory_list_block.appendChild(inventory_icon);
+
+                let title = document.createElement('div');
+                title.innerHTML = config.data.inventory[index].name;
+                title.classList = "title";
+                inventory_list_block.appendChild(title);
+
+                let description = document.createElement('div');
+                description.classList = "description";
+                description.innerHTML = config.data.inventory[index].details;
+                inventory_list_block.appendChild(description);
+
+                document.getElementById('inventory_lists_container').appendChild(inventory_list_block);
+
+                inventory_list_block.addEventListener('click', function () {
+                    console.log('click inventory ', config.data.inventory[index]);
+                })
+            }
         }
+
     }
 }
 
