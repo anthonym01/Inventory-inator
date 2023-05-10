@@ -295,7 +295,7 @@ Inventory view
     width: 3.5rem;
     box-sizing: border-box;
     padding: 0.1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -335,6 +335,8 @@ Inventory view
     height: 3.6rem;
     width: 3.6rem;
     border-radius: 50%;
+    background-clip: padding-box;
+    margin: 0.4rem;
     background-color: var(--accent-color);
     background-repeat: no-repeat;
     cursor: pointer;
@@ -358,10 +360,10 @@ Inventory view
     /* Plus icon */
     content: "";
     position: absolute;
-    top: 0.3rem;
+    top: 0.4rem;
     right: 1.6rem;
     width: 0.4rem;
-    height: 3rem;
+    height: 2.8rem;
     background-color: var(--text-color);
     border-radius: 0.4rem;
     transition: transform 300ms;
@@ -369,8 +371,8 @@ Inventory view
 
 .universal_add_button::before {
     top: 1.6rem;
-    right: 0.3rem;
-    width: 3rem;
+    right: 0.4rem;
+    width: 2.8rem;
     height: 0.4rem;
 }
 
