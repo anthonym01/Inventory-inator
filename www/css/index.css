@@ -40,16 +40,15 @@
     --elivation_color: 70%;
     --setting-icon: url('../img/gear-svgrepo-com.svg');
     --card_icon: url('../img/icon.png');
-    --edit_img: url('../img/edit.svg');
-    --plussimg: url('../img/plus-svgrepo-com.svg');
-    --recipie_icon: url('../img/bread-svgrepo-com.svg');
-    --more_icon: url('../img/more-horizontal-svgrepo-com.svg');
-    --inventory_ivon: url('../img/box-cardboard-pngrepo-com.png');
-    --history_icon: url('../img/history-svgrepo-com.svg');
-    --grocery_bag_icon: url('../img/groceries-grocery-svgrepo-com.svg');
-    --bag_icon: url('../img/bag-svgrepo-com.svg');
-    --book_open_icon: url('../img/open-book-svgrepo-com.svg');
-    --book_closed_icon: url('../img/closed-book-1-svgrepo-com.svg');
+    --edit_img: url('../img/UI/edit.svg');
+    --plussimg: url('../img/UI/plus-svgrepo-com.svg');
+    --recipie_icon: url('../img/UI/bread-svgrepo-com.svg');
+    --more_icon: url('../img/UI/more-horizontal-svgrepo-com.svg');
+    --history_icon: url('../img/UI/history-svgrepo-com.svg');
+    --grocery_bag_icon: url('../img/UI/groceries-grocery-svgrepo-com.svg');
+    --bag_icon: url('../img/UI/bag-svgrepo-com.svg');
+    --book_open_icon: url('../img/UI/open-book-svgrepo-com.svg');
+    --book_closed_icon: url('../img/UI/closed-book-1-svgrepo-com.svg');
     --inversion_factor: invert(0);
 }
 
