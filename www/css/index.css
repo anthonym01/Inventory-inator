@@ -326,6 +326,18 @@ Inventory view
     text-align: center;
 }
 
+.inventory_list_block .item_count {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3.5rem;
+    font-size: 0.6rem;
+    height: 0.8rem;
+    line-height: 100%;
+    white-space: nowrap;
+    text-align: center;
+}
+
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {

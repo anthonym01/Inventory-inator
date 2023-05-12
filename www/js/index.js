@@ -200,6 +200,12 @@ const inventory = {
                 description.innerHTML = config.data.inventory[index].details;
                 inventory_list_block.appendChild(description);
 
+                
+                let item_count = document.createElement('div');
+                item_count.classList = "item_count";
+                item_count.innerHTML = `${config.data.inventory[index].listitems.length} items`;
+                inventory_list_block.appendChild(item_count);
+
                 document.getElementById('inventory_lists_container').appendChild(inventory_list_block);
 
                 inventory_list_block.addEventListener('click', function () {
