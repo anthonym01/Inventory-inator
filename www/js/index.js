@@ -180,10 +180,10 @@ const inventory = {
                 inventory_icon.classList = "inventory_icon";
                 switch (config.data.inventory[index].icon) {
                     case 1:
-                        inventory_icon.style.backgroundImage = "url('/www/img/box-cardboard-pngrepo-com.png')";
+                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/box-cardboard-pngrepo-com.png')";
                         break;
                     case 2:
-                        inventory_icon.style.backgroundImage = "url('/www/img/chef-hat-svgrepo-com.svg')";
+                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/chef-hat-svgrepo-com.svg')";
                         break;
                     default: //request previously uploaded image
 
