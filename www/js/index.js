@@ -164,7 +164,7 @@ const inventory = {
             //no inventories
             //<div class="empty_list_modal">No Inventories</div>
             let empty_list_modal = document.createElement('div');
-            empty_list_modal.classList="empty_list_modal";
+            empty_list_modal.classList = "empty_list_modal";
             document.getElementById('inventory_lists_container').appendChild(empty_list_modal);
         } else {
             for (let i in config.data.inventory) {
@@ -183,7 +183,7 @@ const inventory = {
                         inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/box-cardboard-pngrepo-com.png')";
                         break;
                     case 2:
-                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/chef-hat-svgrepo-com.svg')";
+                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/bag-svgrepo-com.svg')";
                         break;
                     default: //request previously uploaded image
 
@@ -209,11 +209,16 @@ const inventory = {
 
                 inventory_list_block.addEventListener('click', function () {
                     console.log('click inventory ', config.data.inventory[index]);
+                    inventory.open(index);
                 })
             }
         }
 
-    }
+    },
+    open: async function (inventoryindex) {
+        console.log('open inventory ', config.data.inventory[inventoryindex])
+        document.getElementById('inventory_lists_container').classList ;
+    },
 }
 
 const recipie = {
