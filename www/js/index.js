@@ -217,7 +217,9 @@ const inventory = {
     },
     open: async function (inventoryindex) {
         console.log('open inventory ', config.data.inventory[inventoryindex])
-        document.getElementById('inventory_lists_container').classList ;
+        document.getElementById('inventory_lists_container').classList = "Inentory_list_hidden";
+        document.getElementById('Inentory_container').classList = "inventory_container";
+        
     },
 }
 
@@ -276,6 +278,8 @@ const Ui = {
         },
         inventory_view: function () {
             console.log('Naviagate more view')
+            document.getElementById('inventory_lists_container').classList = "Inentory_list";
+
             document.getElementById('inventory_main_btn').classList = "navbtn_ative"
             document.getElementById('recipie_main_btn').classList = "navbtn"
             document.getElementById('more_main_btn').classList = "navbtn"
