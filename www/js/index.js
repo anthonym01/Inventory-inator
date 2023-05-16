@@ -223,6 +223,11 @@ const inventory = {
         document.getElementById('inventory_pannel').classList = "Dynamic_lists_pannel";
 
         document.getElementById('inventory_name').innerHTML=config.data.inventory[inventoryindex].name;
+
+        make_inventory(inventoryindex);
+        async function make_inventory(inumber){
+
+        }
     },
 }
 
