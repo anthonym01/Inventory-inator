@@ -244,10 +244,7 @@ Inventory view
     font-family: minecraft;
 }
 
-.Inentory_list,
-.Inentory_list_hidden,
-.Inentory_container,
-.Inentory_container_hidden {
+.Inentory_list {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -257,11 +254,6 @@ Inventory view
     flex-wrap: wrap;
     flex-basis: auto;
     justify-content: center;
-}
-
-.Inentory_list_hidden,
-.Inentory_container_hidden {
-    display: none;
 }
 
 .empty_list_modal {
@@ -400,6 +392,9 @@ Inventory view
     transform: rotate(180deg);
 }
 
+.hidden {
+    display: none;
+}
 
 /*    <--  Landscape layout (with min-width) -->     */
 

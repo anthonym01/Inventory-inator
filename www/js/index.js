@@ -217,8 +217,8 @@ const inventory = {
     },
     open: async function (inventoryindex) {
         console.log('open inventory ', config.data.inventory[inventoryindex])
-        document.getElementById('inventory_lists_container').classList = "Inentory_list_hidden";
-        document.getElementById('Inentory_container').classList = "inventory_container";
+        document.getElementById('inventory_list_pannel').classList = "Dynamic_lists_pannel hidden";
+        document.getElementById('inventory_pannel').classList = "Dynamic_lists_pannel";
         
     },
 }
@@ -258,10 +258,10 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn";
             document.getElementById('more_main_btn').classList = "navbtn_ative";
             document.getElementById('history_main_btn').classList = "navbtn";
-            document.getElementById('inventory_view').classList = "mainview_hidden";
-            document.getElementById('history_view').classList = "mainview_hidden";
+            document.getElementById('inventory_view').classList = "mainview hidden";
+            document.getElementById('history_view').classList = "mainview hidden";
             document.getElementById('more_view').classList = "mainview";
-            document.getElementById('recipies_view').classList = "mainview_hidden";
+            document.getElementById('recipies_view').classList = "mainview hidden";
         },
         history_view: function () {
             console.log('Naviagate history view')
@@ -269,10 +269,10 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn"
             document.getElementById('more_main_btn').classList = "navbtn"
             document.getElementById('history_main_btn').classList = "navbtn_ative"
-            document.getElementById('inventory_view').classList = "mainview_hidden"
+            document.getElementById('inventory_view').classList = "mainview hidden"
             document.getElementById('history_view').classList = "mainview"
-            document.getElementById('more_view').classList = "mainview_hidden"
-            document.getElementById('recipies_view').classList = "mainview_hidden"
+            document.getElementById('more_view').classList = "mainview hidden"
+            document.getElementById('recipies_view').classList = "mainview hidden"
             config.data.last_view = "history";
             config.save();
         },
@@ -285,9 +285,9 @@ const Ui = {
             document.getElementById('more_main_btn').classList = "navbtn"
             document.getElementById('history_main_btn').classList = "navbtn"
             document.getElementById('inventory_view').classList = "mainview"
-            document.getElementById('history_view').classList = "mainview_hidden"
-            document.getElementById('more_view').classList = "mainview_hidden"
-            document.getElementById('recipies_view').classList = "mainview_hidden"
+            document.getElementById('history_view').classList = "mainview hidden"
+            document.getElementById('more_view').classList = "mainview hidden"
+            document.getElementById('recipies_view').classList = "mainview hidden"
             config.data.last_view = "inventory";
             config.save();
         },
@@ -297,9 +297,9 @@ const Ui = {
             document.getElementById('recipie_main_btn').classList = "navbtn_ative";
             document.getElementById('more_main_btn').classList = "navbtn";
             document.getElementById('history_main_btn').classList = "navbtn";
-            document.getElementById('inventory_view').classList = "mainview_hidden";
-            document.getElementById('history_view').classList = "mainview_hidden";
-            document.getElementById('more_view').classList = "mainview_hidden";
+            document.getElementById('inventory_view').classList = "mainview hidden";
+            document.getElementById('history_view').classList = "mainview hidden";
+            document.getElementById('more_view').classList = "mainview hidden";
             document.getElementById('recipies_view').classList = "mainview";
             config.data.last_view = "recipie";
             config.save();
