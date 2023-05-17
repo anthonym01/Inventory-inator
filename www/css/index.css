@@ -268,6 +268,8 @@ Inventory view
     align-self: center;
 }
 
+
+/* Inventory selection */
 .inventory_list_block {
     position: relative;
     height: 5rem;
@@ -337,6 +339,58 @@ Inventory view
     text-align: center;
 }
 
+
+/* Inventory */
+.inventory_item_block {
+    position: relative;
+    height: 5rem;
+    width: 20rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+    border-radius: 0.4rem;
+    box-shadow: 0rem 0rem 0.1rem 0.1rem var(--text-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.inventory_item_block .inventory_icon {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.3rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    box-sizing: border-box;
+    padding: 0.1rem;
+    border-radius: 0.4rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../img/bag-svgrepo-com.svg');
+}
+
+.inventory_item_block .title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16.3rem;
+    font-size: 1.2rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    text-align: center;
+}
+.inventory_item_block .item_count {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4.5rem;
+    font-size: 0.6rem;
+    height: 0.8rem;
+    line-height: 100%;
+    white-space: nowrap;
+    text-align: center;
+}
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {
