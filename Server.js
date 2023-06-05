@@ -100,7 +100,7 @@ app.listen(port, () => { console.log('Running on port ', port) })//Listen for re
 
 
 async function writeresponce(res, filepath) {
-    //write files in responses, for static files in the /www folder
+    //write files in responses
 
     try {
         fs.readFile(filepath, function (err, databuffer) {
