@@ -233,7 +233,7 @@ const inventory = {
                 //no inventories
                 //<div class="empty_list_modal">No Inventories</div>
                 let empty_list_modal = document.createElement('div');
-                empty_list_modal.classList = "empty_list_modal";
+                empty_list_modal.classList = "empty_list_modal";empty_list_modal.innerHTML="No Inventories";
                 document.getElementById('inventory_container').appendChild(empty_list_modal);
             } else {
                 for (let i in config.data.inventory[inumber].listitems) {
