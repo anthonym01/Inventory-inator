@@ -380,6 +380,7 @@ Inventory view
     white-space: nowrap;
     text-align: center;
 }
+
 .inventory_item_block .item_count {
     position: absolute;
     bottom: 0;
@@ -391,6 +392,7 @@ Inventory view
     white-space: nowrap;
     text-align: center;
 }
+
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {

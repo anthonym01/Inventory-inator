@@ -222,29 +222,29 @@ const inventory = {
         document.getElementById('inventory_list_pannel').classList = "Dynamic_lists_pannel hidden";
         document.getElementById('inventory_pannel').classList = "Dynamic_lists_pannel";
 
-        document.getElementById('inventory_name').innerHTML=config.data.inventory[inventoryindex].name;
+        document.getElementById('inventory_name').innerHTML = config.data.inventory[inventoryindex].name;
 
         make_inventory(inventoryindex);
-        async function make_inventory(inumber){
+        async function make_inventory(inumber) {
             console.log('show inventory ', config.data.inventory[inumber]);
             document.getElementById('inventory_container').innerHTML = "";
-    
+
             if (config.data.inventory[inumber].listitems.length < 1) {
                 //no inventories
                 //<div class="empty_list_modal">No Inventories</div>
                 let empty_list_modal = document.createElement('div');
-                empty_list_modal.classList = "empty_list_modal";empty_list_modal.innerHTML="No Inventories";
+                empty_list_modal.classList = "empty_list_modal"; empty_list_modal.innerHTML = "No Inventories";
                 document.getElementById('inventory_container').appendChild(empty_list_modal);
             } else {
                 for (let i in config.data.inventory[inumber].listitems) {
                     buildblock(i)
                 }
-    
+
                 function buildblock(index) {
                     let inventory_item_block = document.createElement('div');
                     inventory_item_block.classList = "inventory_item_block"
                     inventory_item_block.title = config.data.inventory[inumber].listitems[index].name;
-    
+
                     let inventory_icon = document.createElement('div');
                     inventory_icon.classList = "inventory_icon";
                     switch (config.data.inventory[inumber].listitems.icon) {
@@ -255,22 +255,22 @@ const inventory = {
                             inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/bag-svgrepo-com.svg')";
                             break;
                         default: //request previously uploaded image
-    
+
                     }
                     inventory_item_block.appendChild(inventory_icon);
-    
+
                     let titlem = document.createElement('div');
                     titlem.innerHTML = config.data.inventory[inumber].listitems[index].name;
                     titlem.classList = "title";
                     inventory_item_block.appendChild(titlem);
-    
+
                     let item_count = document.createElement('div');
                     item_count.classList = "item_count";
                     item_count.innerHTML = `restock at ${config.data.inventory[inumber].listitems[index].restocat}`;
                     inventory_item_block.appendChild(item_count);
-    
+
                     document.getElementById('inventory_container').appendChild(inventory_item_block);
-    
+
                     inventory_item_block.addEventListener('click', function () {
                         console.log('click inventory item', config.data.inventory[inumber].listitems[index]);
                     })
