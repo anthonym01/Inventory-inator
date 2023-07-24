@@ -48,7 +48,7 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err)
     } finally {
 
-        post({ payload: "Came online at" }, "/post/phonehome");
+        post({ payload: "Came online at " + (new Date()) }, "/post/phonehome");
 
         Ui.initalize();
         inventory.initalize();
@@ -180,10 +180,10 @@ const inventory = {
                 inventory_icon.classList = "inventory_icon";
                 switch (config.data.inventory[index].icon) {
                     case 1:
-                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/box-cardboard-pngrepo-com.png')";
+                        inventory_icon.style.backgroundImage = `url('img/selectionicons/box-cardboard-pngrepo-com.png')`;
                         break;
                     case 2:
-                        inventory_icon.style.backgroundImage = "url('/www/img/selectionicons/bag-svgrepo-com.svg')";
+                        inventory_icon.style.backgroundImage = `url('img/selectionicons/bag-svgrepo-com.svg')`;
                         break;
                     default: //request previously uploaded image
 
