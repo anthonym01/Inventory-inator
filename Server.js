@@ -7,10 +7,14 @@ const fs = require('fs');
 const path = require('path');
 const port = 1999;//port for the server
 
+async function loggerite(datum){
+    console.log(datum);
+}
+
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
-    response.write('404 page not , code: ', url);
-    console.error('File not found: ', url)
+    response.write('404 page not , code: '+ url);
+    loggerite('File not found: '+url);
 }
 app.use(express.static('www'))
 //app.use('/img', express.static(path.join(__dirname, 'img')))
