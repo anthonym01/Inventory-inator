@@ -7,14 +7,38 @@ const fs = require('fs');
 const path = require('path');
 const port = 1999;//port for the server
 
-async function loggerite(datum){
+//Error Logging
+async function loggerite(datum) {
     console.log(datum);
+    try {
+        if (!fs.existsSync(path.join(__dirname, './database/'))) {
+            console.log("Database does not exist");
+            fs.mkdirSync(path.join(__dirname, './database/'));
+        }
+
+        if (!fs.existsSync(path.join(__dirname, './database/users.json'))) {
+            console.log('Creating users record');
+            fs.writeFileSync(path.join(__dirname, './database/users.json'),
+                JSON.stringify({
+                    db_version: 0,
+                    users: [//test users
+                        { uname: "Anthonym", password: "0000" },
+                        { uname: "test", password: "0000" }
+                    ]
+                })
+            );
+        }
+    }
+    catch (error) {
+
+    }
+
 }
 
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
-    response.write('404 page not , code: '+ url);
-    loggerite('File not found: '+url);
+    response.write('404 page not , code: ' + url);
+    loggerite('File not found: ' + url);
 }
 app.use(express.static('www'))
 //app.use('/img', express.static(path.join(__dirname, 'img')))
@@ -70,7 +94,7 @@ app.post('/post/test', (req, res) => {
 app.post('/post/phonehome', (req, res) => {
     //receive more data than a get
     req.on('data', function (data) {
-        console.log('Phoned home: ',JSON.parse(data).payload);
+        console.log('Phoned home: ', JSON.parse(data).payload);
         res.end(JSON.stringify({ logged: "phone rang" }));
     });
 });
