@@ -11,8 +11,8 @@ const port = 1999;//port for the server
 async function loggerite(datum) {
     console.log(datum);
     try {
-        if (!fs.existsSync(path.join(__dirname, './database/'))) {
-            console.log("Database does not exist");
+        if (!fs.existsSync(path.join(__dirname, './logs/'))) {
+            console.log("Logs does not exist");
             fs.mkdirSync(path.join(__dirname, './database/'));
         }
 
