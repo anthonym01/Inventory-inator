@@ -48,7 +48,7 @@ window.addEventListener('load', async function () {
         console.warn('Something bad happened: ', err)
     } finally {
 
-        post({ payload: "Came online at " + (new Date()) }, "/post/phonehome");
+        post({ payload: "Came online at " + (new Date().getMonth()) }, "/post/phonehome");
 
         Ui.initalize();
         inventory.initalize();

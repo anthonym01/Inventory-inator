@@ -10,27 +10,21 @@ const port = 1999;//port for the server
 //Error Logging
 async function loggerite(datum) {
     console.log(datum);
+
+    //Check dir structure 
     try {
+        const timex = new Date();
+        const timeingstringpath = path.join(__dirname, `./logs/${timex.getDate()}-${timex.getMonth()}-${timex.getFullYear()}.txt`);
+
         if (!fs.existsSync(path.join(__dirname, './logs/'))) {
-            console.log("Logs does not exist");
-            fs.mkdirSync(path.join(__dirname, './database/'));
+            fs.mkdirSync(path.join(__dirname, './logs/'));
         }
 
-        if (!fs.existsSync(path.join(__dirname, './database/users.json'))) {
-            console.log('Creating users record');
-            fs.writeFileSync(path.join(__dirname, './database/users.json'),
-                JSON.stringify({
-                    db_version: 0,
-                    users: [//test users
-                        { uname: "Anthonym", password: "0000" },
-                        { uname: "test", password: "0000" }
-                    ]
-                })
-            );
+        if (!fs.existsSync(timeingstringpath)) {
+            fs.writeFileSync(timeingstringpath, 'Start log\n', 'utf8');
         }
-    }
-    catch (error) {
-
+    } catch (error) {
+        console.error("Logger Error\n", error)
     }
 
 }
@@ -40,6 +34,7 @@ async function notfoundpage(response, url) {//404 page goes here
     response.write('404 page not , code: ' + url);
     loggerite('File not found: ' + url);
 }
+
 app.use(express.static('www'))
 //app.use('/img', express.static(path.join(__dirname, 'img')))
 app.get('/', (request, response) => { startingpoint(response) });//starting point request
@@ -94,7 +89,7 @@ app.post('/post/test', (req, res) => {
 app.post('/post/phonehome', (req, res) => {
     //receive more data than a get
     req.on('data', function (data) {
-        console.log('Phoned home: ', JSON.parse(data).payload);
+        loggerite('Phoned home: ' + JSON.parse(data).payload);
         res.end(JSON.stringify({ logged: "phone rang" }));
     });
 });
