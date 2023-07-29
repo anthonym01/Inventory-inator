@@ -5,29 +5,56 @@ const app = express();
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { info } = require('console');
 const port = 1999;//port for the server
 
 //Error Logging
-async function loggerite(datum) {
-    console.log(datum);
+const loggerite = {
+    checkfs: async function () {
 
-    //Check dir structure 
-    try {
         const timex = new Date();
-        const timeingstringpath = path.join(__dirname, `./logs/${timex.getDate()}-${timex.getMonth()}-${timex.getFullYear()}.txt`);
+        const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
+        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.txt`);
 
-        if (!fs.existsSync(path.join(__dirname, './logs/'))) {
-            fs.mkdirSync(path.join(__dirname, './logs/'));
+        if (!fs.existsSync(longdirpath)) {
+            console.log('Create: ', longdirpath);
+            fs.mkdirSync(longdirpath);
         }
 
-        if (!fs.existsSync(timeingstringpath)) {
-            fs.writeFileSync(timeingstringpath, 'Start log\n', 'utf8');
+        if (!fs.existsSync(thislogpath)) {
+            console.log('Create: ', thislogpath);
+            fs.writeFileSync(thislogpath, 'Start log\n', 'utf8');
         }
-    } catch (error) {
-        console.error("Logger Error\n", error)
+    },
+    info: async function (datum) {
+        console.log(datum);
+
+        const timex = new Date();
+        const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
+        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.txt`);
+
+        try {
+            writelog(datum);
+        } catch (error) {
+            console.error("Logger Error", error);
+            loggerite.checkfs();
+            loggerite.info(datum);
+        }
+
+        function writelog(datumd) {
+            try {
+                fs.appendFileSync(thislogpath, `${timex} : ${datumd}\n`, 'utf-8');
+            } catch (error) {
+                console.error("Logger Error", error);
+                check_directory_structure();
+                writelog(datum);
+            }
+        }
+    }, error: async function () {
+
     }
-
 }
+
 
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
@@ -94,33 +121,7 @@ app.post('/post/phonehome', (req, res) => {
     });
 });
 
-/*
-app.get('/*', (request, responce) => {// 'catch all' equivalent
-    console.log('requested Url: ', request.url);
-
-    responce.setHeader('Acess-Control-Allow-Origin', '*');//allow access control from client, this will automatically handle most media files
-
-    //These need to be handled manually, with a bit of stringery
-    if (request.url.indexOf('.css') != -1) {//requestuested url is a css file
-        responce.setHeader('Content-type', 'text/css');//Set the header to css, so the client will expects a css document
-    } else if (request.url.indexOf('.js') != -1) { //requestuested url is a js file
-        responce.setHeader('Content-type', 'application/javascript');//Set the header to javascript, so the client will expects a javascript document
-    } else if (request.url.indexOf('.html') != -1) {//requestuested url is a html file
-        responce.setHeader('Content-type', 'text/html');//Set the header to html, so the client will expects a html document
-    } else {
-        //media handled automatically for now
-
-    }
-    if (request.url.indexOf('.') == -1) {//has no file type
-        //console.log('404, redirect to starting point');
-        //startingpoint(res)
-    } else {
-        writeresponce(responce, request.url.replace('/', 'www/'));//point to the folder with our web files
-    }
-});
-*/
 app.listen(port, () => { console.log('Running on port ', port) })//Listen for requests, this starts the server
-
 
 async function writeresponce(res, filepath) {
     //write files in responses
@@ -144,7 +145,7 @@ async function writeresponce(res, filepath) {
 // prototype json database, just wanted to see if i could do it
 let database = {
     initalize: function () {
-        console.log('Initalize database');
+        loggerite('Initalize database');
         try {
             if (!fs.existsSync(path.join(__dirname, './database/'))) {
                 console.log("Database does not exist");
