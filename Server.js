@@ -5,49 +5,52 @@ const app = express();
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { info } = require('console');
 const port = 1999;//port for the server
 
-//Error Logging
+//Logging function
 const loggerite = {
-    checkfs: async function () {
+    checkfs: function () {
+        console.log('checking log path');
 
         const timex = new Date();
         const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.txt`);
+        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/6-2023/6-28.log'
+        if(!fs.existsSync(path.join(__dirname, `./logs/`))){fs.mkdirSync(longdirpath);}
 
         if (!fs.existsSync(longdirpath)) {
             console.log('Create: ', longdirpath);
-            fs.mkdirSync(longdirpath);
-        }
+             fs.mkdirSync(longdirpath); 
+            }
 
         if (!fs.existsSync(thislogpath)) {
             console.log('Create: ', thislogpath);
             fs.writeFileSync(thislogpath, 'Start log\n', 'utf8');
         }
+        return -1;
     },
     info: async function (datum) {
         console.log(datum);
 
         const timex = new Date();
         const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.txt`);
+        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);
 
         try {
             writelog(datum);
         } catch (error) {
             console.error("Logger Error", error);
-            loggerite.checkfs();
+            await loggerite.checkfs();
             loggerite.info(datum);
         }
 
-        function writelog(datumd) {
+        async function writelog(datum) {
             try {
-                fs.appendFileSync(thislogpath, `${timex} : ${datumd}\n`, 'utf-8');
+                fs.appendFileSync(thislogpath, `${timex} : ${datum}\n`, 'utf-8');
             } catch (error) {
-                console.error("Logger Error", error);
-                check_directory_structure();
-                writelog(datum);
+
+            console.error("Logger Error", error);
+                await loggerite.checkfs();
+                loggerite.info(datum);
             }
         }
     }, error: async function () {
@@ -59,7 +62,7 @@ const loggerite = {
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
     response.write('404 page not , code: ' + url);
-    loggerite('File not found: ' + url);
+    loggerite.info('File not found: ' + url);
 }
 
 app.use(express.static('www'))
@@ -116,7 +119,7 @@ app.post('/post/test', (req, res) => {
 app.post('/post/phonehome', (req, res) => {
     //receive more data than a get
     req.on('data', function (data) {
-        loggerite('Phoned home: ' + JSON.parse(data).payload);
+        loggerite.info('Phoned home: ' + JSON.parse(data).payload);
         res.end(JSON.stringify({ logged: "phone rang" }));
     });
 });
@@ -145,7 +148,7 @@ async function writeresponce(res, filepath) {
 // prototype json database, just wanted to see if i could do it
 let database = {
     initalize: function () {
-        loggerite('Initalize database');
+        loggerite.info('Initalize database');
         try {
             if (!fs.existsSync(path.join(__dirname, './database/'))) {
                 console.log("Database does not exist");
