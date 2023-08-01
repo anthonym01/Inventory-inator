@@ -14,13 +14,14 @@ const loggerite = {
 
         const timex = new Date();
         const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/6-2023/6-28.log'
-        if(!fs.existsSync(path.join(__dirname, `./logs/`))){fs.mkdirSync(longdirpath);}
+        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/MM-YYYY/MM-DD.log'
+
+        if (!fs.existsSync(path.join(__dirname, `./logs/`))) { fs.mkdirSync(`./logs/`); }
 
         if (!fs.existsSync(longdirpath)) {
             console.log('Create: ', longdirpath);
-             fs.mkdirSync(longdirpath); 
-            }
+            fs.mkdirSync(longdirpath);
+        }
 
         if (!fs.existsSync(thislogpath)) {
             console.log('Create: ', thislogpath);
@@ -38,18 +39,18 @@ const loggerite = {
         try {
             writelog(datum);
         } catch (error) {
-            console.error("Logger Error", error);
-            await loggerite.checkfs();
+            console.error(error);
+            loggerite.checkfs();
             loggerite.info(datum);
         }
 
-        async function writelog(datum) {
+        function writelog(datum) {
             try {
                 fs.appendFileSync(thislogpath, `${timex} : ${datum}\n`, 'utf-8');
             } catch (error) {
 
-            console.error("Logger Error", error);
-                await loggerite.checkfs();
+                console.error("Logger Error", error);
+                loggerite.checkfs();
                 loggerite.info(datum);
             }
         }
