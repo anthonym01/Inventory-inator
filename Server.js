@@ -2,51 +2,44 @@
 
 const express = require('express');
 const app = express();
-const http = require('http');
+//const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const port = 1999;//port for the server
 
 //Logging function
 const loggerite = {
-    checkfs: function () {
-        console.log('checking log path');
-
+    get_paths: function () {
         const timex = new Date();
-        const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/MM-YYYY/MM-DD.log'
-
-        if (!fs.existsSync(path.join(__dirname, `./logs/`))) { fs.mkdirSync(`./logs/`); }
-
-        if (!fs.existsSync(longdirpath)) {
-            console.log('Create: ', longdirpath);
-            fs.mkdirSync(longdirpath);
-        }
-
-        if (!fs.existsSync(thislogpath)) {
-            console.log('Create: ', thislogpath);
-            fs.writeFileSync(thislogpath, 'Start log\n', 'utf8');
+        const directory = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
+        const thisfile = path.join(directory, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/MM-YYYY/MM-DD.log'
+        return { directory, thisfile, timex }
+    },
+    checkfs: function () {
+        // Check and make folders for logs
+        console.log('checking log path');
+        const log_path = this.get_paths();
+        try {
+            if (!fs.existsSync(log_path.thisfile)) {
+                if (!fs.existsSync(log_path.directory)) {
+                    console.log('Create: ', log_path.directory);
+                    fs.mkdirSync(log_path.directory, { recursive: true });
+                }
+                console.log('Create: ', log_path.thisfile);
+                fs.writeFileSync(log_path.thisfile, 'Start log\n', { encoding: 'utf8' });
+            }
+        } catch (error) {
+            console.error(error);
         }
         return -1;
     },
-    info: async function (datum) {
+    info: async function (datum) {//log happenings
         console.log(datum);
-
-        const timex = new Date();
-        const longdirpath = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thislogpath = path.join(longdirpath, `${timex.getMonth()}-${timex.getDate()}.log`);
-
-        try {
-            writelog(datum);
-        } catch (error) {
-            console.error(error);
-            loggerite.checkfs();
-            loggerite.info(datum);
-        }
-
+        const log_path = this.get_paths();
+        writelog(datum);
         function writelog(datum) {
             try {
-                fs.appendFileSync(thislogpath, `${timex} : ${datum}\n`, 'utf-8');
+                fs.appendFileSync(log_path.thisfile, `${log_path.timex} : ${datum}\n`, { encoding: 'utf8' });
             } catch (error) {
 
                 console.error("Logger Error", error);
@@ -54,8 +47,20 @@ const loggerite = {
                 loggerite.info(datum);
             }
         }
-    }, error: async function () {
+    }, error: async function (datum) {//log bad happenings
+        console.error(datum);
+        const log_path = this.get_paths();
+        writelog(datum);
+        function writelog(datum) {
+            try {
+                fs.appendFileSync(log_path.thisfile, `\n****************************************\nError:\n${log_path.timex} :\n${datum}\n******************************************\n`, { encoding: 'utf8' });
+            } catch (error) {
 
+                console.error("Logger Error", error);
+                loggerite.checkfs();
+                loggerite.error(datum);
+            }
+        }
     }
 }
 
@@ -77,14 +82,14 @@ async function startingpoint(response) {//serve index.html
         response.writeHead(200, { 'Content-type': 'text/html' });//200 ok
         fs.readFile('www/index.html', function (err, databuffer) {
             if (err) {
-                console.log(err);
+                loggerite.error(err);
             } else {
                 response.write(databuffer);
             }
             response.end();//end response
         })
     } catch (err) {
-        console.log('Catastrophy on index: ', err);
+        loggerite.error('Catastrophy on index: ', err);
     }
 }
 
@@ -109,9 +114,9 @@ app.get('/get/test', (req, res) => {
 //a test post
 app.post('/post/test', (req, res) => {
     //receive more data than a get
-    console.log('test post to server');
+    loggerite.info('test post to server');
     req.on('data', function (data) {
-        console.log('Posted raw: ', data, ' Parsed: ', JSON.parse(data));
+        loggerite.info('Posted : ' + data + ' Parsed: ' + JSON.parse(data));
         res.end(JSON.stringify({ test: "test post received" }));
     });
 });
@@ -125,7 +130,7 @@ app.post('/post/phonehome', (req, res) => {
     });
 });
 
-app.listen(port, () => { console.log('Running on port ', port) })//Listen for requests, this starts the server
+app.listen(port, () => { loggerite.info('Running on port ' + port) })//Listen for requests, this starts the server
 
 async function writeresponce(res, filepath) {
     //write files in responses
@@ -134,7 +139,7 @@ async function writeresponce(res, filepath) {
         fs.readFile(filepath, function (err, databuffer) {
             if (err) {
                 res.writeHead(404);//not okay
-                console.error(err);
+                loggerite.error(err);
             } else {
                 res.writeHead(200);//200 ok
                 res.write(databuffer);
@@ -142,7 +147,7 @@ async function writeresponce(res, filepath) {
             res.end();//end response
         })
     } catch (error) {
-        console.log(error);
+        loggerite.error(error);
     }
 }
 
@@ -152,12 +157,12 @@ let database = {
         loggerite.info('Initalize database');
         try {
             if (!fs.existsSync(path.join(__dirname, './database/'))) {
-                console.log("Database does not exist");
+                loggerite.error("Database does not exist");
                 fs.mkdirSync(path.join(__dirname, './database/'));
             }
 
             if (!fs.existsSync(path.join(__dirname, './database/users.json'))) {
-                console.log('Creating users record');
+                loggerite.info('Creating users record');
                 fs.writeFileSync(path.join(__dirname, './database/users.json'),
                     JSON.stringify({
                         db_version: 0,
@@ -170,17 +175,17 @@ let database = {
             }
 
             if (!fs.existsSync(path.join(__dirname, './database/userdata/'))) {
-                console.log('Creating user data directory')
+                loggerite.error('Creating user data directory' + path.join(__dirname, './database/userdata/'));
                 fs.mkdirSync(path.join(__dirname, './database/userdata/'));
             }
-            console.log("Database is Go!!");
+            loggerite.info("Database check succeded");
         } catch (error) {
             console.log('Startup error, check if node runtime has write permission in ', __dirname);
             console.warn(error);
         }
     },
     cleanup: async function () {
-        console.log('CLean up database')
+        loggerite.info('CLean up database')
     },
     Create_user: async function (userdetails) {
         console.log('Add new user entry to database :', userdetails);
