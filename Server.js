@@ -1,4 +1,4 @@
-//run 'node server.js' to run
+//'node server.js'
 
 const express = require('express');
 const app = express();
@@ -7,12 +7,11 @@ const fs = require('fs');
 const path = require('path');
 const port = 1999;//port for the server
 
-//Logging function
 const loggerite = {
     get_paths: function () {
         const timex = new Date();
-        const directory = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);
-        const thisfile = path.join(directory, `${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/MM-YYYY/MM-DD.log'
+        const directory = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);// '/logs/MM-YYYY/
+        const thisfile = path.join(directory, `${timex.getMonth()}-${timex.getDate()}.log`);// 'MM-DD.log'
         return { directory, thisfile, timex }
     },
     checkfs: function () {
@@ -44,7 +43,7 @@ const loggerite = {
 
                 console.error("Logger Error", error);
                 loggerite.checkfs();
-                loggerite.info(datum);
+                writelog(datum);
             }
         }
     }, error: async function (datum) {//log bad happenings
@@ -53,17 +52,16 @@ const loggerite = {
         writelog(datum);
         function writelog(datum) {
             try {
-                fs.appendFileSync(log_path.thisfile, `\n****************************************\nError:\n${log_path.timex} :\n${datum}\n******************************************\n`, { encoding: 'utf8' });
+                fs.appendFileSync(log_path.thisfile, `\n****************************************\nError:\n${log_path.timex} :\n${datum}\n******************************************\n\n`, { encoding: 'utf8' });
             } catch (error) {
 
                 console.error("Logger Error", error);
                 loggerite.checkfs();
-                loggerite.error(datum);
+                writelog(datum);
             }
         }
     }
 }
-
 
 async function notfoundpage(response, url) {//404 page goes here
     response.writeHead(404);
@@ -73,13 +71,17 @@ async function notfoundpage(response, url) {//404 page goes here
 
 app.use(express.static('www'))
 //app.use('/img', express.static(path.join(__dirname, 'img')))
+
 app.get('/', (request, response) => { startingpoint(response) });//starting point request
+
 app.get('/index.html', (request, response) => { startingpoint(response) });//starting point request
 
 async function startingpoint(response) {//serve index.html
-    response.setHeader('Acess-Control-Allow-Origin', '*');//allow access control from client, this will automatically handle most media files
     try {
+        response.setHeader('Acess-Control-Allow-Origin', '*');//allow access control from client, this will automatically handle most media files
+
         response.writeHead(200, { 'Content-type': 'text/html' });//200 ok
+
         fs.readFile('www/index.html', function (err, databuffer) {
             if (err) {
                 loggerite.error(err);
@@ -87,9 +89,9 @@ async function startingpoint(response) {//serve index.html
                 response.write(databuffer);
             }
             response.end();//end response
-        })
+        });
     } catch (err) {
-        loggerite.error('Catastrophy on index: ', err);
+        loggerite.error('Catastrophy on index: \n'+ err);
     }
 }
 
