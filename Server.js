@@ -9,10 +9,15 @@ const port = 1999;//port for the server
 
 const loggerite = {
     get_paths: function () {
-        const timex = new Date();
-        const directory = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/`);// '/logs/MM-YYYY/
-        const thisfile = path.join(directory, `${timex.getMonth()}-${timex.getDate()}.log`);// 'MM-DD.log'
-        return { directory, thisfile, timex }
+        try {
+            const timex = new Date();
+            const thisfile = path.join(__dirname, `./logs/${timex.getMonth()}-${timex.getFullYear()}/${timex.getMonth()}-${timex.getDate()}.log`);// '/logs/mm-yyyy/mm-dd.log'
+
+            return { thisfile, timex }
+        } catch (error) {
+            console.error(error);
+            return { thisfile: path.join(__dirname, `./logs/default.log`), timex: 0 }
+        }
     },
     checkfs: function () {
         // Check and make folders for logs
@@ -20,9 +25,9 @@ const loggerite = {
         const log_path = this.get_paths();
         try {
             if (!fs.existsSync(log_path.thisfile)) {
-                if (!fs.existsSync(log_path.directory)) {
-                    console.log('Create: ', log_path.directory);
-                    fs.mkdirSync(log_path.directory, { recursive: true });
+                if (!fs.existsSync(path.dirname(log_path.thisfile))) {
+                    console.log('Create: ', path.dirname(log_path.thisfile));
+                    fs.mkdirSync(path.dirname(log_path.thisfile), { recursive: true });
                 }
                 console.log('Create: ', log_path.thisfile);
                 fs.writeFileSync(log_path.thisfile, 'Start log\n', { encoding: 'utf8' });
@@ -91,7 +96,7 @@ async function startingpoint(response) {//serve index.html
             response.end();//end response
         });
     } catch (err) {
-        loggerite.error('Catastrophy on index: \n'+ err);
+        loggerite.error('Catastrophy on index: \n' + err);
     }
 }
 
@@ -100,12 +105,10 @@ app.get('/get/test', (req, res) => {
     // Receive a small amount of test data and send back a response
     try {
         console.log('test get server');
-        //test later
         req.on('data', function (data) {
             console.log('get raw payload: ', data, ' Parsed: ', JSON.parse(data));
             res.end(JSON.stringify({ test: "test get received" }));
         });
-        //*** */
         res.writeHead(200, { 'Content-type': 'application/json' });
         res.send(JSON.stringify({ test: 'test get is okay' }));
     } catch (error) {
