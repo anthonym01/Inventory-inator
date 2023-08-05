@@ -151,6 +151,11 @@ let config = {
 const inventory = {
     initalize: async function () {
         this.render_main_lists();
+
+        // action to open the dialog for adding a new inventory
+        document.getElementById('add_new_inventory_button').addEventListener('click', function () {
+            console.log('Add new list button')
+        });
     },
     render_main_lists: async function () {
         /*
