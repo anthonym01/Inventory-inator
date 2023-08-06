@@ -149,13 +149,29 @@ let config = {
 }
 
 const inventory = {
+    currently_open: -1,
     initalize: async function () {
         this.render_main_lists();
 
         // action to open the dialog for adding a new inventory
         document.getElementById('add_new_inventory_button').addEventListener('click', function () {
             console.log('Add new list button')
+            inventory.new_inventory_dialog.show();
         });
+    },
+    new_inventory_dialog: {//Manage dialog functions
+        show: async function () {
+
+        },
+        hide: async function () {
+
+        },
+        cancel: async function () {
+
+        },
+        save: async function () {
+
+        }
     },
     render_main_lists: async function () {
         /*
@@ -221,7 +237,7 @@ const inventory = {
 
     },
     open: async function (inventoryindex) {
-
+        inventory.currently_open = inventoryindex;
         console.log('open inventory ', config.data.inventory[inventoryindex])
 
         document.getElementById('inventory_list_pannel').classList = "Dynamic_lists_pannel hidden";
@@ -283,6 +299,7 @@ const inventory = {
             }
         }
     },
+
 }
 
 const recipie = {
