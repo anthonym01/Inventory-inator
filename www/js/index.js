@@ -164,7 +164,7 @@ const inventory = {
             document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue"
         },
         hide: async function () {
-
+            document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue hidden"
         },
         cancel: async function () {
 
@@ -357,6 +357,9 @@ const Ui = {
         },
         inventory_view: function () {
             console.log('Naviagate more view')
+            if (document.getElementById('addnew_list_Dialogue').classList == "addnew_list_Dialogue") {
+                document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue hidden";
+            }
             document.getElementById('inventory_list_pannel').classList = "Dynamic_lists_pannel ";
             document.getElementById('inventory_pannel').classList = "Dynamic_lists_pannel hidden";
 
