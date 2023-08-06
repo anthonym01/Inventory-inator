@@ -118,7 +118,7 @@ let config = {
                             "sprinkle salt into pan over egg",
                             "consume the sustinance"
                         ],
-                        tileImage: "base 64 string"
+                        tileImage: "base 64 string or server location or cache location"
                     }
                 ]
             },
@@ -161,7 +161,7 @@ const inventory = {
     },
     new_inventory_dialog: {//Manage dialog functions
         show: async function () {
-
+            document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue"
         },
         hide: async function () {
 

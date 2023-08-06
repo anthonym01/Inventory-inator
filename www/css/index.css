@@ -393,6 +393,16 @@ Inventory view
     text-align: center;
 }
 
+.addnew_list_Dialogue {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-color);
+}
+
 /* Plus and edit buttons */
 .universal_add_button,
 .universal_edit_button {

@@ -68,16 +68,6 @@
     -->
     <div class="mainview" id="inventory_view">
 
-        <!-- New-edit list dialogue -->
-        <div class="addnew_list_Dialogue" id="addnew_list_Dialogue" style="display: none;">
-            <div class="">New Inventory list</div>
-            <input class="" type="text" name="new_listname" id="" placeholder="Name"
-                title="Input a name for the new list">
-            <textarea id="" class="" placeholder="Details"></textarea>
-            <button id="" class="">Cancel</button>
-            <button id="" class="">Save</button>
-        </div>
-
         <!-- Inventory selection space-->
         <div class="Dynamic_lists_pannel" id="inventory_list_pannel">
             <div class="list_title">Inventories</div>
@@ -87,6 +77,15 @@
             </div>
             <!-- <div class="universal_edit_button" id=""></div>-->
             <div class="universal_add_button" id="add_new_inventory_button"></div>
+        </div>
+        <!-- New-edit list dialogue -->
+        <div class="addnew_list_Dialogue hidden" id="addnew_list_Dialogue" >
+            <div class="">New Inventory list</div>
+            <input class="" type="text" name="new_listname" id="" placeholder="Name"
+                title="Input a name for the new list">
+            <textarea id="" class="" placeholder="Details"></textarea>
+            <button id="" class="">Cancel</button>
+            <button id="" class="">Save</button>
         </div>
 
         <!--Inventory space-->
