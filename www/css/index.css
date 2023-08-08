@@ -225,9 +225,11 @@ body {
 Inventory view
 */
 
-.Dynamic_lists_pannel {
+.Dynamic_lists_pannel,
+.Dynamic_lists_pannel_compacted {
     /* Restrain titles and lists for inventory or recipies main lists*/
     position: absolute;
+    left: 0;
     height: fit-content;
     width: 100%;
     display: block;
@@ -397,10 +399,11 @@ Inventory view
     display: block;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100%;
     width: 100%;
     background-color: var(--background-color);
+    z-index: 5;
 }
 
 /* Plus and edit buttons */
@@ -464,4 +467,19 @@ Inventory view
 
 /*    <--  Landscape layout (with min-width) -->     */
 
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {}
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+
+
+    .Dynamic_lists_pannel_compacted {
+        width: 65%;
+    }
+
+    .addnew_list_Dialogue {
+        top: 7rem;
+        right: 0;
+        height: calc(100% - 7rem);
+        width: 35%;
+        background-color: var(--background-color);
+        z-index: 5;
+    }
+}
