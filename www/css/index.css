@@ -246,9 +246,10 @@ Inventory view
     font-family: minecraft;
 }
 
-.Inentory_list {
+.Inentory_list,.Inentory_list_compacted {
     position: relative;
     width: 100%;
+    left: 0;
     height: fit-content;
     min-height: 7rem;
     display: flex;
@@ -470,7 +471,7 @@ Inventory view
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
 
 
-    .Dynamic_lists_pannel_compacted {
+    .Dynamic_lists_pannel_compacted,.Inentory_list_compacted {
         width: 65%;
     }
 

@@ -162,11 +162,11 @@ const inventory = {
     new_inventory_dialog: {//Manage dialog functions
         show: async function () {
             document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue";
-            document.getElementById('inventory_list_pannel').classList="Dynamic_lists_pannel_compacted"
+            document.getElementById('inventory_lists_container').classList="Inentory_list_compacted"
         },
         hide: async function () {
             document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue hidden"
-            document.getElementById('inventory_list_pannel').classList="Dynamic_lists_pannel"
+            document.getElementById('inventory_lists_container').classList="Inentory_list"
         },
         cancel: async function () {
 
