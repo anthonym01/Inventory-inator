@@ -168,6 +168,13 @@ const inventory = {
             document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue hidden"
             document.getElementById('inventory_lists_container').classList="Inentory_list"
         },
+        isOpen:function(){
+            if (document.getElementById('addnew_list_Dialogue').classList == "addnew_list_Dialogue") {
+                return true;
+            }else{
+                return false;
+            }
+        },
         cancel: async function () {
 
         },
@@ -359,8 +366,8 @@ const Ui = {
         },
         inventory_view: function () {
             console.log('Naviagate more view')
-            if (document.getElementById('addnew_list_Dialogue').classList == "addnew_list_Dialogue") {
-                document.getElementById('addnew_list_Dialogue').classList = "addnew_list_Dialogue hidden";
+            if (inventory.new_inventory_dialog.isOpen()) {
+                inventory.new_inventory_dialog.hide();
             }
             document.getElementById('inventory_list_pannel').classList = "Dynamic_lists_pannel ";
             document.getElementById('inventory_pannel').classList = "Dynamic_lists_pannel hidden";
