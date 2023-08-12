@@ -70,7 +70,7 @@
     --grey: rgb(54, 54, 54);
     --half_grey: rgb(100, 100, 100);
     --elivation_color: 20%;
-    --inversion_factor: invert(1);
+    --inversion_factor: invert(1);/*Invert black and white images*/
 }
 
 .light {
