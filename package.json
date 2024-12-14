@@ -31,6 +31,6 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "@capacitor/cli": "^3.5.1"
+    "@capacitor/cli": "^5.0.1"
   }
 }
